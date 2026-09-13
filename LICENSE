@@ -1,0 +1,45 @@
+適用範囲 / Scope
+----------------
+
+このMITライセンスが適用されるのは、このリポジトリのうち **コード** の部分です。
+
+    pipeline/       収集パイプライン
+    site/*.py       サイト生成器・文面チェッカー
+    run.sh
+
+**データには適用されません。** 次のものは Wikipedia 由来であり、CC BY-SA 4.0 です。
+
+    concepts/       対象概念の定義（記述はこのリポジトリの著作物、CC BY-SA 4.0 で提供）
+    judgments/      判定記録（同上。引用部分は Wikipedia 由来）
+    data/           証拠バンドル・API応答の生データ
+    site/public/    生成されたページとデータセット
+
+詳しくは data/README.md を参照してください。
+
+This MIT License applies only to the code in this repository (pipeline/, site/*.py,
+run.sh). Data and prose derived from Wikipedia are licensed CC BY-SA 4.0.
+See data/README.md.
+
+----------------
+
+MIT License
+
+Copyright (c) 2026 Caprer Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

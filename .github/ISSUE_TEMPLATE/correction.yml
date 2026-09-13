@@ -1,0 +1,68 @@
+name: 誤りの指摘
+description: 判定や観測値の誤りを報告する
+title: "[訂正] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        指摘ありがとうございます。
+
+        この調査は「確認できず」と書いたものが実際にはあった、という誤りを
+        これまでに5回やっています。指摘は歓迎です。
+
+        訂正は上書きせず、`judgments/living.toml` に新しい判定イベントを追記し、
+        `supersedes` で古い判定を無効化します。公開ページの「訂正の記録」にも出ます。
+
+  - type: input
+    id: concept
+    attributes:
+      label: 対象の概念
+      description: kuhaku.caprer.co.jp のカード名、または concept_id
+      placeholder: 例) 道徳的傷害 / moral-injury
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 何が間違っていますか
+      options:
+        - 判定が違う（記述が実際にはある、など）
+        - 観測値が違う（文字数・節数・脚注ドメイン数）
+        - 説明文の記述が事実と違う
+        - 探索範囲が足りない（他に見るべき記事がある）
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 根拠
+      description: |
+        **改訂ID (revision ID) を書いてください。**
+        `https://ja.wikipedia.org/w/index.php?oldid=<revid>` の形式のURLでも構いません。
+        記事のどの部分かも書いていただけると助かります。
+      placeholder: |
+        例)
+        「◯◯」(https://ja.wikipedia.org/w/index.php?oldid=123456789) の「概要」節に
+        「……」という記述があります。
+    validations:
+      required: true
+
+  - type: textarea
+    id: note
+    attributes:
+      label: 補足
+      description: 任意
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        調べたのは **Wikipedia日本語版だけ** です。辞典・論文・書籍は調べていません。
+        「日本語に情報が無い」という主張はしていません。
+        また、独立した記事が無いことは編集上の欠陥や、独立記事にすべきだということを意味しません。

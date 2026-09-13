@@ -10,7 +10,7 @@
 #
 # eligibility_status:
 #   "confirmed" = 根拠を確認済み
-#   "pending"   = 未確認。Day 1-2 で日本語資料2件を確認するまで採用しない
+#   "pending"   = 未確認。要件を満たす資料を確認するまで採用しない
 #
 # ja_candidates は「候補」であって答えではない。パイプラインが Wikidata の
 # ラベル・別名・全文検索の結果を足し、すべてを完全一致で存在確認する。
@@ -186,7 +186,7 @@ en_title = "Hedonic treadmill"
 ja_candidates = ["快楽順応", "ヘドニックトレッドミル", "幸福の順応"]
 eligibility = "a"
 eligibility_status = "confirmed"
-why = "★反例候補。日本語版が同等以上の可能性"
+why = "良いことが起きても、しばらくすると幸福感が元の水準に戻るという現象"
 
 # ---------------------------------------------------------------- くらし・権利
 
@@ -268,7 +268,7 @@ en_title = "Planned obsolescence"
 ja_candidates = ["計画的陳腐化", "計画的旧式化"]
 eligibility = "a"
 eligibility_status = "confirmed"
-why = "★反例候補。日本語版のほうが厚い可能性"
+why = "製品が一定期間で使えなくなるよう設計されているという主張と、その議論"
 
 [[concept]]
 id = "cooling-off-period"
@@ -278,7 +278,7 @@ ja_candidates = ["クーリングオフ", "クーリング・オフ"]
 eligibility = "b"
 eligibility_status = "confirmed"
 eligibility_note = "特定商取引法に基づく日本の制度として確立している"
-why = "★反例。日本語版のほうが厚い（実測 ja 8,550B > en 5,529B）。3点セットの③"
+why = "契約後に一定期間内なら無条件で申込みを撤回できる制度"
 
 # ---------------------------------------------------------------- 食
 
@@ -334,7 +334,7 @@ en_title = "Acrylamide"
 ja_candidates = ["アクリルアミド"]
 eligibility = "a"
 eligibility_status = "confirmed"
-why = "★反例候補。加熱調理で生じる物質。日本語版が同等の可能性"
+why = "でんぷんの多い食品を高温で加熱したときに生じる物質"
 
 [[concept]]
 id = "added-sugar"

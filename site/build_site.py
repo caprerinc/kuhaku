@@ -2,7 +2,7 @@
 
 依存パッケージなし。第三者が pip install なしで生成物を再現できることを優先する。
 
-設計上の決定（すべて Codex の逆張りレビューを受けたもの）:
+レビューを経て確定した設計上の決定:
   - 「欠落」という断定語を公開表示に使わない → 「確認できず」
   - 文字数を原稿用紙換算などで**比例図示しない**。
     英語1字と日本語1字は情報量が同じではないため、面積比較は誇張になる。
@@ -582,6 +582,8 @@ td.un{color:var(--sumi);font-size:.78rem}
   text-decoration:none;font-size:.88rem}
 .dl a:hover{background:var(--ai);color:var(--paper)}
 footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
+.flinks{display:flex;gap:1.4rem;flex-wrap:wrap;padding-bottom:1.2rem;margin-bottom:1.2rem;border-bottom:1px solid var(--kei)}
+.flinks a{color:var(--ai);font-size:.9rem}
 .cta{border:1px solid var(--kei);padding:1.3rem;margin:1rem 0 0;background:var(--kuu)}
 .cta h2{margin:0 0 .4rem;font-size:1.05rem}
 @media (prefers-reduced-motion:no-preference){
@@ -709,6 +711,7 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) ->
     <a href="/kuhaku-zukan.csv" download>CSV をダウンロード</a>
     <a href="/kuhaku-zukan.json" download>JSON をダウンロード（探索記録・訂正履歴つき）</a>
   </div>
+  <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div>
   <p class="sec-note" style="margin-top:1rem">観測の実行ID <code>{esc(ev['run_id'])}</code>／算出規則 <code>{esc(ev['calc_version'])}</code>。
   各項目の改訂IDから、測定した版そのものを開けます。</p>
 </section>
@@ -733,10 +736,15 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) ->
 </section>
 
 <footer>
+  <p class="flinks">
+    <a href="https://github.com/caprerinc/kuhaku">ソースコードとデータ</a>
+    <a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">誤りを報告する</a>
+    <a href="#corrections">訂正の記録</a>
+  </p>
   <p>{SITE_TITLE} {SITE_SUB}　{BUILD_DATE} 版</p>
   <p>Wikipedia 由来のデータは <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" rel="license">CC BY-SA 4.0</a> です。
   本文の引用および観測値は、日本語版・英語版Wikipedia の各改訂版に基づきます。</p>
-  <p>誤りを見つけたら教えてください。訂正は履歴として公開します。</p>
+  <p>誤りを見つけたら<a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">Issue</a>で教えてください。訂正は上書きせず、履歴として公開します。</p>
 </footer>
 
 </div></body></html>"""

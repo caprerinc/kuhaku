@@ -1,0 +1,22 @@
+{
+  "status": "invalid",
+  "do_not_use_for_analysis": true,
+  "file": "living-run-20260908T115257Z.json",
+  "sha256": "6f24f6e8e56bc8d5d45f33c98f269ff913169e33bcbbdadaa172e58ff1397a42",
+  "calc_version": "1.0.0",
+  "superseded_by_run_id": "run-20260908T120726Z",
+  "known_bugs": [
+    "全文検索の結果を比較対象の選定に含めていた（パラソーシャル関係が「バーチャルYouTuber」と比較され文字数比0.73、スクリーンタイムが「24時間テレビ」と比較され2.75）",
+    "Wikidata のラベル・別名を典拠として自動選定していた（満腹感が「食」への転送を掴み比7.72、栄養強化に「栄養補助食品」を採用）",
+    "本文と改訂IDを別リクエストで取得しており、記録した版と測った本文が別の版になりうる",
+    "附録節の子節を本文文字数に含めていた",
+    "取得失敗を不在と区別していなかった"
+  ],
+  "affected_fields": [
+    "ja_selected",
+    "comparison.*",
+    "*.body_chars",
+    "*.top_level_sections"
+  ],
+  "why_kept": "この実行が誤っていたこと自体が調査の一部であり、訂正の記録の根拠になるため残す。数値を引用してはいけない。"
+}
