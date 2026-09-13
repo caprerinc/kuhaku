@@ -120,8 +120,14 @@ wikitext のテンプレート／ナビボックスに現れるリンクは記�
 （`pip install` を要求しないのは、第三者が検証しやすいことを最優先しているため）。
 
 ```bash
-python3 -m pipeline.collect concepts/living.toml
+./run.sh verify    # 保存した応答から観測値を作り直し、証拠バンドルと公開CSVに突き合わせる（ネットワーク不要）
+./run.sh drift     # 現在の Wikipedia と比べ、測定時から記事が変わっていないか見る
+./run.sh collect   # Wikipedia から取り直す（証拠バンドルが作り直される）
 ```
+
+`verify` が示すのは **「同梱の応答から公開値を作り直せる」ことだけ** である。
+その応答が本当に Wikipedia から取得されたものであること、算出規則そのものの妥当性、
+人手判定の妥当性は示さない。
 
 出力される証拠バンドル（`data/evidence/*.json`）には、第三者が同じ結果に到達するための情報が入っている:
 

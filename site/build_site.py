@@ -581,6 +581,7 @@ td.un{color:var(--sumi);font-size:.78rem}
 .dl a{display:inline-block;padding:.5rem 1rem;border:1px solid var(--ai);color:var(--ai);
   text-decoration:none;font-size:.88rem}
 .dl a:hover{background:var(--ai);color:var(--paper)}
+.cmd{font-family:var(--mono);font-size:.8rem;background:var(--kuu);border:1px solid var(--kei);padding:.8rem 1rem;overflow-x:auto;line-height:1.8;margin:.8rem 0}
 footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
 .flinks{display:flex;gap:1.4rem;flex-wrap:wrap;padding-bottom:1.2rem;margin-bottom:1.2rem;border-bottom:1px solid var(--kei)}
 .flinks a{color:var(--ai);font-size:.9rem}
@@ -714,6 +715,27 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) ->
   <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div>
   <p class="sec-note" style="margin-top:1rem">観測の実行ID <code>{esc(ev['run_id'])}</code>／算出規則 <code>{esc(ev['calc_version'])}</code>。
   各項目の改訂IDから、測定した版そのものを開けます。</p>
+
+  <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字を検算する</h3>
+  <p class="sec-note">「再現できます」と書くだけでは足りないので、検算するコマンドを用意しました。
+  取得したAPI応答は1件ずつ保存してあり（344件）、そこから観測値を作り直して、
+  <strong>上で配布しているCSVの数字</strong>に突き合わせます。<strong>ネットワークは使いません。</strong></p>
+  <pre class="cmd">git clone https://github.com/caprerinc/kuhaku
+cd kuhaku &amp;&amp; ./run.sh verify</pre>
+  <p class="sec-note">2026-09-14 に実行した結果です。保存した生データ344件はすべてファイル名のハッシュと一致。
+  観測128件（実ページ95件）を作り直し、記事が無いと記録した85件も応答で確認しました。
+  <strong>公開しているCSVの47行すべてが再計算値と一致</strong>し、不一致はありません。</p>
+  <p class="sec-note">この検査が示すのは<strong>「同梱の応答から公開値を作り直せる」ことだけ</strong>です。
+  その応答が本当にWikipediaから取得されたものであること、算出規則そのものの妥当性、
+  人手判定の妥当性は示しません。</p>
+
+  <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字はいつのものか</h3>
+  <p class="sec-note">記事は日々書き換わるので、ここの数字は測定した版のものです。
+  <code>./run.sh drift</code> で、現在の版と比べて何が変わったかを確認できます。</p>
+  <p class="sec-note">2026-09-14 に実行したところ、対象81ページのうち<strong>16ページ</strong>で
+  改訂IDが変わっていました。記事が変わること自体は当たり前で、誤りではありません。
+  ここで言えるのは、公開した数字は時間とともに古くなる、ということだけです。
+  実行結果は <code>data/drift/</code> に日付つきで残してあります。</p>
 </section>
 
 <section>

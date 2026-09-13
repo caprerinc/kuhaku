@@ -7,6 +7,8 @@
 #   ./run.sh build     生成のみ
 #   ./run.sh check     生成 + 全チェック（HTML / 元データ / 記事）
 #   ./run.sh deploy    生成 + 全チェック + 配信（チェックが落ちたら配信しない）
+#   ./run.sh verify    公開した数字を保存済みの生データから作り直して照合する
+#   ./run.sh drift     さらに Wikipedia の現在の版と比べ、記事が変わっていないか見る
 #   ./run.sh collect   Wikipedia から証拠を取り直す（時間がかかる）
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -21,6 +23,8 @@ build() {
 }
 
 check() {
+  echo "── 証拠の完全性"
+  python3 -m pipeline.verify | sed 's/^/  /'
   echo "── 公開HTML"
   python3 site/lint_copy.py
   echo "── 元データ"
@@ -39,6 +43,12 @@ case "${1:-check}" in
   build)
     build
     ;;
+  verify)
+    python3 -m pipeline.verify
+    ;;
+  drift)
+    python3 -m pipeline.verify --drift
+    ;;
   check)
     build && check
     ;;
@@ -53,7 +63,7 @@ case "${1:-check}" in
     done
     ;;
   *)
-    echo "usage: ./run.sh {collect|build|check|deploy}" >&2
+    echo "usage: ./run.sh {collect|build|check|verify|drift|deploy}" >&2
     exit 2
     ;;
 esac

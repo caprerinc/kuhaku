@@ -1,0 +1,14 @@
+{
+  "measured_at": "2026-09-14",
+  "against_run_id": "run-20260908T120726Z",
+  "days_since_measurement": 6,
+  "targets": 81,
+  "unchanged": 65,
+  "changed": 16,
+  "fetch_failed": 0,
+  "changed_by_language": { "en": 16, "ja": 0 },
+  "targets_by_language": { "en": 47, "ja": 34 },
+  "DO_NOT_USE_FOR": "言語間の更新頻度の比較。対象記事の集合が日英で違い（英語版47件／日本語版34件）、期間も6日と短い。この数値からどちらの言語版がよく更新されているかは言えない。",
+  "why_measured": "公開した観測値が「いつの時点のものか」を示すため。記事が変わっていること自体は誤りではない。",
+  "how_to_reproduce": "./run.sh drift"
+}
