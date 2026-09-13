@@ -1,0 +1,5 @@
+# 公開ディレクトリに紛れ込んだものを配信しないための除外設定。
+# 生成物（index.html / kuhaku-zukan.csv / kuhaku-zukan.json）以外は出さない。
+.claude/
+.DS_Store
+*.swp

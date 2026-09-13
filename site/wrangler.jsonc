@@ -1,0 +1,25 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "kuhaku-zukan",
+	"compatibility_date": "2026-09-01",
+
+	// kuhaku.caprer.co.jp だけで配信する。workers.dev のサブドメインは開けない。
+	// caprer.co.jp は別 Worker(caprer) が持つ。
+	"workers_dev": false,
+	"routes": [
+		{
+			"pattern": "kuhaku.caprer.co.jp",
+			"custom_domain": true,
+			"zone_name": "caprer.co.jp",
+		},
+	],
+
+	// 完全な静的配信。Worker スクリプトは持たない。
+	// 生成物は `python3 site/build_site.py` で作る（依存パッケージなし）。
+	"assets": {
+		"directory": "./public",
+		"not_found_handling": "404-page",
+	},
+
+	"observability": { "enabled": true },
+}

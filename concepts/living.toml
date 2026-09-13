@@ -1,0 +1,482 @@
+# 空白図鑑 — 暮らし編 概念リスト
+#
+# eligibility: MVP対象適合性フィルタ（計画書 §5 [0]）
+#   "a" = 国に依存しない人間行動・健康・生活上の概念
+#   "b" = 日本国内での発生・利用を、独立した日本語資料2件以上で確認できる
+#   "c" = 海外制度だが、日本居住者の生活に直接影響する
+#
+#   これは「日本語版Wikipediaにその記事が必要か」を裁定する基準ではない。
+#   今回の暮らし編で扱う対象を選ぶ編集基準である。
+#
+# eligibility_status:
+#   "confirmed" = 根拠を確認済み
+#   "pending"   = 未確認。Day 1-2 で日本語資料2件を確認するまで採用しない
+#
+# ja_candidates は「候補」であって答えではない。パイプラインが Wikidata の
+# ラベル・別名・全文検索の結果を足し、すべてを完全一致で存在確認する。
+
+schema_version = "1.0.0"
+edition = "living"
+edition_label = "暮らし編"
+
+# ---------------------------------------------------------------- 健康・からだ
+
+[[concept]]
+id = "health-literacy"
+theme = "健康・からだ"
+en_title = "Health literacy"
+ja_candidates = ["ヘルスリテラシー", "ヘルス・リテラシー", "健康リテラシー"]
+eligibility = "a"
+eligibility_status = "confirmed"
+eligibility_note = "健康情報を読み解く能力。制度ではなく個人の能力に関する概念"
+why = "健康の情報を調べ、理解し、使うための力を指す概念"
+
+[[concept]]
+id = "perimenopause"
+theme = "健康・からだ"
+en_title = "Perimenopause"
+ja_candidates = ["更年期移行期", "周閉経期", "更年期障害", "閉経移行期"]
+eligibility = "a"
+eligibility_status = "confirmed"
+eligibility_note = "生理的現象。国に依存しない"
+why = "日本語版は「更年期障害」に転送される。移行期そのものと、その障害は別の概念"
+
+[[concept]]
+id = "sarcopenia"
+theme = "健康・からだ"
+en_title = "Sarcopenia"
+ja_candidates = ["サルコペニア", "筋肉減少症"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "高齢化率世界一の国で、加齢による筋肉減少を説明する概念"
+
+[[concept]]
+id = "insulin-resistance"
+theme = "健康・からだ"
+en_title = "Insulin resistance"
+ja_candidates = ["インスリン抵抗性"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "糖尿病の前段階。予防の入口にあたる概念"
+
+[[concept]]
+id = "sleep-hygiene"
+theme = "健康・からだ"
+en_title = "Sleep hygiene"
+ja_candidates = ["睡眠衛生"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "睡眠時間が世界最短水準の国で、睡眠を改善する行動の総称"
+
+[[concept]]
+id = "sedentary-lifestyle"
+theme = "健康・からだ"
+en_title = "Sedentary lifestyle"
+ja_candidates = ["座位行動", "座りがちなライフスタイル", "身体不活動"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "座っている時間そのものが健康リスクという、比較的新しい知見"
+
+[[concept]]
+id = "pelvic-floor"
+theme = "健康・からだ"
+en_title = "Pelvic floor"
+ja_candidates = ["骨盤底", "骨盤底筋"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "出産・加齢で誰にでも関わるが、日本語で語られる機会が少ない"
+
+[[concept]]
+id = "delayed-onset-muscle-soreness"
+theme = "健康・からだ"
+en_title = "Delayed onset muscle soreness"
+ja_candidates = ["遅発性筋肉痛", "遅発性筋痛"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "「筋肉痛が翌日来る」現象。誰もが経験するが説明を読んだ人は少ない"
+
+[[concept]]
+id = "overdiagnosis"
+theme = "健康・からだ"
+en_title = "Overdiagnosis"
+ja_candidates = ["過剰診断"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "検査で見つかった病気の一部は生涯症状を起こさなかったかもしれない、という研究上の論点。本項目は記事の構成を比べたもので、検査や治療の判断を扱わない"
+
+# ---------------------------------------------------------------- こころ
+
+[[concept]]
+id = "parasocial-interaction"
+theme = "こころ"
+en_title = "Parasocial interaction"
+ja_candidates = ["パラソーシャル関係", "パラソーシャル", "パラソーシャル・インタラクション", "擬似社会的相互作用", "疑似社会的関係"]
+eligibility = "a"
+eligibility_status = "confirmed"
+eligibility_note = "メディアの受け手に生じる心理現象。制度ではない"
+why = "配信者・アイドル・キャラクターに対して一方的に親密さを感じる関係を説明する基礎概念"
+
+[[concept]]
+id = "compassion-fatigue"
+theme = "こころ"
+en_title = "Compassion fatigue"
+ja_candidates = ["共感疲労", "二次受傷", "共感疲弊"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "看護・介護・支援職、および災害報道を見続ける人に起きる消耗"
+
+[[concept]]
+id = "moral-injury"
+theme = "こころ"
+en_title = "Moral injury"
+ja_candidates = ["道徳的傷害", "モラルインジャリー", "道徳的負傷", "モラル・インジャリー"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "「正しいと信じることをできなかった」ことによる傷。PTSDとは別の概念"
+
+[[concept]]
+id = "rumination"
+theme = "こころ"
+en_title = "Rumination (psychology)"
+ja_candidates = ["反芻思考", "反芻 (心理学)", "ぐるぐる思考"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "同じ考えが止まらない状態。うつの主要な維持要因"
+
+[[concept]]
+id = "bystander-effect"
+theme = "こころ"
+en_title = "Bystander effect"
+ja_candidates = ["傍観者効果"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "他に人がいるほど、人は助けに入りにくくなるという現象"
+
+[[concept]]
+id = "emotional-labor"
+theme = "こころ"
+en_title = "Emotional labor"
+ja_candidates = ["感情労働"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "接客業で笑顔を作り続ける負荷。日本の労働環境と直結する"
+
+[[concept]]
+id = "learned-helplessness"
+theme = "こころ"
+en_title = "Learned helplessness"
+ja_candidates = ["学習性無力感", "学習性無力症"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "「どうせ何をしても変わらない」を説明する概念"
+
+[[concept]]
+id = "emotional-dysregulation"
+theme = "こころ"
+en_title = "Emotional dysregulation"
+ja_candidates = ["感情調節障害", "情動調節不全", "感情調節不全"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "感情の振れ幅を自分で戻せない状態"
+
+[[concept]]
+id = "hedonic-treadmill"
+theme = "こころ"
+en_title = "Hedonic treadmill"
+ja_candidates = ["快楽順応", "ヘドニックトレッドミル", "幸福の順応"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "★反例候補。日本語版が同等以上の可能性"
+
+# ---------------------------------------------------------------- くらし・権利
+
+[[concept]]
+id = "drip-pricing"
+theme = "くらし・権利"
+en_title = "Drip pricing"
+ja_candidates = ["ドリップ・プライシング", "ドリップ価格", "段階的価格表示", "追加料金の後出し"]
+eligibility = "b"
+eligibility_status = "pending"
+eligibility_note = """**pending のまま（2026-09-09 時点）。公開対象に含めない。**
+海外制度そのものではなく商慣行なので基準は b が正しい（当初 c としていたのを訂正）。
+調査したが、日本国内での発生を示す独立した日本語資料2件の要件を満たせていない:
+  - darkpatterns.jp に解説記事があるが、これは現象の解説であって国内発生の記録ではない
+  - 「映画館大手のドリッププライシングに罰金」の報道は海外事例
+消費者庁の景品表示法ガイドブックは有利誤認表示一般を扱うもので、
+ドリップ・プライシングを名指ししていない。
+要件を満たす資料が見つかるまで採用しない。"""
+why = "最後まで進むと料金が増えている手口。名前を知らないと抗議もできない"
+
+[[concept]]
+id = "unit-price"
+theme = "くらし・権利"
+en_title = "Unit price"
+ja_candidates = ["単位価格表示", "ユニットプライス", "単価表示", "単位価格"]
+eligibility = "b"
+eligibility_status = "confirmed"
+eligibility_note = """確認済み(2026-09-14)。国内の制度として実在する:
+(1) 東京都消費生活条例に基づく「単位価格等の表示」。68品目に基準が定められている（東京くらしWEB／都例規集）。
+(2) 京都市消費生活総合センターにも同種の基準がある。
+国内で実際に使われている表示制度のため、基準 b を満たす。"""
+why = "100gあたりいくらか。買い物の比較の基礎だが、名前と仕組みが日本語で説明されていない"
+
+[[concept]]
+id = "dark-pattern"
+theme = "くらし・権利"
+en_title = "Dark pattern"
+ja_candidates = ["ダークパターン"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "解約させないUI、勝手にチェックの入った同意欄。設計による誘導"
+
+[[concept]]
+id = "shrinkflation"
+theme = "くらし・権利"
+en_title = "Shrinkflation"
+ja_candidates = ["シュリンクフレーション", "実質値上げ", "ステルス値上げ"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "値段は同じで中身が減る。日本で「ステルス値上げ」として話題になり続けている"
+
+[[concept]]
+id = "greenwashing"
+theme = "くらし・権利"
+en_title = "Greenwashing"
+ja_candidates = ["グリーンウォッシング", "グリーンウォッシュ"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "環境に良さそうに見せる表示。買う側が見抜くための概念"
+
+[[concept]]
+id = "right-to-disconnect"
+theme = "くらし・権利"
+en_title = "Right to disconnect"
+ja_candidates = ["つながらない権利", "接続を断つ権利"]
+eligibility = "c"
+eligibility_status = "confirmed"
+eligibility_note = """確認済み(2026-09-09)。厚生労働省「労働基準関係法制研究会」報告書(2025-01-08公表)が
+勤務時間外の連絡について労使での社内ルール検討とガイドライン策定を提言。
+また厚労省「労働時間制度等に関するアンケート調査」(令和5年、3,441社)で
+勤務時間外連絡に「特段ルールを整備していない」企業が36.8%と最多。
+海外制度だが日本の労働政策の議論対象になっており、日本居住者の生活に直接影響する（基準c）。"""
+why = "勤務時間外の連絡を断る権利。日本でも議論が始まっている"
+
+[[concept]]
+id = "planned-obsolescence"
+theme = "くらし・権利"
+en_title = "Planned obsolescence"
+ja_candidates = ["計画的陳腐化", "計画的旧式化"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "★反例候補。日本語版のほうが厚い可能性"
+
+[[concept]]
+id = "cooling-off-period"
+theme = "くらし・権利"
+en_title = "Cooling-off period (consumer rights)"
+ja_candidates = ["クーリングオフ", "クーリング・オフ"]
+eligibility = "b"
+eligibility_status = "confirmed"
+eligibility_note = "特定商取引法に基づく日本の制度として確立している"
+why = "★反例。日本語版のほうが厚い（実測 ja 8,550B > en 5,529B）。3点セットの③"
+
+# ---------------------------------------------------------------- 食
+
+[[concept]]
+id = "ultra-processed-food"
+theme = "食"
+en_title = "Ultra-processed food"
+ja_candidates = ["超加工食品"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "NOVA分類による食品の区分。健康影響の研究が急増している"
+
+[[concept]]
+id = "food-desert"
+theme = "食"
+en_title = "Food desert"
+ja_candidates = ["食の砂漠", "フードデザート", "買い物難民"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "生鮮食品を買える店が近くにない状態。日本の地方と高齢者に直結する"
+
+[[concept]]
+id = "food-fortification"
+theme = "食"
+en_title = "Food fortification"
+ja_candidates = ["栄養強化", "食品強化", "強化食品", "栄養素添加"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "食品に栄養素を後から加える施策。世界の公衆衛生の基本手段のひとつ"
+
+[[concept]]
+id = "satiety-value"
+theme = "食"
+en_title = "Satiety value"
+ja_candidates = ["満腹感", "満腹度", "飽満感", "満腹指数"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "同じカロリーでも満腹感が違う。食事選択の実用概念"
+
+[[concept]]
+id = "cross-contamination"
+theme = "食"
+en_title = "Cross-contamination"
+ja_candidates = ["交差汚染", "コンタミネーション"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "まな板から食中毒が起きる仕組み。家庭の食品安全の基本"
+
+[[concept]]
+id = "acrylamide"
+theme = "食"
+en_title = "Acrylamide"
+ja_candidates = ["アクリルアミド"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "★反例候補。加熱調理で生じる物質。日本語版が同等の可能性"
+
+[[concept]]
+id = "added-sugar"
+theme = "食"
+en_title = "Added sugar"
+ja_candidates = ["添加糖", "添加糖類", "遊離糖"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "もともと含まれる糖と、後から加えた糖の区別。栄養表示の基礎"
+
+# ---------------------------------------------------------------- 住まい
+
+[[concept]]
+id = "indoor-air-quality"
+theme = "住まい"
+en_title = "Indoor air quality"
+ja_candidates = ["室内空気質", "空気質", "屋内空気質"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "人は生涯の大半を屋内で過ごす。その空気の質を扱う概念"
+
+[[concept]]
+id = "thermal-bridge"
+theme = "住まい"
+en_title = "Thermal bridge"
+ja_candidates = ["熱橋", "ヒートブリッジ", "熱橋部"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "壁の一部から熱が逃げる現象。日本の住宅が寒い理由の中核"
+
+[[concept]]
+id = "damp-structural"
+theme = "住まい"
+en_title = "Damp (structural)"
+ja_candidates = ["湿気 (建築)", "結露", "雨漏り", "建物の湿気"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "高温多湿の日本で、建物の湿気とカビを扱う概念"
+
+[[concept]]
+id = "sick-building-syndrome"
+theme = "住まい"
+en_title = "Sick building syndrome"
+ja_candidates = ["シックハウス症候群", "シックビル症候群"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "建材から出る化学物質による体調不良"
+
+[[concept]]
+id = "passive-house"
+theme = "住まい"
+en_title = "Passive house"
+ja_candidates = ["パッシブハウス"]
+eligibility = "b"
+eligibility_status = "confirmed"
+eligibility_note = """確認済み(2026-09-09)。国内での利用を示す独立した資料2件以上:
+(1) 一般社団法人パッシブハウス・ジャパン（passivehouse-japan.org）が日本の気候に合わせた
+    認定・普及活動を行っている。
+(2) 日本初のパッシブハウスは2009年8月に神奈川県鎌倉市に建築され、以後認定住宅が増加。
+    住宅情報媒体（SUUMOカウンター）や複数の工務店が施工事例を公開している。
+固有の性能基準・認証体系を指すため普遍概念(a)ではなく、基準b で採用する。"""
+why = "極めて高い断熱性能の住宅規格。省エネ住宅の到達点"
+
+[[concept]]
+id = "thermal-comfort"
+theme = "住まい"
+en_title = "Thermal comfort"
+ja_candidates = ["温熱快適性", "熱的快適性", "温熱環境"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "暑い・寒いを決める要素の体系。エアコン設定の科学的な土台"
+
+[[concept]]
+id = "mould-health"
+theme = "住まい"
+en_title = "Mold health issues"
+ja_candidates = ["カビと健康", "カビ (健康影響)", "真菌症"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "住宅のカビが健康に与える影響。梅雨のある国で必要な知識"
+
+# ---------------------------------------------------------------- 育児
+
+[[concept]]
+id = "parental-burnout"
+theme = "育児"
+en_title = "Parental burnout"
+ja_candidates = ["育児バーンアウト", "親の燃え尽き症候群", "育児燃え尽き"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "育児による燃え尽き。一般の燃え尽き症候群とは区別される概念"
+
+[[concept]]
+id = "postpartum-depression"
+theme = "育児"
+en_title = "Postpartum depression"
+ja_candidates = ["産後うつ病", "産後うつ", "産褥期うつ病"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "出産後に起こりうる気分障害。産後の一時的な気分の落ち込みとは区別される"
+
+[[concept]]
+id = "screen-time"
+theme = "育児"
+en_title = "Screen time"
+ja_candidates = ["スクリーンタイム", "画面視聴時間"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "画面を見ている時間と、その健康への影響"
+
+[[concept]]
+id = "baby-led-weaning"
+theme = "育児"
+en_title = "Baby-led weaning"
+ja_candidates = ["赤ちゃん主導の離乳", "手づかみ食べ", "ベビーレッドウィーニング", "離乳食"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "離乳食を親が食べさせず、赤ちゃん自身に取らせる方法"
+
+[[concept]]
+id = "parenting-styles"
+theme = "育児"
+en_title = "Parenting styles"
+ja_candidates = ["育児スタイル", "養育スタイル", "子育てスタイル"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "権威的・許容的などの類型。発達心理学の基本枠組み"
+
+[[concept]]
+id = "attachment-parenting"
+theme = "育児"
+en_title = "Attachment parenting"
+ja_candidates = ["アタッチメント・ペアレンティング", "愛着育児", "アタッチメント育児"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "愛着理論を土台にした育児法。賛否含めて議論がある"
+
+[[concept]]
+id = "sids"
+theme = "育児"
+en_title = "Sudden infant death syndrome"
+ja_candidates = ["乳幼児突然死症候群", "SIDS"]
+eligibility = "a"
+eligibility_status = "confirmed"
+why = "乳児が睡眠中に予期せず亡くなる、原因が特定できない事象"

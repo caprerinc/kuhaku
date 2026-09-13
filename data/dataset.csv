@@ -1,0 +1,48 @@
+concept_id,theme,en_title,ja_selected,verdict,confidence,corrected,en_body_chars,ja_body_chars,body_char_ratio,en_sections,ja_sections,en_ref_domains,ja_ref_domains,en_revid,ja_sitelink_exists,requires_human_selection,comparison_invalid,eligibility,eligibility_status,judged_at
+health-literacy,健康・からだ,Health literacy,ヘルス・リテラシー,薄い,high,,28887,442,0.0153,7,0,33,3,1371175182,True,False,False,a,confirmed,2026-09-09
+perimenopause,健康・からだ,Menopause,更年期障害,実質包含,high,yes,45505,2653,0.0583,9,6,40,9,1373253600,True,False,False,a,confirmed,2026-09-14
+sarcopenia,健康・からだ,Sarcopenia,サルコペニア,未判定,,,12493,2771,0.2218,9,4,3,7,1370503742,True,False,False,a,confirmed,
+insulin-resistance,健康・からだ,Insulin resistance,インスリン抵抗性,未判定,,,20154,2662,0.1321,7,4,11,6,1373855861,True,False,False,a,confirmed,
+sleep-hygiene,健康・からだ,Sleep hygiene,睡眠衛生,未判定,,,12878,3657,0.284,6,4,10,8,1373233236,True,False,False,a,confirmed,
+sedentary-lifestyle,健康・からだ,Sedentary lifestyle,座りがちなライフスタイル,未判定,,,6571,1606,0.2444,4,3,19,22,1368414226,True,False,False,a,confirmed,
+pelvic-floor,健康・からだ,Pelvic floor,骨盤底,未判定,,,4155,1786,0.4298,4,4,5,1,1334709339,True,False,False,a,confirmed,
+delayed-onset-muscle-soreness,健康・からだ,Delayed onset muscle soreness,遅発性筋肉痛,未判定,,,7552,1551,0.2054,5,5,3,2,1369172237,True,False,False,a,confirmed,
+overdiagnosis,健康・からだ,Overdiagnosis,過剰診断,該当なし,high,,11219,12368,1.1024,7,10,1,49,1368886660,True,False,False,a,confirmed,2026-09-08
+parasocial-interaction,こころ,Parasocial interaction,,実質包含,high,,74408,,,9,,44,,1373745353,False,False,False,a,confirmed,2026-09-08
+compassion-fatigue,こころ,Compassion fatigue,二次受傷,判定不能,high,yes,20378,581,0.0285,10,3,29,2,1373260190,True,False,False,a,confirmed,2026-09-09
+moral-injury,こころ,Moral injury,,欠落,medium,yes,21129,,,12,,13,,1371142745,False,False,False,a,confirmed,2026-09-09
+rumination,こころ,Rumination (psychology),反芻思考,未判定,,,18316,3415,0.1864,6,6,11,0,1370705343,True,False,False,a,confirmed,
+bystander-effect,こころ,Bystander effect,傍観者効果,薄い,high,,31786,1402,0.0441,4,2,37,3,1364396221,True,False,False,a,confirmed,2026-09-14
+emotional-labor,こころ,Emotional labor,感情労働,薄い,high,,23747,2021,0.0851,7,3,25,2,1370202618,True,False,False,a,confirmed,2026-09-14
+learned-helplessness,こころ,Learned helplessness,学習性無力感,未判定,,,13458,2679,0.1991,6,5,8,5,1372329107,True,False,False,a,confirmed,
+emotional-dysregulation,こころ,Emotional dysregulation,感情調節障害,未判定,,,15039,5728,0.3809,7,8,20,2,1368437745,True,False,False,a,confirmed,
+hedonic-treadmill,こころ,Hedonic treadmill,快楽順応,未判定,,,14536,7265,0.4998,5,4,16,14,1372405198,True,False,False,a,confirmed,
+drip-pricing,くらし・権利,Drip pricing,,未判定,,,8376,,,4,,23,,1372917632,False,False,False,b,pending,
+unit-price,くらし・権利,Unit price,,実質包含,high,,5918,,,2,,4,,1341368315,False,False,False,b,pending,2026-09-14
+dark-pattern,くらし・権利,Dark pattern,ダークパターン,未判定,,,14323,4157,0.2902,4,4,50,28,1373488615,True,False,False,a,confirmed,
+shrinkflation,くらし・権利,Shrinkflation,シュリンクフレーション,薄い,high,,10747,1021,0.095,9,2,39,9,1373074613,True,False,False,a,confirmed,2026-09-14
+greenwashing,くらし・権利,Greenwashing,グリーンウォッシング,薄い,high,,50191,3395,0.0676,9,4,113,24,1369810533,True,False,False,a,confirmed,2026-09-09
+right-to-disconnect,くらし・権利,Right to disconnect,つながらない権利,未判定,,,14675,2208,0.1505,10,2,27,8,1367908803,True,False,False,c,pending,
+planned-obsolescence,くらし・権利,Planned obsolescence,計画的陳腐化,未判定,,,19888,11486,0.5775,6,6,46,39,1370762595,True,False,False,a,confirmed,
+cooling-off-period,くらし・権利,Cooling-off period (consumer rights),クーリングオフ,未判定,,,2410,1464,0.6075,3,3,5,0,1370759083,True,False,False,b,confirmed,
+ultra-processed-food,食,Ultra-processed food,超加工食品,未判定,,,19758,7145,0.3616,7,8,27,13,1373497632,True,False,False,a,confirmed,
+food-desert,食,Food desert,食の砂漠,薄い,medium,,31200,2118,0.0679,9,1,28,1,1373359321,True,False,False,a,confirmed,2026-09-09
+food-fortification,食,Food fortification,,未判定,,,13391,,,5,,25,,1353831254,False,True,False,a,confirmed,
+satiety-value,食,Satiety value,,未判定,,,970,,,1,,5,,1372166885,False,True,False,a,confirmed,
+cross-contamination,食,Contamination,コンタミネーション,未判定,,,6398,5827,0.9108,1,3,16,0,1356252051,True,False,False,a,confirmed,
+acrylamide,食,Acrylamide,アクリルアミド,未判定,,,6316,3710,0.5874,5,5,15,17,1368855534,True,False,False,a,confirmed,
+added-sugar,食,Added sugar,,未判定,,,3497,,,2,,9,,1351451869,False,False,False,a,confirmed,
+indoor-air-quality,住まい,Indoor air quality,空気質,薄い,medium,,31699,1102,0.0348,7,3,45,6,1373560095,True,False,False,a,confirmed,2026-09-09
+thermal-bridge,住まい,Thermal bridge,熱橋,薄い,high,,9557,561,0.0587,6,1,5,1,1347462565,True,False,False,a,confirmed,2026-09-14
+damp-structural,住まい,Damp (structural),雨漏り,未判定,,,35794,1054,0.0294,9,2,34,9,1373748412,True,False,False,a,confirmed,
+sick-building-syndrome,住まい,Sick building syndrome,シックハウス症候群,未判定,,,18003,4207,0.2337,7,4,13,15,1373713648,True,False,False,a,confirmed,
+passive-house,住まい,Passive house,パッシブハウス,未判定,,,7104,927,0.1305,6,4,28,0,1370673992,True,False,False,b,pending,
+thermal-comfort,住まい,Thermal comfort,快適性評価,薄い,high,,35062,114,0.0033,6,0,17,0,1368891851,True,False,False,a,confirmed,2026-09-09
+mould-health,住まい,Mold and human health,,未判定,,,16040,,,4,,22,,1373726377,False,True,False,a,confirmed,
+parental-burnout,育児,Parenting stress,,欠落,medium,yes,6852,,,3,,6,,1371149313,False,False,False,a,confirmed,2026-09-09
+postpartum-depression,育児,Postpartum depression,産後うつ病,薄い,high,,57735,2118,0.0367,15,7,40,12,1373391668,True,False,False,a,confirmed,2026-09-08
+screen-time,育児,Screen time,,欠落,medium,yes,18081,,,6,,35,,1370383795,False,True,False,a,confirmed,2026-09-09
+baby-led-weaning,育児,Baby-led weaning,,未判定,,,12167,,,5,,5,,1348372293,False,True,False,a,confirmed,
+parenting-styles,育児,Parenting styles,,実質包含,high,yes,48396,,,8,,44,,1369278186,False,False,False,a,confirmed,2026-09-09
+attachment-parenting,育児,Attachment parenting,,欠落,medium,yes,40683,,,5,,85,,1366007657,False,False,False,a,confirmed,2026-09-09
+sids,育児,SIDS,乳幼児突然死症候群,未判定,,,15738,4476,0.2844,6,7,23,12,1369909761,True,False,False,a,confirmed,
