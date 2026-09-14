@@ -711,6 +711,20 @@ footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
     <li>人手で英語版と日本語版を読み比べ、上位・隣接記事も通読したうえで判定する。<strong>文字数が少ないというだけでは「論点に差がある」とはしない。</strong>英語版で扱われていて日本語版の記事では確認できない論点を、具体的に特定できた場合だけそう判定する。</li>
     <li>「確認できず」と判断する場合も、<strong>確からしさは「断定保留」までにとどめる</strong>。不在は原理的に完全には証明できないため、確認した記事とその改訂ID、使った検索語をすべて公開する。</li>
   </ol>
+  <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">なぜこの手順が要るのか</h3>
+  <p class="sec-note">Wikidata の言語間リンクを見るだけなら一瞬です。実際にやってみた結果がこれです。</p>
+  <p class="sec-note">人手で検証した20件のうち、<strong>言語間リンクが無いので機械的には「日本語版に無い」と出るもの</strong>が
+  7件ありました。人手で確認したところ、そのうち<strong>3件は
+  別の記事の中に定義がありました。</strong>残る4件は人手で調べても確認できませんでした。</p>
+  <p class="sec-note"><strong>これは精度の評価ではありません。</strong>20件は手選びで、無作為に抽出したものではありません。
+  また「人手でも確認できなかった」ことは、その機械判定が正しかったことを意味しません。
+  たとえばスクリーンタイムは、同じ名前で別概念の記事が日本語版に実在しますが、
+  言語間リンクが無いというだけでフラグが立っています。結論は反証されていませんが、
+  この規則が同名の別概念を見分けられたわけではありません。</p>
+  <p class="sec-note">集計の元になった20行の表は
+  <a href="/naive-check.csv" download>naive-check.csv</a> で配布しています。
+  <code>./run.sh stats</code> で計算し直せます。</p>
+
   <p class="sec-note">取得はすべて Python の標準ライブラリだけで行っています。第三者が追加インストールなしに同じ手順を再現できることを優先しました。</p>
 </section>
 
@@ -735,6 +749,7 @@ footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
   <div class="dl">
     <a href="/kuhaku-zukan.csv" download>CSV をダウンロード</a>
     <a href="/kuhaku-zukan.json" download>JSON をダウンロード（探索記録・訂正履歴つき）</a>
+    <a href="/naive-check.csv" download>機械判定と人手判定の突き合わせ（CSV）</a>
   </div>
   <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div>
   <p class="sec-note" style="margin-top:1rem">観測の実行ID <code>run-20260908T120726Z</code>／算出規則 <code>1.1.0</code>。

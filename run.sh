@@ -7,6 +7,7 @@
 #   ./run.sh build     生成のみ
 #   ./run.sh check     生成 + 全チェック（HTML / 元データ / 記事）
 #   ./run.sh deploy    生成 + 全チェック + 配信（チェックが落ちたら配信しない）
+#   ./run.sh stats     素朴な自動判定が人手検証と比べてどれだけ外したかを数える
 #   ./run.sh verify    公開した数字を保存済みの生データから作り直して照合する
 #   ./run.sh drift     さらに Wikipedia の現在の版と比べ、記事が変わっていないか見る
 #   ./run.sh collect   Wikipedia から証拠を取り直す（時間がかかる）
@@ -43,6 +44,9 @@ case "${1:-check}" in
   build)
     build
     ;;
+  stats)
+    python3 -m pipeline.stats
+    ;;
   verify)
     python3 -m pipeline.verify
     ;;
@@ -63,7 +67,7 @@ case "${1:-check}" in
     done
     ;;
   *)
-    echo "usage: ./run.sh {collect|build|check|verify|drift|deploy}" >&2
+    echo "usage: ./run.sh {collect|build|check|stats|verify|drift|deploy}" >&2
     exit 2
     ;;
 esac

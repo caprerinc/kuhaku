@@ -22,11 +22,15 @@ import html
 import json
 import pathlib
 import re
+import sys
 import tomllib
 from datetime import date
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "public"
+
+# スクリプトとして起動されるので、pipeline を import できるようにする
+sys.path.insert(0, str(ROOT))
 
 SITE_TITLE = "空白図鑑"
 SITE_SUB = "暮らし編"
@@ -304,6 +308,8 @@ def build():
                                -((evmap[t[0]].get("comparison") or {}).get("en_body_chars") or 0)))
 
     from collections import Counter
+    from pipeline import stats as _stats
+    sc = _stats.naive_scorecard()
     vc = Counter(j["verdict"] for _, j in judged)
     breakdown = (
         f'{len(judged)}件のうち、日本語版に記事はあるが英語版で扱われる論点を確認できなかったのが'
@@ -364,10 +370,12 @@ def build():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(
         page(cards, un_rows, corr_rows, len(ev["concepts"]), len(judged),
-             n_verdict_changed, n_evidence_updated, ev, breakdown),
+             n_verdict_changed, n_evidence_updated, ev, breakdown, sc),
         encoding="utf-8")
 
     write_data(concepts, current, evmap, ev, unjudged)
+    from pipeline import stats as _st
+    _st.write_audit_csv()
     print(f"生成: {OUT/'index.html'}")
     print(f"      {OUT/'kuhaku-zukan.csv'}")
     print(f"      {OUT/'kuhaku-zukan.json'}")
@@ -594,7 +602,7 @@ footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
 """
 
 
-def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) -> str:
+def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown, sc) -> str:
     corr_tbl = ("<div class='tblwrap'><table class='plain'><thead><tr><th>概念</th><th>初回 → 現在</th>"
                 "<th>種類</th><th>理由</th><th>日付</th></tr></thead><tbody>"
                 + "".join(corr_rows) + "</tbody></table></div>")
@@ -687,6 +695,20 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) ->
     <li>人手で英語版と日本語版を読み比べ、上位・隣接記事も通読したうえで判定する。<strong>文字数が少ないというだけでは「論点に差がある」とはしない。</strong>英語版で扱われていて日本語版の記事では確認できない論点を、具体的に特定できた場合だけそう判定する。</li>
     <li>「確認できず」と判断する場合も、<strong>確からしさは「断定保留」までにとどめる</strong>。不在は原理的に完全には証明できないため、確認した記事とその改訂ID、使った検索語をすべて公開する。</li>
   </ol>
+  <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">なぜこの手順が要るのか</h3>
+  <p class="sec-note">Wikidata の言語間リンクを見るだけなら一瞬です。実際にやってみた結果がこれです。</p>
+  <p class="sec-note">人手で検証した{judged_n}件のうち、<strong>言語間リンクが無いので機械的には「日本語版に無い」と出るもの</strong>が
+  {sc['flagged_missing']}件ありました。人手で確認したところ、そのうち<strong>{len(sc['contradicted'])}件は
+  別の記事の中に定義がありました。</strong>残る{len(sc['not_contradicted'])}件は人手で調べても確認できませんでした。</p>
+  <p class="sec-note"><strong>これは精度の評価ではありません。</strong>{judged_n}件は手選びで、無作為に抽出したものではありません。
+  また「人手でも確認できなかった」ことは、その機械判定が正しかったことを意味しません。
+  たとえばスクリーンタイムは、同じ名前で別概念の記事が日本語版に実在しますが、
+  言語間リンクが無いというだけでフラグが立っています。結論は反証されていませんが、
+  この規則が同名の別概念を見分けられたわけではありません。</p>
+  <p class="sec-note">集計の元になった{judged_n}行の表は
+  <a href="/naive-check.csv" download>naive-check.csv</a> で配布しています。
+  <code>./run.sh stats</code> で計算し直せます。</p>
+
   <p class="sec-note">取得はすべて Python の標準ライブラリだけで行っています。第三者が追加インストールなしに同じ手順を再現できることを優先しました。</p>
 </section>
 
@@ -711,6 +733,7 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown) ->
   <div class="dl">
     <a href="/kuhaku-zukan.csv" download>CSV をダウンロード</a>
     <a href="/kuhaku-zukan.json" download>JSON をダウンロード（探索記録・訂正履歴つき）</a>
+    <a href="/naive-check.csv" download>機械判定と人手判定の突き合わせ（CSV）</a>
   </div>
   <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div>
   <p class="sec-note" style="margin-top:1rem">観測の実行ID <code>{esc(ev['run_id'])}</code>／算出規則 <code>{esc(ev['calc_version'])}</code>。
