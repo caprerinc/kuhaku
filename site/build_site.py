@@ -309,7 +309,9 @@ def build():
 
     from collections import Counter
     from pipeline import stats as _stats
+    from pipeline import verify as _verify
     sc = _stats.naive_scorecard()
+    dr = _verify.latest_drift()
     vc = Counter(j["verdict"] for _, j in judged)
     breakdown = (
         f'{len(judged)}件のうち、日本語版に記事はあるが英語版で扱われる論点を確認できなかったのが'
@@ -370,7 +372,7 @@ def build():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(
         page(cards, un_rows, corr_rows, len(ev["concepts"]), len(judged),
-             n_verdict_changed, n_evidence_updated, ev, breakdown, sc),
+             n_verdict_changed, n_evidence_updated, ev, breakdown, sc, dr),
         encoding="utf-8")
 
     write_data(concepts, current, evmap, ev, unjudged)
@@ -641,7 +643,13 @@ posthog.init("phc_D9sYCu42uZ9R2fiL6LvnawEWRwrH7WdisdUNhn6ezQCz",{
 </script>"""
 
 
-def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown, sc) -> str:
+def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown, sc, dr) -> str:
+    # 鮮度は data/drift の最新結果から出す。手で日付と件数を書くと必ず腐る。
+    drift_note = (
+        f"{esc(dr['measured_at'])} に実行したところ、対象{dr['targets']}ページのうち"
+        f"<strong>{dr['changed']}ページ</strong>で改訂IDが変わっていました。"
+        if dr else "まだ測っていません。"
+    )
     corr_tbl = ("<div class='tblwrap'><table class='plain'><thead><tr><th>概念</th><th>初回 → 現在</th>"
                 "<th>種類</th><th>理由</th><th>日付</th></tr></thead><tbody>"
                 + "".join(corr_rows) + "</tbody></table></div>")
@@ -795,8 +803,7 @@ cd kuhaku &amp;&amp; ./run.sh verify</pre>
   <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字はいつのものか</h3>
   <p class="sec-note">記事は日々書き換わるので、ここの数字は測定した版のものです。
   <code>./run.sh drift</code> で、現在の版と比べて何が変わったかを確認できます。</p>
-  <p class="sec-note">2026-09-14 に実行したところ、対象81ページのうち<strong>16ページ</strong>で
-  改訂IDが変わっていました。記事が変わること自体は当たり前で、誤りではありません。
+  <p class="sec-note">{drift_note}記事が変わること自体は当たり前で、誤りではありません。
   ここで言えるのは、公開した数字は時間とともに古くなる、ということだけです。
   実行結果は <code>data/drift/</code> に日付つきで残してあります。</p>
 </section>

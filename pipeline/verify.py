@@ -239,6 +239,45 @@ def check_published(recomputed: dict) -> list[str]:
 # --------------------------------------------------------------------------
 
 
+def write_drift(bundle: dict, changed: list[str], dstats: dict) -> pathlib.Path:
+    """drift の結果を日付つきで残す。
+
+    サイトの鮮度表示はこれを読む。手で日付と件数を書くと必ず腐る
+    （実際、2026-09-14 の数字を9日間そのまま載せていた）。
+    """
+    import datetime
+    today = datetime.date.today().isoformat()
+    d = ROOT / "data" / "drift"
+    d.mkdir(parents=True, exist_ok=True)
+    path = d / f"{today}.json"
+    path.write_text(json.dumps({
+        "measured_at": today,
+        "against_run_id": bundle["run_id"],
+        "targets": dstats["targets"],
+        "unchanged": dstats["unchanged"],
+        "changed": len(changed),
+        "fetch_failed": dstats["fetch_failed"],
+        "changed_by_language": dstats.get("changed_by_language", {}),
+        "targets_by_language": dstats.get("targets_by_language", {}),
+        "DO_NOT_USE_FOR": "言語間の更新頻度の比較。対象記事の集合が日英で違い、期間も短い。"
+                          "この数値からどちらの言語版がよく更新されているかは言えない。",
+        "why_measured": "公開した観測値が「いつの時点のものか」を示すため。"
+                        "記事が変わっていること自体は誤りではない。",
+        "how_to_reproduce": "./run.sh drift",
+        "details": changed,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return path
+
+
+def latest_drift() -> dict | None:
+    """サイトが読む用。いちばん新しい drift の結果を返す。"""
+    d = ROOT / "data" / "drift"
+    files = sorted(d.glob("*.json")) if d.exists() else []
+    if not files:
+        return None
+    return json.loads(files[-1].read_text(encoding="utf-8"))
+
+
 def check_drift(bundle: dict) -> tuple[list[str], dict]:
     from . import wikiclient
 
@@ -253,6 +292,10 @@ def check_drift(bundle: dict) -> tuple[list[str], dict]:
                 targets[("ja", r["resolved_title"])] = r["revid"]
 
     changed, same, failed = [], 0, 0
+    by_lang = {"en": 0, "ja": 0}
+    tgt_lang = {"en": 0, "ja": 0}
+    for (proj, _t) in targets:
+        tgt_lang[proj] = tgt_lang.get(proj, 0) + 1
     for (proj, title), recorded in sorted(targets.items()):
         url = wikiclient.api(proj, {"action": "query", "prop": "revisions",
                                     "rvprop": "ids|timestamp", "redirects": "1", "titles": title})
@@ -263,13 +306,16 @@ def check_drift(bundle: dict) -> tuple[list[str], dict]:
         pages = (res.json().get("query") or {}).get("pages") or []
         if not pages or pages[0].get("missing"):
             changed.append(f"[{proj}] 「{title}」は現在見つからない（記録 rev.{recorded}）")
+            by_lang[proj] = by_lang.get(proj, 0) + 1
             continue
         cur = (pages[0].get("revisions") or [{}])[0].get("revid")
         if cur != recorded:
             changed.append(f"[{proj}] 「{title}」 rev.{recorded} → rev.{cur}")
+            by_lang[proj] = by_lang.get(proj, 0) + 1
         else:
             same += 1
-    return changed, {"targets": len(targets), "unchanged": same, "fetch_failed": failed}
+    return changed, {"targets": len(targets), "unchanged": same, "fetch_failed": failed,
+                     "changed_by_language": by_lang, "targets_by_language": tgt_lang}
 
 
 def main(argv: list[str]) -> int:
@@ -315,6 +361,7 @@ def main(argv: list[str]) -> int:
               f"変化あり {len(changed)}件 / 取得失敗 {dstats['fetch_failed']}件")
         for c in changed:
             print("     ・" + c)
+        print(f"\n   結果を保存: {write_drift(bundle, changed, dstats).relative_to(ROOT)}")
         print("\n   記事が変わっていること自体は誤りではない。"
               "公開した数字が「いつの時点のものか」を示すために測っている。"
               "\n   **言語別の内訳を更新頻度の比較に使ってはいけない。対象記事の集合が日英で違う。**")
