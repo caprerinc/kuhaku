@@ -602,6 +602,45 @@ footer{padding:3rem 0 5rem;color:var(--sumi);font-size:.82rem}
 """
 
 
+# --------------------------------------------------------------------------
+# PostHog
+# --------------------------------------------------------------------------
+# 公式スニペット。本体は CDN から async で引くので、この 1 ページの表示は重くならない。
+#
+# トークンを直書きしているのは、ここが Worker を持たない静的配信だから
+# （wrangler.jsonc は assets だけで main が無い）。実行時に値を配るサーバーが無く、
+# ビルド時の環境変数にしても結局この HTML に焼き込まれて同じ場所に落ちる。
+# PostHog の project token はブラウザに配られる前提の公開値なので隠す意味も無い。
+#
+# `page()` は f-string なので、この文字列を中に直接書くと JS の波括弧が
+# プレースホルダとして解釈されて壊れる。定数に切り出して 1 個の {} で差し込む。
+#
+# `service` は「どのサイトのイベントか」を表す固定 ID。ホスト名でも切り分けられるが、
+# ホスト名は将来動きうるので、動かない値を別に持たせている（他サービスと同じ約束）。
+POSTHOG_SNIPPET = """<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagResult reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init("phc_D9sYCu42uZ9R2fiL6LvnawEWRwrH7WdisdUNhn6ezQCz",{
+  api_host:"https://us.i.posthog.com",
+  ui_host:"https://us.posthog.com",
+  defaults:"2026-08-30",
+  capture_pageview:true,
+  capture_pageleave:true,
+  autocapture:true,
+  person_profiles:"identified_only",
+  capture_performance:{web_vitals:true},
+  capture_exceptions:true,
+  session_recording:{maskAllInputs:true,maskTextSelector:"[data-ph-mask]"},
+  // 全イベントに service を付ける。register() ではなく before_send なのは、
+  // posthog-js が init() の中で出す最初のイベント（$set など）が register() より
+  // 先に出てしまい、service の付かないイベントが混ざるため（実データで観測済み）。
+  before_send:function(event){
+    if(event)event.properties=Object.assign({},event.properties,{service:"kuhaku"});
+    return event;
+  }
+});
+</script>"""
+
+
 def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown, sc) -> str:
     corr_tbl = ("<div class='tblwrap'><table class='plain'><thead><tr><th>概念</th><th>初回 → 現在</th>"
                 "<th>種類</th><th>理由</th><th>日付</th></tr></thead><tbody>"
@@ -624,6 +663,7 @@ def page(cards, un_rows, corr_rows, total, judged_n, n_v, n_e, ev, breakdown, sc
 <meta property="og:description" content="日本語版Wikipediaに対応する記事があるかを{total}概念で調べ、{judged_n}件を人手検証した記録。">
 <meta property="og:type" content="article">
 <style>{CSS}</style>
+{POSTHOG_SNIPPET}
 </head><body>
 <div class="wrap">
 
