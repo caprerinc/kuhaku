@@ -1,0 +1,51 @@
+# 配信。手動起動のみ。
+#
+# 公開は意図して行う操作なので push では走らせない。凍結中で更新頻度も低い。
+# CLOUDFLARE_API_TOKEN をリポジトリの Secrets に登録しておくこと。
+name: deploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 鍵があるか
+        run: |
+          test -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            || { echo "::error::CLOUDFLARE_API_TOKEN が未設定"; exit 1; }
+
+      # 検査が落ちたら配信しない。run.sh 側の順序と同じ。
+      - name: 生成と検査
+        run: ./run.sh check
+
+      - name: 配信
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        working-directory: site
+        run: npx --yes wrangler@4.98.0 deploy
+
+      - name: 配信後の確認
+        run: |
+          for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")
+            printf "  %-22s HTTP %s\n" "$p" "$code"
+            [ "$code" = "200" ] || exit 1
+          done
+          # .claude/ が配信されていないこと（.assetsignore が効いているか）
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp/.claude/")
+          echo "  /.claude/ HTTP $code"
+          [ "$code" != "200" ] || { echo "::error::.claude/ が公開されている"; exit 1; }

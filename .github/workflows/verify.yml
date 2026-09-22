@@ -1,0 +1,48 @@
+# 公開した数字を、保存済みの応答から作り直して照合する。
+#
+# このリポジトリの売りは「手元で検算できる」ことなので、その検算自体が
+# 動かなくなっていることに気づかない状態を作らない。訂正を PR で受ける
+# 設計にしてあるため、外から来た変更もここを通る。
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 依存パッケージは入れない。標準ライブラリだけで動くことがこの製品の一部。
+      - name: 依存が無いことを確かめる
+        run: |
+          test ! -f requirements.txt && test ! -f pyproject.toml \
+            || { echo "依存ファイルが増えている"; exit 1; }
+
+      # build → verify → 文面チェック。ネットワークは使わない。
+      - name: 生成と検査
+        run: ./run.sh check
+
+      - name: 素朴判定との突き合わせ
+        run: ./run.sh stats
+
+      # コミット済みの公開物が、いまの判定から再生成したものと一致するか。
+      # judgments/concepts を変えて再生成し忘れたまま push した、を捕まえる。
+      # （公開HTMLへの手書きは build が上書きするので、ここでは検知できない）
+      - name: 公開物が判定から再生成したものと一致するか
+        run: |
+          if ! git diff --exit-code -- site/public data/dataset.csv data/dataset.json; then
+            echo "::error::公開物が判定から再生成した内容と一致しない。./run.sh build してコミットすること。"
+            exit 1
+          fi

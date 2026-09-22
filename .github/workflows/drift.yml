@@ -1,0 +1,30 @@
+# 測定した版から Wikipedia がどれだけ変わったかを見る。
+#
+# 手動起動のみ。凍結したプロジェクトに、誰も見ない定期実行を足さない。
+# 結果はコミットせず成果物として出す（配信は ./run.sh deploy で明示的に行う）。
+name: drift
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 現在の版と比べる
+        run: ./run.sh drift | tee drift-report.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drift
+          path: |
+            drift-report.txt
+            data/drift/
