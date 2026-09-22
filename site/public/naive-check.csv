@@ -9,7 +9,7 @@ health-literacy,あり,フラグ立たず,薄い,not_flagged,j-0010,人手検証
 indoor-air-quality,あり,フラグ立たず,薄い,not_flagged,j-0012,人手検証を完了した概念すべてを対象にしている
 moral-injury,なし,「日本語版に無い」と出る,欠落,not_contradicted,j-0015,人手検証を完了した概念すべてを対象にしている
 overdiagnosis,あり,フラグ立たず,該当なし,not_flagged,j-0004,人手検証を完了した概念すべてを対象にしている
-parasocial-interaction,なし,「日本語版に無い」と出る,実質包含,contradicted,j-0002,人手検証を完了した概念すべてを対象にしている
+parasocial-interaction,なし,「日本語版に無い」と出る,実質包含,contradicted,j-0028,人手検証を完了した概念すべてを対象にしている
 parental-burnout,なし,「日本語版に無い」と出る,欠落,not_contradicted,j-0016,人手検証を完了した概念すべてを対象にしている
 parenting-styles,なし,「日本語版に無い」と出る,実質包含,contradicted,j-0013,人手検証を完了した概念すべてを対象にしている
 perimenopause,あり,フラグ立たず,実質包含,not_flagged,j-0027,人手検証を完了した概念すべてを対象にしている

@@ -59,7 +59,16 @@ case "${1:-check}" in
   deploy)
     build && check
     echo "── 配信"
-    (cd site && npx --yes wrangler@latest deploy)
+    # wrangler は版を固定する。@latest だと配信ツールだけ再現性が無い。
+    # 導入済みがあればそれを使う（npx は npm キャッシュへ書けない環境で落ちる）。
+    : "${WRANGLER_VERSION:=4.98.0}"
+    if command -v wrangler >/dev/null 2>&1; then
+      echo "   wrangler $(wrangler --version 2>/dev/null | grep -Eo '^[0-9]+\.[0-9]+\.[0-9]+' | head -1)（導入済み）"
+      (cd site && wrangler deploy)
+    else
+      echo "   wrangler ${WRANGLER_VERSION}（npx）"
+      (cd site && npx --yes "wrangler@${WRANGLER_VERSION}" deploy)
+    fi
     echo "── 配信後の確認"
     for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json" "/.claude/"; do
       printf "   %-22s HTTP %s\n" "$p" \

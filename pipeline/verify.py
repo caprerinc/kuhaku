@@ -28,6 +28,7 @@ import hashlib
 import json
 import pathlib
 import sys
+import tomllib
 
 from . import metrics
 
@@ -318,6 +319,54 @@ def check_drift(bundle: dict) -> tuple[list[str], dict]:
                      "changed_by_language": by_lang, "targets_by_language": tgt_lang}
 
 
+def revids_in_raw() -> set[int]:
+    """バンドルに本文つきで入っているページの改訂IDを集める。"""
+    found: set[int] = set()
+    for f in (ROOT / "data" / "raw").rglob("*.json.gz"):
+        try:
+            body = gzip.open(f, "rt", encoding="utf-8").read()
+            pages = ((json.loads(body).get("query") or {}).get("pages")) or []
+        except Exception:
+            continue
+        if isinstance(pages, dict):
+            pages = list(pages.values())
+        for pg in pages:
+            if isinstance(pg, dict) and pg.get("revisions"):
+                rid = (pg["revisions"][0] or {}).get("revid")
+                if rid:
+                    found.add(int(rid))
+    return found
+
+
+def check_containers() -> tuple[list[str], int]:
+    """「実質包含」の包含先が、改訂ID付きでバンドルに入っているか。
+
+    包含先の本文はこの判定の根拠そのものなので、バンドルに無いと
+    第三者が反証できない。改訂IDを記録しなかった判定が実際にあり、
+    公開した文字数を後から再現できなくなった（j-0002 → j-0028）。
+    """
+    doc = tomllib.loads((ROOT / "judgments" / "living.toml").read_text(encoding="utf-8"))
+    events = doc.get("judgment") or []
+    superseded = {e["supersedes"] for e in events if e.get("supersedes")}
+    current = [e for e in events if e["id"] not in superseded]
+
+    have = revids_in_raw()
+    problems, checked = [], 0
+    for e in current:
+        if e.get("verdict") != "実質包含":
+            continue
+        checked += 1
+        revids = e.get("ja_revids") or []
+        if not revids:
+            problems.append(f"{e['id']}（{e['concept_id']}）包含先の改訂IDが記録されていない")
+            continue
+        for rid in revids:
+            if int(rid) not in have:
+                problems.append(
+                    f"{e['id']}（{e['concept_id']}）包含先 revid {rid} の本文がバンドルに無い")
+    return problems, checked
+
+
 def main(argv: list[str]) -> int:
     bundle = load_bundle()
     print(f"証拠バンドル: {bundle['run_id']}（算出規則 {bundle['calc_version']}）\n")
@@ -331,6 +380,14 @@ def main(argv: list[str]) -> int:
         print(f"   平文が無く再計算不可     : {st['no_plaintext']}件")
     if st["raw_unreferenced"]:
         print(f"   バンドル未参照の生データ : {st['raw_unreferenced']}件")
+
+    cprob, cn = check_containers()
+    print("\n■ 根拠 — 「実質包含」の包含先が改訂ID付きでバンドルにあるか")
+    if cprob:
+        print(f"   {cn}件中 {len(cprob)}件が欠けている。")
+        problems += cprob
+    else:
+        print(f"   {cn}件すべて、包含先の本文を同梱している。")
 
     pub = check_published(recomputed)
     ok_pub = len(pub) == 1 and pub[0].startswith("__OK__")
