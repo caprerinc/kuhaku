@@ -42,7 +42,17 @@ CSS差し替え・タグ種別変更・空白正規化では**誤検知ゼロ**�
 
 ## 段階
 
-### 第1段階 — データ契約の切り出し（1〜2日）
+### 第1段階 — データ契約の切り出し（完了）
+
+`pipeline/viewmodel.py` → `data/viewmodel.json`。表示層はこれ**だけ**を読む。
+公開ラベル・欠測と0の区別・訂正種別・採用基準ラベルは Python 側で解決済みで、
+Svelte には解釈を持たせない。
+
+`site/parity.py --contract` が「公開物の数値・改訂ID・概念がすべて契約から導けるか」を検査する。
+**これが通ることが `build_site.py` を捨てる条件**。作成時に実際に3件の欠落が見つかった:
+判定時に読んだ英語版の改訂ID（観測した版と違う）、判定ID、採用基準。
+
+#### 旧メモ（切り出し対象）
 
 表示コードに埋まっている意味をデータ側へ出す。Codex が指摘した箇所:
 
@@ -99,7 +109,7 @@ pnpm / SvelteKit / `@sveltejs/adapter-cloudflare` / Tailwind v4 / Biome / Vitest
 
 - [x] 安全網 `site/parity.py` と基準の採取
 - [x] `lint_copy` の黙殺経路と `run.sh` の配信後確認を修正（`100adc9`）
-- [ ] 第1段階 データ契約
+- [x] 第1段階 データ契約 — `pipeline/viewmodel.py` / `parity.py --contract` で完全性を検査
 - [ ] 第2段階 足場
 - [ ] 第3段階 移植と UI 修正
 - [ ] 第4段階 ゲート

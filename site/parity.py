@@ -96,6 +96,40 @@ def fingerprint(doc: str) -> dict:
     }
 
 
+def check_contract(doc: str) -> list[str]:
+    """公開物の主張が、描画契約(viewmodel.json)だけから導けるか。
+
+    表示層を SvelteKit に移すと、Svelte は viewmodel.json しか読まない。
+    そこに無い値がいま公開されているなら、移行で**黙って消える**。
+    build_site.py を捨てる前に、これが通ることが条件。
+    """
+    vmp = ROOT / "data" / "viewmodel.json"
+    if not vmp.exists():
+        return ["描画契約が無い。先に python3 -m pipeline.viewmodel を実行すること"]
+    vm = vmp.read_text(encoding="utf-8")
+    flat = vm.replace(",", "")
+    body = strip_html(doc)
+    problems = []
+
+    nums = set(re.findall(r"(?<![\d,])\d{1,3}(?:,\d{3})+(?![\d,])|(?<![\d,])\d{3,}(?![\d,])", body))
+    missing = sorted(n for n in nums if n.replace(",", "") not in flat)
+    if missing:
+        problems.append(f"契約から引けない数値 {len(missing)}種: {missing[:10]}")
+
+    revs = {a or b for a, b in re.findall(r"oldid=(\d+)|rev\.(\d+)", doc)}
+    lost = sorted(r for r in revs if r not in vm)
+    if lost:
+        problems.append(f"契約に無い改訂ID: {lost}")
+
+    # 文字列一致だと、訂正一覧に id が残っているだけで通ってしまう。
+    # 描画対象の items に居ることを厳密に見る。
+    listed = {i["concept_id"] for i in json.loads(vm).get("items", [])}
+    for cid in cards(doc):
+        if cid not in listed:
+            problems.append(f"契約の items に無い概念: {cid}")
+    return problems
+
+
 def diff(old: dict, new: dict) -> list[str]:
     problems: list[str] = []
 
@@ -175,6 +209,17 @@ def main(argv: list[str]) -> int:
         for p in problems:
             print("  ✗ " + p)
         print("\n  体裁の変更は差分に出ない。ここに出るのは主張が変わった箇所だけ。")
+        return 1
+
+    if "--contract" in argv:
+        src = ROOT / "site" / "public" / "index.html"
+        problems = check_contract(src.read_text(encoding="utf-8"))
+        if not problems:
+            print("描画契約: 公開物の数値・改訂ID・概念はすべて viewmodel.json から導ける")
+            return 0
+        print(f"描画契約: {len(problems)}件の不足\n")
+        for p in problems:
+            print("  ✗ " + p)
         return 1
 
     print(__doc__)
