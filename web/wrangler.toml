@@ -1,0 +1,24 @@
+# 配信の identity。ここは移行で流用・変更してはいけない。
+#
+# LaneDuel は Pages モード（pages_build_output_dir）だが、空白図鑑は独自ドメインを
+# wrangler の route で持っている。Pages にすると独自ドメインの紐付けが設定ファイルの
+# 外（ダッシュボード）に出てしまうため、**Workers モードのまま**にしている。
+name = "kuhaku-zukan"
+main = ".svelte-kit/cloudflare/_worker.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+# workers.dev のサブドメインは開けない。caprer.co.jp は別 Worker(caprer) が持つ。
+workers_dev = false
+
+[[routes]]
+pattern = "kuhaku.caprer.co.jp"
+custom_domain = true
+zone_name = "caprer.co.jp"
+
+[assets]
+binding = "ASSETS"
+directory = ".svelte-kit/cloudflare"
+
+[observability]
+enabled = true

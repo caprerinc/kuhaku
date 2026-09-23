@@ -1,0 +1,10 @@
+# postinstall スクリプトの実行を許すパッケージを明記する。
+# 対話承認（pnpm approve-builds）だと何を許したかが記録に残らないので使わない。
+# pnpm 11 が読むのは allowBuilds。onlyBuiltDependencies は旧版との互換で併記する
+# （LaneDuel も同じ形）。
+allowBuilds:
+  esbuild: true    # Vite のバンドラ。ネイティブバイナリの配置に postinstall が要る
+  workerd: true    # Cloudflare のローカル実行環境（wrangler / vitest で使う）
+onlyBuiltDependencies:
+  - esbuild
+  - workerd

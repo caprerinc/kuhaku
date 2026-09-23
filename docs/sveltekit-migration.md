@@ -52,10 +52,25 @@ Svelte には解釈を持たせない。
 **これが通ることが `build_site.py` を捨てる条件**。作成時に実際に3件の欠落が見つかった:
 判定時に読んだ英語版の改訂ID（観測した版と違う）、判定ID、採用基準。
 
-### 第2段階 — 足場（0.5日）
+### 第2段階 — 足場（ほぼ完了・ビルドが1点未解決）
 
-pnpm / SvelteKit / `@sveltejs/adapter-cloudflare` / Tailwind v4 / Biome / Vitest。
-`wrangler.toml` は LaneDuel に倣うが、**identity（Worker名・route・zone）は流用しない**。
+`web/` に SvelteKit + adapter-cloudflare 5.1.0 + Tailwind v4 + Biome + Vitest + pnpm。
+`pnpm check` は 313ファイル・エラー0・警告0。表示層は `data/viewmodel.json` だけを読む
+（`+page.server.ts` で事前生成時に一度読む）。
+
+**LaneDuel との意図的な相違**: LaneDuel は Pages モード（`pages_build_output_dir`）だが、
+空白図鑑は独自ドメインを wrangler の route で持っている。Pages にすると紐付けが設定ファイルの
+外（ダッシュボード）に出て**不変条件⑤を壊す**ため、adapter-cloudflare のまま
+**Workers モード**（`main` + `[assets]`）にした。
+
+**判明した問題（不変条件④に直撃）**: adapter-cloudflare は出力先に**自前の `.assetsignore` を
+生成する**（中身は `_worker.js` / `_routes.json` / `_headers` / `_redirects` の4つだけ）。
+`.claude/` は含まれない。**`.assetsignore` に頼る方式は使えない。**
+→ 配信物の**一覧そのものを検査**する方式に変える（第5段階）。
+
+**未解決**: `pnpm build` が sandbox 内で `listen EPERM 127.0.0.1` で落ちる。
+アダプタが workerd を起動するため。sandbox 外なら通る見込みだが、第三者コードを
+sandbox 外で走らせる判断は本人に委ねる。CI（GitHub Actions）では制約が無いので通るはず。
 
 ### 第3段階 — 部品への移植と UI 修正（1〜2日）
 
@@ -98,7 +113,7 @@ pnpm / SvelteKit / `@sveltejs/adapter-cloudflare` / Tailwind v4 / Biome / Vitest
 - [x] 安全網 `site/parity.py` と基準の採取
 - [x] `lint_copy` の黙殺経路と `run.sh` の配信後確認を修正（`100adc9`）
 - [x] 第1段階 データ契約 — `pipeline/viewmodel.py` / `parity.py --contract` で完全性を検査
-- [ ] 第2段階 足場
+- [x] 第2段階 足場 — `pnpm check` 通過。`pnpm build` は sandbox の listen 制限で未実行
 - [ ] 第3段階 移植と UI 修正
 - [ ] 第4段階 ゲート
 - [ ] 第5段階 配信

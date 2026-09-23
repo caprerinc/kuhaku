@@ -4,3 +4,5 @@ __pycache__/
 .claude/
 node_modules/
 .wrangler/
+.svelte-kit/
+web/.svelte-kit/
