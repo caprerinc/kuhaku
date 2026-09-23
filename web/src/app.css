@@ -1,1 +1,367 @@
 @import 'tailwindcss';
+
+/* 空白図鑑の版面。
+ *
+ * 移植方針: 既存の CSS は和の編集設計（見出し明朝／本文ゴシック、墨・罫・空・藍・朱）
+ * として一貫しているので、Tailwind のユーティリティには書き換えない。
+ * 書き換えても利用者の利益が無く、保存すべき意味を落とす危険だけが増える。
+ *
+ * 直したのは**実測で問題が確認できたものだけ**。各箇所に測った値を書いてある。
+ */
+
+:root {
+  --paper: #fbfaf7;
+  --ink: #16161a;
+  --ai: #1c3a5e;
+  --shu: #a63a2a;
+  /* 実測 #6E6E75 は --kuu(#EFEDE7) の上で 4.32:1 と AA(4.5) 未満だった。
+     #5F5F66 なら paper 6.07:1 / kuu 5.41:1。 */
+  --sumi: #5f5f66;
+  --kei: #dedcd5;
+  --kuu: #efede7;
+  --mincho: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', serif;
+  --gothic: 'Hiragino Sans', 'Yu Gothic', YuGothic, 'Noto Sans JP', sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  /* 本文の行長。旧 50rem では 47.5 全角字/行で、`palt` の字詰めで実質さらに増えていた。
+     日本語本文の快適域は 35〜45 字。40rem = 640px ≒ 40 字。
+     表・カードは従来どおり --wrap 幅を使う（列が潰れるため狭めない）。 */
+  --measure: 40rem;
+  --wrap: 50rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141416;
+    --ink: #e8e6e0;
+    --ai: #8fb3d9;
+    --shu: #e0776a;
+    /* ダークの弱色は実測 6.59:1(paper) / 5.95:1(kuu) で基準を満たすため据え置き。 */
+    --sumi: #9a9aa2;
+    --kei: #33333a;
+    --kuu: #1e1e22;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--gothic);
+  font-size: 16px;
+  line-height: 1.85;
+  font-feature-settings: 'palt';
+}
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+/* 読ませる文章だけ行長を絞る。表と探索記録には掛けない。 */
+.prose {
+  max-width: var(--measure);
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.5px;
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--ai);
+  outline-offset: 3px;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--mincho);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+/* 等幅は**識別子と数値だけ**。旧版は探索記録ブロック全体に掛けていて、
+   日本語の記事名まで等幅になり読みにくかった。 */
+.n,
+.rev,
+.revcell {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 判定ラベル ─────────────────────────
+ * 塗りの量で分類の序列を表す（色だけに頼らない）。
+ * 旧版の 12% / 26% / 22%斜線 は、地との差が 1.24 / 1.62 / 1.49 と
+ * 段差が 0.2〜0.4 しかなく、目で順序を読めていなかった。
+ * 18% / 38% に広げて段差を 1.38倍 / 1.51倍 にした。
+ * 文字色は --ai から --ink へ。--ai だとダークの 38% 塗りの上で 3.75:1 と
+ * AA 未満になる（--ink なら最悪でも 6.56:1）。枠線は --ai のまま。
+ */
+.vlabel {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-family: var(--gothic);
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--ai);
+  color: var(--ink);
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.v-0 .vlabel,
+.dl-0 {
+  background: transparent;
+}
+.v-1 .vlabel,
+.dl-1 {
+  background: color-mix(in srgb, var(--ai) 18%, transparent);
+}
+.v-2 .vlabel,
+.dl-2 {
+  background: color-mix(in srgb, var(--ai) 38%, transparent);
+}
+/* 比較できない = 斜線。塗りの序列とは別種であることを模様で示す。 */
+.v-3 .vlabel,
+.dl-3 {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 4px,
+    color-mix(in srgb, var(--ai) 28%, transparent) 4px 8px
+  );
+}
+.v-4 .vlabel,
+.dl-4 {
+  background: var(--ai);
+  color: var(--paper);
+  border-color: var(--ai);
+}
+/* 未検証 = 破線。旧版は生成側のインライン style で付けていた。 */
+.vlabel.unverified {
+  border-style: dashed;
+}
+
+/* ── 観測値の図示 ───────────────────────
+ * 言語によらず数えられる量（節数・脚注ドメイン数）だけを図示する。
+ * **数値が主、図は従**。旧版は図だけを出し、14rem で折り返したうえ
+ * 60個を超えると「…」で切っていた。数えられない図は符号化として嘘になる。
+ */
+.count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.count .num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.count .glyphs {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 2px;
+  align-items: center;
+  overflow: hidden;
+}
+.count .glyphs i {
+  width: 6px;
+  height: 6px;
+  background: var(--ai);
+  display: block;
+  flex: none;
+}
+.count .glyphs i.ci {
+  border-radius: 50%;
+}
+/* 図が入りきらないことがあるのは前提。数値が真を持つので図は欠けてよい。 */
+.count .glyphs[data-clipped='true']::after {
+  content: '';
+}
+.count.none {
+  color: var(--sumi);
+}
+.count.zero {
+  color: var(--sumi);
+  font-size: 0.8rem;
+}
+
+/* ── カード ─────────────────────────────
+ * 旧版の境界は 1px の --kei（地との差 1.31:1）だけで、20件を目で追いにくかった。
+ * 番号の側に太い罫を立てて、カードの始まりを明示する。
+ */
+.card {
+  padding: 2rem 0 2.2rem;
+  border-top: 3px solid var(--kei);
+}
+.card > header {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  gap: 0.9rem;
+  align-items: start;
+}
+.cno {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--sumi);
+  padding-top: 0.35rem;
+}
+.ctitles h3 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+/* 英語タイトルは識別子なので等幅のまま。 */
+.ctitles .en {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--sumi);
+  font-family: var(--mono);
+}
+.verdict {
+  text-align: right;
+}
+.conf {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--sumi);
+}
+.why {
+  margin: 0.9rem 0 0 3.5rem;
+  font-size: 0.95rem;
+  max-width: var(--measure);
+}
+@media (max-width: 38rem) {
+  .card > header {
+    grid-template-columns: 2.2rem 1fr;
+  }
+  .verdict {
+    grid-column: 2;
+    text-align: left;
+    margin-top: 0.4rem;
+  }
+  .why {
+    margin-left: 0;
+  }
+}
+
+/* ── 訂正 ─────────────────────────────── */
+.change {
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.9rem;
+  border-left: 2px solid var(--shu);
+  background: color-mix(in srgb, var(--shu) 6%, transparent);
+  font-size: 0.86rem;
+  max-width: var(--measure);
+}
+.cbadge {
+  display: inline-block;
+  margin-right: 0.6rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.72rem;
+  border: 1px solid var(--shu);
+  color: var(--shu);
+}
+.cbadge.evidence {
+  border-style: dashed;
+}
+
+/* ── 探索記録 ────────────────────────────
+ * この頁の中心。旧版はブロック全体が等幅で、日本語の記事名まで等幅になっていた。
+ * 等幅は改訂ID・数値だけに掛ける。
+ */
+.trail {
+  margin: 1.6rem 0 0;
+  border: 1px solid var(--kei);
+  border-left: 3px solid var(--ai);
+  background: var(--kuu);
+  padding: 1rem 1.1rem;
+  font-family: var(--gothic);
+  font-size: 0.82rem;
+  line-height: 1.85;
+}
+.trail .rev,
+.trail .n {
+  font-family: var(--mono);
+}
+.trail-head {
+  color: var(--ai);
+  letter-spacing: 0.14em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--kei);
+  margin-bottom: 0.7rem;
+}
+.trail-sec {
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  margin: 0.7rem 0 0.2rem;
+}
+.trail-sec .tl {
+  color: var(--ai);
+}
+.trail-sec .tn {
+  color: var(--sumi);
+  font-size: 0.72rem;
+}
+.cands,
+.conts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cands li,
+.conts li {
+  padding: 0.1rem 0;
+}
+.cands .mk {
+  display: inline-block;
+  width: 1.2em;
+  color: var(--sumi);
+}
+.cands li.hit .mk {
+  color: var(--ai);
+}
+.cands .src {
+  color: var(--sumi);
+  font-size: 0.7rem;
+  margin-left: 0.6rem;
+}
+.conts li {
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+.conts li::before {
+  content: '・';
+  color: var(--sumi);
+}
+.terms {
+  margin: 0.2rem 0 0;
+}
+.terms span {
+  display: inline-block;
+  margin: 0 0.5rem 0.2rem 0;
+  padding: 0 0.35rem;
+  background: var(--paper);
+  border: 1px solid var(--kei);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: fade 0.5s ease both;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
