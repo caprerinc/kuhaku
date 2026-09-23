@@ -1,6 +1,7 @@
 # 配信。手動起動のみ。
 #
-# 公開は意図して行う操作なので push では走らせない。凍結中で更新頻度も低い。
+# 公開は意図して行う操作なので push では走らせない。
+# **検査した成果物をそのまま配信する。** 検査と配信の間で作り直さない。
 # CLOUDFLARE_API_TOKEN をリポジトリの Secrets に登録しておくこと。
 name: deploy
 
@@ -19,33 +20,86 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
 
       - name: 鍵があるか
         run: |
           test -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             || { echo "::error::CLOUDFLARE_API_TOKEN が未設定"; exit 1; }
 
-      # 検査が落ちたら配信しない。run.sh 側の順序と同じ。
-      - name: 生成と検査
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: web/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      # ① 証拠から公開値を作り直し、元データと文面を検査する
+      - name: データの生成と検査
         run: ./run.sh check
 
+      - name: 依存を入れる
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+
+      # ② 表示層を事前生成する
+      - name: 表示層のビルド
+        working-directory: web
+        run: pnpm build
+
+      # ③ 配信する成果物そのものを検査する
+      - name: 配信物の一覧
+        run: python3 site/parity.py --inventory web/.svelte-kit/cloudflare
+
+      - name: 主張の同一性
+        run: python3 site/parity.py --check web/.svelte-kit/cloudflare/index.html
+
+      - name: 文面と描画値
+        run: python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html
+
+      # ④ 公開履歴がこれから配信するものと一致しているか。
+      #    ずれていると「何を公開したか」の記録が実態と食い違う。
+      - name: 公開履歴と一致するか
+        run: |
+          if ! diff -q published/index.html web/.svelte-kit/cloudflare/index.html >/dev/null; then
+            echo "::error::published/index.html が配信物と違う。./run.sh web してコミットすること。"
+            diff published/index.html web/.svelte-kit/cloudflare/index.html | head -20
+            exit 1
+          fi
+
+      # ⑤ 検査した成果物をそのまま配信（作り直さない）
       - name: 配信
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        working-directory: site
+        working-directory: web
         run: npx --yes wrangler@4.98.0 deploy
 
       - name: 配信後の確認
         run: |
-          for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json"; do
+          fail=0
+          for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json" "/naive-check.csv"; do
             code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")
-            printf "  %-22s HTTP %s\n" "$p" "$code"
-            [ "$code" = "200" ] || exit 1
+            printf "  %-24s HTTP %s\n" "$p" "$code"
+            [ "$code" = "200" ] || fail=1
           done
-          # .claude/ が配信されていないこと（.assetsignore が効いているか）
-          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp/.claude/")
-          echo "  /.claude/ HTTP $code"
-          [ "$code" != "200" ] || { echo "::error::.claude/ が公開されている"; exit 1; }
+          # 除外設定に頼らず、個別ファイルが配信されていないことを確かめる。
+          for p in "/.claude/" "/.claude/settings.local.json" "/.assetsignore" "/_worker.js"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")
+            printf "  %-24s HTTP %s （公開されていないこと）\n" "$p" "$code"
+            [ "$code" != "200" ] || fail=1
+          done
+          # SPA の全捕捉になっていたら 200 が返る。
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 \
+            "https://kuhaku.caprer.co.jp/__does-not-exist-$(date +%s)")
+          printf "  %-24s HTTP %s （404であること）\n" "(存在しないパス)" "$code"
+          [ "$code" = "404" ] || fail=1
+          # 配信された本文が、検査した成果物と同じ主張を持つか。
+          curl -s -m 30 https://kuhaku.caprer.co.jp/ -o /tmp/served.html
+          python3 site/parity.py --check /tmp/served.html || fail=1
+          [ "$fail" = "0" ] || { echo "::error::配信後の確認に失敗"; exit 1; }
