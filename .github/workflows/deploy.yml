@@ -67,9 +67,11 @@ jobs:
       #    ずれていると「何を公開したか」の記録が実態と食い違う。
       - name: 公開履歴と一致するか
         run: |
-          if ! diff -q published/index.html web/.svelte-kit/cloudflare/index.html >/dev/null; then
+          # cmp を使う。diff は環境によって別物(delta 等)に置き換わっていることがある。
+          if ! cmp -s published/index.html web/.svelte-kit/cloudflare/index.html; then
             echo "::error::published/index.html が配信物と違う。./run.sh web してコミットすること。"
-            diff published/index.html web/.svelte-kit/cloudflare/index.html | head -20
+            echo "  公開履歴: $(shasum -a 256 published/index.html | cut -d' ' -f1)"
+            echo "  配信物  : $(shasum -a 256 web/.svelte-kit/cloudflare/index.html | cut -d' ' -f1)"
             exit 1
           fi
 
