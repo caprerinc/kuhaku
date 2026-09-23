@@ -130,6 +130,45 @@ def check_contract(doc: str) -> list[str]:
     return problems
 
 
+# 配信物に混ざってはいけないもの。`.assetsignore` は許可リストではなく、
+# adapter-cloudflare は自前の `.assetsignore`（_worker.js 等の4項目だけ）で
+# 上書きする。だから除外設定ではなく**一覧そのもの**を見る。
+FORBIDDEN_NAMES = re.compile(
+    r"(^|/)\.(claude|git|env|aws|ssh|vscode|idea)(/|$)|"
+    r"(^|/)(secrets?|\.env\..*|.*\.pem|.*\.key|id_rsa.*|\.DS_Store)$",
+    re.I)
+# 先頭が . のものはこれだけ許す。増やすときは理由を書くこと。
+ALLOWED_DOTFILES = {".assetsignore"}
+
+
+def check_inventory(root: pathlib.Path) -> list[str]:
+    """配信されるファイルの一覧を検査する。
+
+    配信ルートに何が入るかは、除外設定を読んでも分からない。実際に並んだものを見る。
+    ディレクトリURLが404でも、その下の個別ファイルが配信されていることはある。
+    """
+    if not root.exists():
+        return [f"配信物が無い: {root}"]
+    problems = []
+    files = sorted(f.relative_to(root).as_posix() for f in root.rglob("*") if f.is_file())
+    if not files:
+        return [f"配信物が空: {root}"]
+    for rel in files:
+        if FORBIDDEN_NAMES.search("/" + rel):
+            problems.append(f"配信物に含めてはいけない: {rel}")
+            continue
+        for seg in rel.split("/"):
+            if seg.startswith(".") and seg not in ALLOWED_DOTFILES:
+                problems.append(f"想定外のドットファイル: {rel}")
+                break
+    if not any(f == "index.html" for f in files):
+        problems.append("index.html が無い")
+    # 404 は「ファイルがあるか」ではなく「実際に 404 が返るか」で見る。
+    # 現行構成は 404.html を持たず Cloudflare 側が返しており、それで正しい。
+    # 配信後の HTTP 確認（run.sh deploy / deploy.yml）が本来の担保。
+    return problems
+
+
 def diff(old: dict, new: dict) -> list[str]:
     problems: list[str] = []
 
@@ -209,6 +248,19 @@ def main(argv: list[str]) -> int:
         for p in problems:
             print("  ✗ " + p)
         print("\n  体裁の変更は差分に出ない。ここに出るのは主張が変わった箇所だけ。")
+        return 1
+
+    if "--inventory" in argv:
+        i = argv.index("--inventory")
+        root = pathlib.Path(argv[i + 1]) if i + 1 < len(argv) else ROOT / "site" / "public"
+        problems = check_inventory(root)
+        n = sum(1 for f in root.rglob("*") if f.is_file()) if root.exists() else 0
+        if not problems:
+            print(f"配信物の一覧: {n}件。含めてはいけないものは無い（{root}）")
+            return 0
+        print(f"配信物の一覧: {len(problems)}件の問題\n")
+        for p in problems:
+            print("  ✗ " + p)
         return 1
 
     if "--contract" in argv:

@@ -23,10 +23,10 @@
 | 1 | 第三者が **node 無しで**公開値を検算できる | `./run.sh verify`（Python標準ライブラリのみ） | **変更しない。** Python が証拠・算出・判定・公開ラベル・CSV/JSON を所有する |
 | 2 | 配信される文面が検査を通っている | `lint_copy.py` が生成HTMLを読む | prerender 後のHTMLを読む。**検査した成果物をそのまま配信する**（再ビルドしない） |
 | 3 | 「何を公開したか」の履歴が残る | 生成HTMLを git にコミット | 同左を維持する（ビルド成果物化しない）。README がこの目的を明記している |
-| 4 | `.claude/` が公開されない | `site/public/.assetsignore` | **実際の配信ルートに置き直す。** `.assetsignore` は許可リストではない |
+| 4 | `.claude/` が公開されない | `site/public/.assetsignore` | **`parity.py --inventory`。** アダプタが `.assetsignore` を上書きするため除外設定には依存できない。配信物の一覧そのものを見る |
 | 5 | `workers_dev:false` / 独自ドメイン | `site/wrangler.jsonc` | Worker 名 `kuhaku-zukan`、route `kuhaku.caprer.co.jp` custom_domain、zone `caprer.co.jp` を維持 |
 | 6 | 主張が変わっていない | （無かった） | **`site/parity.py`**。移行前の指紋と比較する |
-| 7 | 404 の挙動 | `not_found_handling: 404-page` | SPA の全捕捉にしない |
+| 7 | 404 の挙動 | `not_found_handling: 404-page`（404.html は持たず Cloudflare 側が返している） | SPA の全捕捉にしない。**配信後に存在しないパスへ実際に HTTP 404 が返ることで確認**する |
 
 ## 安全網（先に用意した）
 
@@ -68,9 +68,19 @@ Svelte には解釈を持たせない。
 `.claude/` は含まれない。**`.assetsignore` に頼る方式は使えない。**
 → 配信物の**一覧そのものを検査**する方式に変える（第5段階）。
 
-**未解決**: `pnpm build` が sandbox 内で `listen EPERM 127.0.0.1` で落ちる。
-アダプタが workerd を起動するため。sandbox 外なら通る見込みだが、第三者コードを
-sandbox 外で走らせる判断は本人に委ねる。CI（GitHub Actions）では制約が無いので通るはず。
+**ビルド確認済み**（本人許可のもと sandbox 外で実行）。実測した出力:
+
+| 検査 | 結果 |
+|---|---|
+| 配信物 | **8ファイルのみ**（`index.html` / `404.html` / `_worker.js` / `_routes.json` / `_headers` / `.assetsignore` / `__data.json` / CSS 1件） |
+| `.assetsignore` の中身 | `_worker.js` `_routes.json` `_headers` `_redirects` の**4項目のみ**。予測どおり `.claude/` は入らない |
+| 404 | `404.html` = `Not Found` の実物。SPA 全捕捉ではない |
+| 契約の疎通 | 事前生成HTMLに `schema 1.0.0 / run-20260908T120726Z / 全47件・判定済み20件・判定変更3件・根拠更新5件` |
+
+途中で1つ壊した: `+page.server.ts` で `import.meta.url` からの相対パスで JSON を読んでいたが、
+バンドル後は `.svelte-kit/output/server/` が基準になり `ENOENT` で prerender が 500。
+**実行時に fs で読むのをやめ、Vite の別名でビルド時に取り込む**方式に変えた。
+契約が変われば Vite が再ビルドするので、取り込み忘れも起きない。
 
 ### 第3段階 — 部品への移植と UI 修正（1〜2日）
 

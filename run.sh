@@ -35,6 +35,8 @@ check() {
   python3 site/lint_copy.py --sources
   echo "── 描画契約"
   python3 site/parity.py --contract
+  echo "── 配信物の一覧"
+  python3 site/parity.py --inventory site/public
   if [ -f "$DOCS/kuhaku-zukan-note-article.md" ]; then
     echo "── 記事・投稿案"
     python3 site/lint_copy.py "$DOCS"/kuhaku-zukan-note-article.md "$DOCS"/kuhaku-zukan-x-posts.md
@@ -88,6 +90,11 @@ case "${1:-check}" in
       printf "   %-22s HTTP %s （公開されていないこと）\n" "$p" "$code"
       [ "$code" != "200" ] || post_ok=0
     done
+    # 存在しないパスが 404 を返すこと。SPA の全捕捉になっていたら 200 が返る。
+    code="$(curl -s -o /dev/null -w '%{http_code}' -m 20 \
+      "https://kuhaku.caprer.co.jp/__does-not-exist-$(date +%s)")"
+    printf "   %-22s HTTP %s （404であること）\n" "(存在しないパス)" "$code"
+    [ "$code" = "404" ] || post_ok=0
     [ "$post_ok" = "1" ] || { echo "   ★ 配信後の確認に失敗"; exit 1; }
     ;;
   *)
