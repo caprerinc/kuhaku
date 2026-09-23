@@ -6,6 +6,7 @@
 #
 #   ./run.sh build     生成のみ
 #   ./run.sh check     生成 + 全チェック（HTML / 元データ / 記事）
+#   ./run.sh web       表示層のビルド + 配信物の検査（node が要る）
 #   ./run.sh deploy    生成 + 全チェック + 配信（チェックが落ちたら配信しない）
 #   ./run.sh stats     素朴な自動判定が人手検証と比べてどれだけ外したかを数える
 #   ./run.sh verify    公開した数字を保存済みの生データから作り直して照合する
@@ -54,6 +55,24 @@ check() {
   fi
 }
 
+# 表示層のビルドと検査。node が要るのでここだけ分ける。
+# **配信するのは検査した成果物そのもの**。検査と配信の間で作り直さない。
+web_build() {
+  build
+  (cd web && pnpm install --frozen-lockfile >/dev/null && pnpm build >/dev/null)
+  echo "── 配信物の一覧"
+  python3 site/parity.py --inventory web/.svelte-kit/cloudflare
+  echo "── 主張の同一性"
+  python3 site/parity.py --check web/.svelte-kit/cloudflare/index.html
+  echo "── 文面と描画値"
+  python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html
+  # 「何を公開したか」の履歴。旧構成では生成HTMLをコミットして差分で残していた。
+  # ビルド成果物は git に入れないので、公開する版だけをここへ写して追跡する。
+  mkdir -p published
+  cp web/.svelte-kit/cloudflare/index.html published/index.html
+  echo "── 公開履歴: published/index.html を更新（コミットすること）"
+}
+
 case "${1:-check}" in
   collect)
     python3 -m pipeline.collect concepts/living.toml
@@ -73,6 +92,9 @@ case "${1:-check}" in
     ;;
   check)
     build && check
+    ;;
+  web)
+    web_build
     ;;
   deploy)
     build && check
@@ -109,7 +131,7 @@ case "${1:-check}" in
     [ "$post_ok" = "1" ] || { echo "   ★ 配信後の確認に失敗"; exit 1; }
     ;;
   *)
-    echo "usage: ./run.sh {collect|build|check|stats|verify|drift|deploy}" >&2
+    echo "usage: ./run.sh {collect|build|check|web|stats|verify|drift|deploy}" >&2
     exit 2
     ;;
 esac
