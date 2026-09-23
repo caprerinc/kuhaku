@@ -70,6 +70,29 @@ def verdict_class(card: str) -> str | None:
     return m.group(1) if m else None
 
 
+def tables(doc: str) -> dict[str, list[list[str]]]:
+    """カード外の表（訂正の記録・未検証一覧）の中身。
+
+    旧版の指紋はカードと、ページ全体の改訂ID・必須文言・外部リンクしか見ていなかった。
+    そのため訂正一覧の日付を取り違えても検知できなかった（実際に6行間違えた）。
+    表は主張そのものなので、行ごと持つ。
+    """
+    out: dict[str, list[list[str]]] = {}
+    for name, pat in (("corrections", r'id="corrections"(.*?)</table>'),
+                      ("plain_tables", r'<table class="plain">(.*?)</table>')):
+        rows = []
+        for tm in re.finditer(pat, doc, re.S):
+            for rm in re.findall(r"<tr>(.*?)</tr>", tm.group(1), re.S):
+                cells = [re.sub(r"\s+", "", strip_html(c)).strip()
+                         for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", rm, re.S)]
+                if cells:
+                    rows.append(cells)
+            if name == "corrections":
+                break
+        out[name] = rows
+    return out
+
+
 def fingerprint(doc: str) -> dict:
     cs = cards(doc)
     body = strip_html(doc)
@@ -93,6 +116,7 @@ def fingerprint(doc: str) -> dict:
                 u for u in re.findall(r'href="(https?://[^"]+)"', doc)
             }),
         },
+        "tables": tables(doc),
     }
 
 
@@ -230,6 +254,16 @@ def diff(old: dict, new: dict) -> list[str]:
     lost_links = sorted(set(oa["external_links"]) - set(nb["external_links"]))
     if lost_links:
         problems.append(f"外部リンクが消えた: {lost_links}")
+
+    ot, nt = old.get("tables", {}), new.get("tables", {})
+    for key in sorted(set(ot) | set(nt)):
+        a, b = ot.get(key, []), nt.get(key, [])
+        if len(a) != len(b):
+            problems.append(f"表 {key} の行数が違う: {len(a)} → {len(b)}")
+            continue
+        for i, (ra, rb) in enumerate(zip(a, b)):
+            if ra != rb:
+                problems.append(f"表 {key} の {i + 1}行目が違う: {ra} → {rb}")
 
     return problems
 

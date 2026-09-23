@@ -628,6 +628,11 @@ table.plain thead th {
 table.plain td.n {
   font-family: var(--mono);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* 「判定を変更」が1文字ずつ折り返して読めなくなっていた。 */
+table.plain td.kind {
+  white-space: nowrap;
 }
 td.un {
   color: var(--sumi);

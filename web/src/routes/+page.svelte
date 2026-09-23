@@ -153,9 +153,9 @@
             <tr>
               <td><a href="#{cr.concept_id}">{name(cr.concept_id)}</a></td>
               <td>{cr.prev_verdict_public}<span class="arw">→</span>{cr.verdict_public}</td>
-              <td>{cr.label}</td>
+              <td class="kind">{cr.label}</td>
               <td class="un">{cr.reason}</td>
-              <td class="n">{cr.prev_judged_at}</td>
+              <td class="n">{cr.judged_at}</td>
             </tr>
           {/each}
         </tbody>

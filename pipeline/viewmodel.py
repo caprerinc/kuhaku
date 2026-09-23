@@ -283,6 +283,8 @@ def build() -> dict:
                 "prev_verdict": prev["verdict"],
                 "prev_verdict_public": VERDICT_PUBLIC[prev["verdict"]],
                 "prev_judged_at": prev.get("judged_at"),
+                # 訂正一覧の「日付」は**訂正した日**。元の判定日ではない。
+                "judged_at": j.get("judged_at"),
                 "reason": j.get("correction_reason", ""),
                 "supersedes": j.get("supersedes"),
                 # 見出しと本文の文言はここで決める。表示層に解釈を持たせない。
@@ -342,6 +344,9 @@ def build() -> dict:
 
     items.sort(key=lambda x: (x["verdict"]["order"],
                               -(x["observations"]["en"]["body_chars"] or 0)))
+    # 訂正一覧も図鑑と同じ並びにする。順序が違うと同じ内容でも別の見え方になる。
+    pos = {i["concept_id"]: n for n, i in enumerate(items)}
+    corrections.sort(key=lambda c: pos.get(c["concept_id"], 10**6))
     return {
         "schema_version": SCHEMA_VERSION,
         "edition": ev.get("edition"),
