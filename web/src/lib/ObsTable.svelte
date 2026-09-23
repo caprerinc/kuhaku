@@ -8,8 +8,10 @@
    */
   let { item } = $props();
   const o = $derived(item.observations);
-  const fmt = (n: number | null) => (n === null ? '—' : n.toLocaleString('ja-JP'));
-  const day = (s: string | null) => (s ? s.slice(0, 10) : '—');
+  // 欠測は照合する候補が無かったという意味。0 ではない。記号は1つに揃える。
+  const MISSING = '—';
+  const fmt = (n: number | null) => (n === null ? null : n.toLocaleString('ja-JP'));
+  const day = (s: string | null) => (s ? s.slice(0, 10) : null);
 </script>
 
 <table class="obs">
@@ -36,8 +38,10 @@
   <tbody>
     <tr>
       <th>本文文字数</th>
-      <td><span class="n">{fmt(o.ja.body_chars)}</span></td>
-      <td><span class="n">{fmt(o.en.body_chars)}</span></td>
+      <td>{#if fmt(o.ja.body_chars)}<span class="n">{fmt(o.ja.body_chars)}</span>{:else}<span
+            class="missing">{MISSING}</span>{/if}</td>
+      <td>{#if fmt(o.en.body_chars)}<span class="n">{fmt(o.en.body_chars)}</span>{:else}<span
+            class="missing">{MISSING}</span>{/if}</td>
       <td class="note">言語間で1字あたりの情報量は同じではない。比較の目安にとどまる</td>
     </tr>
     <tr>
@@ -54,8 +58,10 @@
     </tr>
     <tr>
       <th>最終更新</th>
-      <td><span class="n">{day(o.ja.last_modified)}</span></td>
-      <td><span class="n">{day(o.en.last_modified)}</span></td>
+      <td>{#if day(o.ja.last_modified)}<span class="n">{day(o.ja.last_modified)}</span>{:else}<span
+            class="missing">{MISSING}</span>{/if}</td>
+      <td>{#if day(o.en.last_modified)}<span class="n">{day(o.en.last_modified)}</span>{:else}<span
+            class="missing">{MISSING}</span>{/if}</td>
       <td class="note"></td>
     </tr>
   </tbody>

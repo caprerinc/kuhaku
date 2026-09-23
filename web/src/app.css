@@ -182,8 +182,12 @@ code {
 .count .glyphs[data-clipped='true']::after {
   content: '';
 }
+/* 欠測の記号。同じ「—」でも等幅の中と外で幅が違って見えるので、
+   どの欄でも同じ見え方になるよう専用の class に寄せる。 */
+.missing,
 .count.none {
   color: var(--sumi);
+  font-family: var(--gothic);
 }
 .count.zero {
   color: var(--sumi);
@@ -364,4 +368,332 @@ code {
       transform: none;
     }
   }
+}
+
+/* ── 移植で落としていた体裁 ───────────────────
+ * 構造検査（parity / lint / inventory）は設計上 CSS を見ないので、
+ * 丸ごと落としても全部通ってしまった。目で見て気づいた。
+ */
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--ai);
+  outline-offset: 3px;
+}
+
+/* 表紙 */
+.cover {
+  padding: 4.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--kei);
+}
+.brand {
+  font-family: var(--mincho);
+  font-size: 2.6rem;
+  letter-spacing: 0.28em;
+  margin: 0 0 0.2rem;
+}
+.brand-sub {
+  font-family: var(--mincho);
+  font-size: 0.95rem;
+  letter-spacing: 0.4em;
+  color: var(--sumi);
+  margin: 0;
+}
+.thesis {
+  margin: 3rem 0 0;
+  font-family: var(--mincho);
+  font-size: 1.32rem;
+  line-height: 1.95;
+}
+.thesis2 {
+  margin: 1.4rem 0 0;
+  font-family: var(--mincho);
+  font-size: 1.05rem;
+  color: var(--ai);
+}
+.breakdown {
+  margin: 1.8rem 0 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--kei);
+  background: var(--kuu);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+.quote {
+  margin: 1.6rem 0 0;
+  padding: 1.3rem 1.4rem;
+  background: var(--kuu);
+  border-left: 2px solid var(--ai);
+}
+.quote p {
+  margin: 0;
+  font-family: var(--mincho);
+  font-size: 1.05rem;
+}
+.quote cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--sumi);
+  font-family: var(--gothic);
+}
+.lede {
+  margin: 2.4rem 0 0;
+  color: var(--sumi);
+  font-size: 0.95rem;
+}
+.lede strong {
+  color: var(--ink);
+}
+
+/* 節 */
+section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--kei);
+}
+section > h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+  color: var(--ai);
+}
+section > h2::before {
+  content: '';
+  display: inline-block;
+  width: 1.6rem;
+  height: 1px;
+  background: var(--ai);
+  vertical-align: 0.35em;
+  margin-right: 0.7rem;
+}
+.sec-note {
+  color: var(--sumi);
+  font-size: 0.9rem;
+}
+.tiny {
+  font-size: 0.75rem;
+  color: var(--sumi);
+  margin: 0.5rem 0 0;
+  max-width: var(--measure);
+}
+
+/* 訂正方針 */
+.corr-policy {
+  background: var(--kuu);
+  padding: 1.2rem 1.3rem;
+  border-top: 2px solid var(--shu);
+}
+.corr-policy h2 {
+  color: var(--shu);
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+.corr-policy p {
+  margin: 0.3rem 0;
+  font-size: 0.92rem;
+}
+.corr-policy .n {
+  color: var(--shu);
+  font-weight: 700;
+}
+
+/* 判定の定義 */
+.defs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.defs li {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--kei);
+  align-items: start;
+}
+.defs li:last-child {
+  border-bottom: 1px solid var(--kei);
+}
+.defs .d {
+  font-size: 0.9rem;
+  color: var(--sumi);
+  max-width: var(--measure);
+}
+
+/* 判定ごとの見出し */
+.vgroup {
+  margin: 3rem 0 1.2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--ai);
+}
+.vgroup h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  color: var(--ai);
+}
+.vgroup p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--sumi);
+  max-width: var(--measure);
+}
+
+/* 観測表 */
+.obs {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4rem 0 0;
+  font-size: 0.86rem;
+}
+.obs th,
+.obs td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--kei);
+  vertical-align: top;
+}
+.obs thead th {
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--sumi);
+  border-bottom: 1px solid var(--ai);
+  white-space: nowrap;
+}
+.obs thead th:nth-child(2),
+.obs thead th:nth-child(3) {
+  width: 8.5rem;
+}
+.obs tbody th {
+  font-weight: 400;
+  color: var(--sumi);
+  width: 9.5rem;
+}
+/* 注記が数文字ごとに折り返して読めなくなっていた。数値を主にしたぶん
+   指標の欄が広がったので、その分を注記に回す。 */
+.obs .note {
+  min-width: 11rem;
+}
+.obs .note {
+  color: var(--sumi);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+.revcell a {
+  color: var(--ai);
+  font-size: 0.72rem;
+}
+
+/* 根拠 */
+.reason {
+  margin: 1.2rem 0 0;
+  font-size: 0.9rem;
+  max-width: var(--measure);
+}
+.reason summary {
+  cursor: pointer;
+  color: var(--ai);
+  font-size: 0.85rem;
+}
+.reason p {
+  margin: 0.8rem 0;
+}
+.reason .meta {
+  font-size: 0.75rem;
+  color: var(--sumi);
+  border-top: 1px solid var(--kei);
+  padding-top: 0.6rem;
+}
+
+/* 表 */
+.tblwrap {
+  overflow-x: auto;
+}
+table.plain {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  min-width: 34rem;
+}
+table.plain th,
+table.plain td {
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--kei);
+}
+table.plain thead th {
+  font-weight: 400;
+  color: var(--sumi);
+  border-bottom: 1px solid var(--ai);
+}
+table.plain td.n {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+td.un {
+  color: var(--sumi);
+  font-size: 0.78rem;
+}
+.arw {
+  color: var(--shu);
+  padding: 0 0.4rem;
+}
+
+.limits li,
+.method li {
+  margin: 0.5rem 0;
+}
+.dl {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0;
+}
+.dl a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ai);
+  color: var(--ai);
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+.dl a:hover {
+  background: var(--ai);
+  color: var(--paper);
+}
+.cmd {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  background: var(--kuu);
+  border: 1px solid var(--kei);
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+  line-height: 1.8;
+  margin: 0.8rem 0;
+}
+.cta {
+  border: 1px solid var(--kei);
+  padding: 1.3rem;
+  margin: 1rem 0 0;
+  background: var(--kuu);
+}
+.cta h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+footer {
+  padding: 3rem 0 5rem;
+  color: var(--sumi);
+  font-size: 0.82rem;
+}
+.flinks {
+  display: flex;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--kei);
+}
+.flinks a {
+  color: var(--ai);
+  font-size: 0.9rem;
 }

@@ -161,7 +161,33 @@ Svelte には解釈を持たせない。
 - 配信順序: Python の出力と検証 → フロント構築 → Python が最終HTMLとダウンロード物を検査 →
   **その検査済み成果物を配信**（配信時に再ビルドしない）
 
-### 第5段階 — 配信と検証（1〜2日）
+### 第5段階 — 配信と検証（準備完了・切り替えは本人判断）
+
+**配信前の手順**（`./run.sh web` が1〜4を通す）:
+
+1. `./run.sh build` — Python がデータと配布ファイルを作る
+2. `pnpm build` — 事前生成
+3. `parity --inventory` / `parity --check` / `lint_copy --html` — 配信物の検査
+4. `published/index.html` を更新してコミット（公開履歴）
+5. `(cd web && wrangler deploy)` — **検査した成果物をそのまま配信**（作り直さない）
+6. 配信後の確認: 公開すべきものが 200、`.claude/` 配下の個別ファイルが非公開、
+   存在しないパスが 404
+
+**戻し手順**（切り替えが失敗した場合）:
+
+現行の Worker `kuhaku-zukan` は `site/wrangler.jsonc`（assets binding・Worker スクリプト無し）
+で配信されている。新構成は `web/wrangler.toml`（`main` + `[assets]`）で**同じ Worker 名・
+同じ route** を使うため、上書きになる。戻すには旧構成で配信し直す:
+
+```
+cd site && wrangler deploy      # 旧構成（site/public を配信）
+```
+
+`site/public/` と `site/wrangler.jsonc` は移行完了まで**消さない**。これが戻し先。
+独自ドメインの route は両構成で同一なので、付け替えは発生しない。
+
+**未確認**: Worker スクリプト有り（新）↔ 無し（旧）の切り替えが Cloudflare 側で
+どう扱われるか。実機で確かめるまで断定しない。
 
 - 意図的に壊した文面・誤った描画値がゲートで落ちることを試験する
 - 配信後: 公開すべきものが 200、`.claude/` 配下の**個別ファイル**と `.assetsignore` が非公開、
