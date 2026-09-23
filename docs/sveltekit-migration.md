@@ -163,5 +163,5 @@ Svelte には解釈を持たせない。
 - [x] 第1段階 データ契約 — `pipeline/viewmodel.py` / `parity.py --contract` で完全性を検査
 - [x] 第2段階 足場 — `pnpm check` 通過。`pnpm build` は sandbox の listen 制限で未実行
 - [x] 第3段階 移植と UI 修正（UI修正8件すべて完了）
-- [ ] 第4段階 ゲート
+- [ ] 第4段階 ゲート ← いまここ。描画値の照合を追加済み
 - [ ] 第5段階 配信

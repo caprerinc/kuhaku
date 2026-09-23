@@ -95,3 +95,10 @@ jobs:
       # 第3段階の完了条件。事前生成HTMLの主張が基準と一致すること。
       - name: 主張の同一性
         run: python3 ../site/parity.py --check .svelte-kit/cloudflare/index.html
+
+      # **配信する成果物そのもの**を文面検査にかける。禁止表現・不在断定の
+      # 言い換え・必須文言に加えて、描画された観測表の数値を概念×指標で照合する。
+      # 日英の列が入れ替わっても散文の検査では気づけない。
+      - name: 文面と描画値
+        working-directory: .
+        run: python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html

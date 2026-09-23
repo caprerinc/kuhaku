@@ -156,6 +156,60 @@ def check_absence_claims(text: str, label: str) -> list[str]:
     return out
 
 
+def check_rendered_values(html: str) -> list[str]:
+    """**描画された観測表の数値**が契約の値と一致しているか。
+
+    check_numbers() は TOML の散文しか見ていない。表のセルは見ていないので、
+    日本語版と英語版の列を入れ替えても素通りする。描画の取り違えは
+    文面の誤りより気づきにくいので、概念×指標で突き合わせる。
+    """
+    vmp = ROOT / "data" / "viewmodel.json"
+    if not vmp.exists():
+        return ["描画契約が無い。先に python3 -m pipeline.viewmodel を実行すること"]
+    vm = json.loads(vmp.read_text(encoding="utf-8"))
+    by = {i["concept_id"]: i for i in vm["items"]}
+
+    # 行見出し → 契約の指標名
+    ROWS = {
+        "本文文字数": "body_chars",
+        "節の数": "sections",
+        "脚注内の外部参照ドメイン数": "ref_domains",
+    }
+    out, checked = [], 0
+    for m in re.finditer(r'<article[^>]*\bid="([^"]+)"[^>]*>', html):
+        cid = m.group(1)
+        if cid not in by:
+            continue
+        card = html[m.start(): html.find("</article>", m.start())]
+        for label, key in ROWS.items():
+            rm = re.search(rf"<tr>\s*<th>{re.escape(label)}</th>(.*?)</tr>", card, re.S)
+            if not rm:
+                out.append(f"[{cid}] 観測表に「{label}」の行が無い")
+                continue
+            cells = re.findall(r"<td[^>]*>(.*?)</td>", rm.group(1), re.S)
+            if len(cells) < 2:
+                out.append(f"[{cid}] 「{label}」の列が足りない")
+                continue
+            for side, cell in (("ja", cells[0]), ("en", cells[1])):
+                txt = strip_html(cell)
+                nums = re.findall(r"[0-9][0-9,]*", txt)
+                shown = int(nums[0].replace(",", "")) if nums else None
+                exp = by[cid]["observations"][side][key]
+                # 欠測は「—」や「なし」で出る。数値が出ていないこと自体が正しい。
+                if exp is None:
+                    if shown is not None:
+                        out.append(f"[{cid}] {label}／{side}: 契約は欠測だが {shown:,} と描画されている")
+                elif exp == 0:
+                    if shown not in (None, 0):
+                        out.append(f"[{cid}] {label}／{side}: 契約は0だが {shown:,} と描画されている")
+                elif shown != exp:
+                    out.append(f"[{cid}] {label}／{side}: 描画 {shown} ≠ 契約 {exp:,}")
+                checked += 1
+    if checked == 0:
+        out.append("観測表を1件も検査できなかった。描画の構造が変わった可能性がある")
+    return out
+
+
 def check_structure() -> list[str]:
     """判定と確からしさの組み合わせが規則に反していないか。"""
     judg = tomllib.loads((ROOT / "judgments" / "living.toml").read_text(encoding="utf-8"))["judgment"]
@@ -178,7 +232,14 @@ def main() -> int:
     problems: list[str] = []
 
     # --file が指定されたら、そのファイルだけを検査する（note記事・X投稿案など）
-    files = [a for a in sys.argv[1:] if not a.startswith("--")]
+    # --html の直後のパスは「検査対象の指定」であって単体検査のファイルではない。
+    # ここを取り違えると、完全な検査のつもりで弱い検査に落ちる。
+    argv = sys.argv[1:]
+    skip = set()
+    for i, a in enumerate(argv):
+        if a == "--html" and i + 1 < len(argv):
+            skip.add(i + 1)
+    files = [a for i, a in enumerate(argv) if not a.startswith("--") and i not in skip]
     if files and "--sources" in sys.argv:
         # 以前は --sources が黙って無視されていた。検査したつもりで
         # 検査していない状態が一番まずいので、はっきり落とす。
@@ -201,15 +262,29 @@ def main() -> int:
             print("  ✗ " + pr)
         return 1
 
-    if HTML.exists():
-        text = strip_html(HTML.read_text(encoding="utf-8"))
+    # 検査対象のHTMLを差し替えられるようにする。移行中は事前生成された
+    # 成果物そのものを検査する必要がある（配信するのはそちらなので）。
+    target = HTML
+    if "--html" in sys.argv:
+        k = sys.argv.index("--html")
+        if k + 1 < len(sys.argv):
+            target = pathlib.Path(sys.argv[k + 1])
+
+    if target.exists():
+        raw = target.read_text(encoding="utf-8")
+        text = strip_html(raw)
         problems += check_text(text, "公開HTML")
         problems += check_absence_claims(text, "公開HTML")
+        # 描画値の照合は --html で成果物を指定したときだけ。
+        # 旧生成器の頁は節数・ドメイン数を図形だけで出しており数値が無い
+        # （数値を主にしたのは移行後の版）。移行が終わったら既定でも走らせる。
+        if "--html" in sys.argv:
+            problems += check_rendered_values(raw)
         for pat, why in REQUIRED:
             if not re.search(pat, text):
                 problems.append(f"[公開HTML] 必須文言が無い: {why}")
     else:
-        problems.append("生成物が無い。先に build_site.py を実行すること")
+        problems.append(f"生成物が無い: {target}")
 
     if "--sources" in sys.argv:
         problems += check_text((ROOT / "concepts" / "living.toml").read_text(encoding="utf-8"),
