@@ -290,7 +290,7 @@ cd kuhaku &amp;&amp; ./run.sh verify</pre>
         <tbody>
           {#each vm.unjudged as u}
             <tr>
-              <td>{u.theme}</td>
+              <td class="theme">{u.theme}</td>
               <td>{u.en_title}</td>
               <td class="n">{u.observations.en.body_chars === null ? '—' : nm(u.observations.en.body_chars)}</td>
               <td class="n">{u.observations.ja.body_chars === null ? '—' : nm(u.observations.ja.body_chars)}</td>

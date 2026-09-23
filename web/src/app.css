@@ -637,6 +637,11 @@ table.plain td.kind {
 td.un {
   color: var(--sumi);
   font-size: 0.78rem;
+  white-space: nowrap;
+}
+/* テーマ名が「健康・か / らだ」と割れて読めなくなっていた。 */
+table.plain td.theme {
+  white-space: nowrap;
 }
 .arw {
   color: var(--shu);
