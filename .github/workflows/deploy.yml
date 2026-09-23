@@ -1,11 +1,20 @@
-# 配信。手動起動のみ。
+# 配信。main に入ったら自動で出る。
 #
-# 公開は意図して行う操作なので push では走らせない。
 # **検査した成果物をそのまま配信する。** 検査と配信の間で作り直さない。
+# 配信前の検査が1つでも落ちたら配信しないので、壊れたものは本番に出ない。
 # CLOUDFLARE_API_TOKEN をリポジトリの Secrets に登録しておくこと。
+#
+# 公開物に影響しないもの（計画書・README）では走らせない。
 name: deploy
 
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".github/workflows/verify.yml"
+      - ".github/workflows/drift.yml"
   workflow_dispatch:
 
 permissions:

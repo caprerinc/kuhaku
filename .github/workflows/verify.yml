@@ -102,3 +102,15 @@ jobs:
       - name: 文面と描画値
         working-directory: .
         run: python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html
+
+      # main に入ると自動で配信されるので、公開履歴が配信物と食い違っていたら
+      # 配信が落ちる。ここで先に気づけるようにしておく。
+      - name: 公開履歴と一致するか
+        working-directory: .
+        run: |
+          if ! cmp -s published/index.html web/.svelte-kit/cloudflare/index.html; then
+            echo "::error::published/index.html が配信物と違う。./run.sh web してコミットすること。"
+            echo "  公開履歴: $(shasum -a 256 published/index.html | cut -d\" \" -f1)"
+            echo "  配信物  : $(shasum -a 256 web/.svelte-kit/cloudflare/index.html | cut -d\" \" -f1)"
+            exit 1
+          fi
