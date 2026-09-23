@@ -42,7 +42,7 @@ jobs:
       # （公開HTMLへの手書きは build が上書きするので、ここでは検知できない）
       - name: 公開物が判定から再生成したものと一致するか
         run: |
-          if ! git diff --exit-code -- site/public data/dataset.csv data/dataset.json; then
+          if ! git diff --exit-code -- site/public data/dataset.csv data/dataset.json data/viewmodel.json; then
             echo "::error::公開物が判定から再生成した内容と一致しない。./run.sh build してコミットすること。"
             exit 1
           fi

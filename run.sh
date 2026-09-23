@@ -20,6 +20,9 @@ build() {
   # data/dataset.{json,csv} と公開物を必ず同じ判定から作る。
   # 片方だけ更新すると、手元の集計と公開ページがずれる。
   python3 -m pipeline.build > /dev/null
+  # 描画契約。表示層はこれだけを読むので、判定を変えたら必ず作り直す。
+  # 生成を忘れると契約だけ古いまま残り、そのまま古い主張が公開される。
+  python3 -m pipeline.viewmodel > /dev/null
   python3 site/build_site.py
 }
 
@@ -30,6 +33,8 @@ check() {
   python3 site/lint_copy.py
   echo "── 元データ"
   python3 site/lint_copy.py --sources
+  echo "── 描画契約"
+  python3 site/parity.py --contract
   if [ -f "$DOCS/kuhaku-zukan-note-article.md" ]; then
     echo "── 記事・投稿案"
     python3 site/lint_copy.py "$DOCS"/kuhaku-zukan-note-article.md "$DOCS"/kuhaku-zukan-x-posts.md
