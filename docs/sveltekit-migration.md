@@ -52,18 +52,6 @@ Svelte には解釈を持たせない。
 **これが通ることが `build_site.py` を捨てる条件**。作成時に実際に3件の欠落が見つかった:
 判定時に読んだ英語版の改訂ID（観測した版と違う）、判定ID、採用基準。
 
-#### 旧メモ（切り出し対象）
-
-表示コードに埋まっている意味をデータ側へ出す。Codex が指摘した箇所:
-
-- 公開ラベルの対応（`VERDICT_PUBLIC`、confidence の言い換え）— `build_site.py:41-87`
-- **欠測と0の区別**（「—」は候補が無かったの意であり0字ではない）— `build_site.py:95-118`
-- 訂正種別（判定変更 / 根拠更新）— `build_site.py:178-242`
-- 改訂IDリンク、探索記録の構造
-
-`pipeline/build.py` が出す `data/dataset.json` を**唯一の契約**にする。
-Svelte 側はこれ以外を読まない。
-
 ### 第2段階 — 足場（0.5日）
 
 pnpm / SvelteKit / `@sveltejs/adapter-cloudflare` / Tailwind v4 / Biome / Vitest。
