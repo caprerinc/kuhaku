@@ -61,6 +61,7 @@
         "japanese_sources": []
       },
       "en_title": "Attachment parenting",
+      "display_name": "アタッチメント・ペアレンティング",
       "ja_selected": null,
       "why": "愛着理論を土台にした育児法。賛否含めて議論がある",
       "verdict": {
@@ -119,13 +120,57 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "アタッチメント・ペアレンティング",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "愛着育児",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "アタッチメント育児",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
       "correction": {
         "kind": "evidence",
         "prev_verdict": "欠落",
         "prev_verdict_public": "確認できず",
         "prev_judged_at": "2026-09-08",
         "reason": "隣接記事の確認を2本から8本に広げた結果、「添い寝」に節見出しとしての「愛着育児」が見つかった。判定は維持するが、境界事例として明記する",
-        "supersedes": "j-0007"
+        "supersedes": "j-0007",
+        "label": "根拠を更新",
+        "body": "判定は「確認できず」のまま。隣接記事の確認を2本から8本に広げた結果、「添い寝」に節見出しとしての「愛着育児」が見つかった。判定は維持するが、境界事例として明記する"
       }
     },
     {
@@ -141,6 +186,7 @@
         "japanese_sources": []
       },
       "en_title": "Moral injury",
+      "display_name": "道徳的傷害",
       "ja_selected": null,
       "why": "「正しいと信じることをできなかった」ことによる傷。PTSDとは別の概念",
       "verdict": {
@@ -198,89 +244,68 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "道徳的傷害",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "モラルインジャリー",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "道徳的負傷",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "モラル・インジャリー",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
       "correction": {
         "kind": "evidence",
         "prev_verdict": "欠落",
         "prev_verdict_public": "確認できず",
         "prev_judged_at": "2026-09-08",
         "reason": "隣接記事の確認を4本から9本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
-        "supersedes": "j-0005"
-      }
-    },
-    {
-      "concept_id": "parental-burnout",
-      "judgment_id": "j-0016",
-      "theme": "育児",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Parenting stress",
-      "ja_selected": null,
-      "why": "育児による燃え尽き。一般の燃え尽き症候群とは区別される概念",
-      "verdict": {
-        "internal": "欠落",
-        "public": "確認できず",
-        "order": 0
-      },
-      "confidence": {
-        "internal": "medium",
-        "label": "探索済み・断定保留",
-        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "**j-0006 を訂正する。判定は「確認できず」のままだが、不在を断定しない扱いに改め、証拠を足す。**\n\n隣接7記事を確認し、検索語のいずれも本文に現れないことを確認した（revision ID は上記）。\n「育児ストレス」（2,613字）という記事は存在するが、育児に固有の燃え尽きという構成概念は扱っていない。\n「燃え尽き症候群」（1,371字）にも育児文脈は無い。\n\n英語版 Parental burnout は6,852字で、一般の燃え尽き症候群とは区別される概念として扱われている。",
-      "search_terms": [
-        "育児バーンアウト",
-        "親の燃え尽き",
-        "育児による燃え尽き",
-        "parental burnout",
-        "育児燃え尽き"
-      ],
-      "checked_containers": [
-        "燃え尽き症候群(revid 110112050, 1371字)",
-        "育児(109863468, 2871字)",
-        "ノイローゼ(110877677, 619字)",
-        "育児ストレス(96006140, 2613字)",
-        "産後うつ病(107909526, 2118字)",
-        "母親(109755935, 5023字)",
-        "育児疲れ(記事なし)"
-      ],
-      "ja_revids": [],
-      "judged_en_revid": 1371149313,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371149313",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1371149313,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371149313",
-          "body_chars": 6852,
-          "sections": 3,
-          "ref_domains": 6,
-          "last_modified": "2026-08-24T21:52:47Z"
-        },
-        "ja": {
-          "revid": null,
-          "rev_url": null,
-          "body_chars": null,
-          "sections": null,
-          "ref_domains": null,
-          "last_modified": null
-        },
-        "body_char_ratio": null,
-        "ja_candidate_missing": true
-      },
-      "correction": {
-        "kind": "evidence",
-        "prev_verdict": "欠落",
-        "prev_verdict_public": "確認できず",
-        "prev_judged_at": "2026-09-08",
-        "reason": "隣接記事の確認を3本から7本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
-        "supersedes": "j-0006"
+        "supersedes": "j-0005",
+        "label": "根拠を更新",
+        "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接記事の確認を4本から9本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた"
       }
     },
     {
@@ -296,8 +321,9 @@
         "japanese_sources": []
       },
       "en_title": "Screen time",
+      "display_name": "スクリーンタイム",
       "ja_selected": null,
-      "why": "★誤判定事例。自動判定は「欠落」と出したが、7,994B の記事が実在した。3点セットの②",
+      "why": "画面を見ている時間と、その健康への影響",
       "verdict": {
         "internal": "欠落",
         "public": "確認できず",
@@ -353,13 +379,180 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "スクリーンタイム",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "スクリーンタイム",
+          "revid": 110401007,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110401007",
+          "body_chars": 200
+        },
+        {
+          "title": "画面視聴時間",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "日本語版に同じ名前の記事 "
+          },
+          {
+            "text": "「スクリーンタイム」("
+          },
+          {
+            "text": "rev.110401007",
+            "href": "https://ja.wikipedia.org/w/index.php?oldid=110401007"
+          },
+          {
+            "text": "、200字)"
+          },
+          {
+            "text": " はあるが、扱っている概念が異なるため比較の対象にしていない。そのため日本語版の列は空欄にしてある。"
+          }
+        ]
+      ],
       "correction": {
         "kind": "evidence",
         "prev_verdict": "欠落",
         "prev_verdict_public": "確認できず",
         "prev_judged_at": "2026-09-08",
         "reason": "隣接6記事の確認と Wikidata 項目の対照を追加し、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
-        "supersedes": "j-0003"
+        "supersedes": "j-0003",
+        "label": "根拠を更新",
+        "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接6記事の確認と Wikidata 項目の対照を追加し、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた"
+      }
+    },
+    {
+      "concept_id": "parental-burnout",
+      "judgment_id": "j-0016",
+      "theme": "育児",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Parenting stress",
+      "display_name": "育児バーンアウト",
+      "ja_selected": null,
+      "why": "育児による燃え尽き。一般の燃え尽き症候群とは区別される概念",
+      "verdict": {
+        "internal": "欠落",
+        "public": "確認できず",
+        "order": 0
+      },
+      "confidence": {
+        "internal": "medium",
+        "label": "探索済み・断定保留",
+        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "**j-0006 を訂正する。判定は「確認できず」のままだが、不在を断定しない扱いに改め、証拠を足す。**\n\n隣接7記事を確認し、検索語のいずれも本文に現れないことを確認した（revision ID は上記）。\n「育児ストレス」（2,613字）という記事は存在するが、育児に固有の燃え尽きという構成概念は扱っていない。\n「燃え尽き症候群」（1,371字）にも育児文脈は無い。\n\n英語版 Parental burnout は6,852字で、一般の燃え尽き症候群とは区別される概念として扱われている。",
+      "search_terms": [
+        "育児バーンアウト",
+        "親の燃え尽き",
+        "育児による燃え尽き",
+        "parental burnout",
+        "育児燃え尽き"
+      ],
+      "checked_containers": [
+        "燃え尽き症候群(revid 110112050, 1371字)",
+        "育児(109863468, 2871字)",
+        "ノイローゼ(110877677, 619字)",
+        "育児ストレス(96006140, 2613字)",
+        "産後うつ病(107909526, 2118字)",
+        "母親(109755935, 5023字)",
+        "育児疲れ(記事なし)"
+      ],
+      "ja_revids": [],
+      "judged_en_revid": 1371149313,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371149313",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1371149313,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371149313",
+          "body_chars": 6852,
+          "sections": 3,
+          "ref_domains": 6,
+          "last_modified": "2026-08-24T21:52:47Z"
+        },
+        "ja": {
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null,
+          "sections": null,
+          "ref_domains": null,
+          "last_modified": null
+        },
+        "body_char_ratio": null,
+        "ja_candidate_missing": true
+      },
+      "candidates": [
+        {
+          "title": "育児バーンアウト",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "親の燃え尽き症候群",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "育児燃え尽き",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
+      "correction": {
+        "kind": "evidence",
+        "prev_verdict": "欠落",
+        "prev_verdict_public": "確認できず",
+        "prev_judged_at": "2026-09-08",
+        "reason": "隣接記事の確認を3本から7本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
+        "supersedes": "j-0006",
+        "label": "根拠を更新",
+        "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接記事の確認を3本から7本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた"
       }
     },
     {
@@ -375,8 +568,9 @@
         "japanese_sources": []
       },
       "en_title": "Parasocial interaction",
+      "display_name": "パラソーシャル関係",
       "ja_selected": null,
-      "why": "★看板。配信者・アイドル・キャラクターへの一方的な親密さを説明する基礎概念",
+      "why": "配信者・アイドル・キャラクターに対して一方的に親密さを感じる関係を説明する基礎概念",
       "verdict": {
         "internal": "実質包含",
         "public": "別記事の中にある",
@@ -426,13 +620,79 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "パラソーシャル関係",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "パラソーシャル",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "パラソーシャル・インタラクション",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "擬似社会的相互作用",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "疑似社会的関係",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
       "correction": {
         "kind": "evidence",
         "prev_verdict": "実質包含",
         "prev_verdict_public": "別記事の中にある",
         "prev_judged_at": "2026-09-08",
         "reason": "隣接記事の改訂IDを記録しておらず、公開した3つの文字数が再現できなかった。今日の版で測り直し、改訂IDを固定して証拠バンドルに収めた",
-        "supersedes": "j-0002"
+        "supersedes": "j-0002",
+        "label": "根拠を更新",
+        "body": "判定は「別記事の中にある」のまま。隣接記事の改訂IDを記録しておらず、公開した3つの文字数が再現できなかった。今日の版で測り直し、改訂IDを固定して証拠バンドルに収めた"
       }
     },
     {
@@ -448,6 +708,7 @@
         "japanese_sources": []
       },
       "en_title": "Parenting styles",
+      "display_name": "育児スタイル",
       "ja_selected": null,
       "why": "権威的・許容的などの類型。発達心理学の基本枠組み",
       "verdict": {
@@ -514,13 +775,57 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "子育てスタイル",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "養育スタイル",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "育児スタイル",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
       "correction": {
         "kind": "verdict",
         "prev_verdict": "欠落",
         "prev_verdict_public": "確認できず",
         "prev_judged_at": "2026-09-08",
         "reason": "探索範囲を5記事から11記事に広げた結果、ダイアナ・バウムリンドの記事に概念の定義が見つかったため",
-        "supersedes": "j-0001"
+        "supersedes": "j-0001",
+        "label": "判定を変更",
+        "body": "初回 **確認できず** → 現在 **別記事の中にある**。探索範囲を5記事から11記事に広げた結果、ダイアナ・バウムリンドの記事に概念の定義が見つかったため"
       }
     },
     {
@@ -536,6 +841,7 @@
         "japanese_sources": []
       },
       "en_title": "Menopause",
+      "display_name": "更年期移行期",
       "ja_selected": "更年期障害",
       "why": "日本語版は「更年期障害」に転送される。移行期そのものと、その障害は別の概念",
       "verdict": {
@@ -595,13 +901,128 @@
         "body_char_ratio": 0.0583,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "更年期障害",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "更年期障害",
+          "revid": 108390311,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108390311",
+          "body_chars": 2653
+        },
+        {
+          "title": "閉経期障害",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "更年期障害",
+          "revid": 108390311,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108390311",
+          "body_chars": 2653
+        },
+        {
+          "title": "閉経期症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "更年期障害",
+          "revid": 108390311,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108390311",
+          "body_chars": 2653
+        },
+        {
+          "title": "更年期症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "更年期障害",
+          "revid": 108390311,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108390311",
+          "body_chars": 2653
+        },
+        {
+          "title": "更年期",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "更年期障害",
+          "revid": 108390311,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108390311",
+          "body_chars": 2653
+        },
+        {
+          "title": "メノポーズ",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "メノポーズ",
+          "revid": 94692493,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=94692493",
+          "body_chars": 86
+        },
+        {
+          "title": "ポストメノポーザル・シンドローム",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "更年期移行期",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "周閉経期",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "閉経移行期",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
       "correction": {
         "kind": "verdict",
         "prev_verdict": "判定不能",
         "prev_verdict_public": "比較できない",
         "prev_judged_at": "2026-09-14",
         "reason": "専門用語だけを完全一致で検索し、転送先の本文を読んでいなかった。「更年期障害」の中に期間そのものの定義があった",
-        "supersedes": "j-0022"
+        "supersedes": "j-0022",
+        "label": "判定を変更",
+        "body": "初回 **比較できない** → 現在 **別記事の中にある**。専門用語だけを完全一致で検索し、転送先の本文を読んでいなかった。「更年期障害」の中に期間そのものの定義があった"
       }
     },
     {
@@ -617,6 +1038,7 @@
         "japanese_sources": []
       },
       "en_title": "Unit price",
+      "display_name": "単位価格表示",
       "ja_selected": null,
       "why": "100gあたりいくらか。買い物の比較の基礎だが、名前と仕組みが日本語で説明されていない",
       "verdict": {
@@ -675,6 +1097,398 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "単位価格表示",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "ユニットプライス",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "単価表示",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "単位価格",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "照会した候補がいずれも存在しなかったため、日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"
+          }
+        ]
+      ],
+      "correction": null
+    },
+    {
+      "concept_id": "postpartum-depression",
+      "judgment_id": "j-0008",
+      "theme": "育児",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Postpartum depression",
+      "display_name": "産後うつ病",
+      "ja_selected": "産後うつ病",
+      "why": "出産後に起こりうる気分障害。産後の一時的な気分の落ち込みとは区別される",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "high",
+        "label": "根拠を引用できる",
+        "note": "本文を通読し、判断の根拠を具体的に示せる。"
+      },
+      "judged_at": "2026-09-08",
+      "rationale": "記事は実在する（「産後うつ病」revid 107909526）。**欠落ではない。**\nただし本文は2,118字で、英語版は57,735字。文字数だけでなく、英語版で扱われていて日本語版の記事では確認できなかった論点を特定した。\n\n日本語版の節ごとの実測:\n  概要 543字 / 原因 171字 / 産後うつ病を招く危険因子 115字 / 予防・治療法 239字 /\n  産後精神病 128字 / 症状・新生児への影響 99字 / 男性の産後うつ病 683字\n\n**英語版で扱われ、日本語版本文に一度も現れない論点**（本文・wikitext の両方で確認）:\n\n1. **スクリーニング全般** — 「エジンバラ」「EPDS」「Edinburgh」「質問票」「尺度」\n   「スクリーニング」「健診」「検診」のいずれの語も出現しない。\n   英語版は Screening 節だけで 2,595字あり、**日本語版の記事全体（2,118字）より長い**。\n2. **授乳中の薬物治療** — 英語版 Treatments/Breastfeeding（441字）に対応する記述が無い。\n3. **近年承認された治療薬** — brexanolone / zuranolone への言及が無い。\n4. **疫学の地域差** — 英語版は南米・アジア・欧州・アフリカ別に記述（計4,600字超）。日本語版は無い。\n5. **歴史・社会文化的側面** — 英語版は History（2,889字）と Society and culture（5,543字）を持つ。日本語版は無い。\n\n日本語版で最も長い節が「男性の産後うつ病」（683字）で、記事全体の約3分の1を占める一方、\n「症状・新生児への影響」は99字にとどまる。\n\n**注意**: 本判定は Wikipedia 日本語版の記述の網羅性についてのものであり、\n日本語の医療情報全般について述べたものではない。また記述内容の正確性は評価対象外とする。\n\n**公開前に要出典**: 「EPDS は日本の産婦健康診査で実際に用いられている」という文脈を\n公開ページに書く場合は、必ず日本語の一次資料を添えること。現時点では未検証。",
+      "search_terms": [],
+      "checked_containers": [
+        "うつ病"
+      ],
+      "ja_revids": [
+        107909526
+      ],
+      "judged_en_revid": 1373391668,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373391668",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1373391668,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373391668",
+          "body_chars": 57735,
+          "sections": 15,
+          "ref_domains": 40,
+          "last_modified": "2026-09-05T18:38:28Z"
+        },
+        "ja": {
+          "revid": 107909526,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
+          "body_chars": 2118,
+          "sections": 7,
+          "ref_domains": 12,
+          "last_modified": "2026-01-06T23:58:02Z"
+        },
+        "body_char_ratio": 0.0367,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "産後うつ病",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "産後うつ病",
+          "revid": 107909526,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
+          "body_chars": 2118
+        },
+        {
+          "title": "分娩後うつ病",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "産褥期うつ状態",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "産後うつ病",
+          "revid": 107909526,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
+          "body_chars": 2118
+        },
+        {
+          "title": "産後うつ",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "産後うつ病",
+          "revid": 107909526,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
+          "body_chars": 2118
+        },
+        {
+          "title": "産褥期うつ病",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "産後うつ病",
+          "revid": 107909526,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
+          "body_chars": 2118
+        }
+      ],
+      "observation_notes": [],
+      "correction": null
+    },
+    {
+      "concept_id": "greenwashing",
+      "judgment_id": "j-0019",
+      "theme": "くらし・権利",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Greenwashing",
+      "display_name": "グリーンウォッシング",
+      "ja_selected": "グリーンウォッシング",
+      "why": "環境に良さそうに見せる表示。買う側が見抜くための概念",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "high",
+        "label": "根拠を引用できる",
+        "note": "本文を通読し、判断の根拠を具体的に示せる。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "記事は実在する（「グリーンウォッシング」revid 110815854）。本文3,395字。英語版は50,191字（比 0.068）。\n日本語版は概要・見抜き方・例・反感の4節を持つ。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **規制** — 英語版 Regulation 節に対応する記述が無い。「景品表示法」「消費者庁」の語が本文に無く、\n     **日本の法制度との接続がまったく書かれていない**（「EU」「カーボンニュートラル」は\n     wikitext のテンプレートのみで本文には無い）。\n  2. **類型** — 英語版 Types of greenwashing 2,238字。日本語版に体系的な分類が無い。\n  3. **歴史** — 英語版 History 4,005字。日本語版は言及なし。\n  4. **抑止** — 英語版 Deterrence 1,126字。日本語版は言及なし。\n  5. **関連語** — グリーンハッシング、SDGsウォッシュへの言及が無い。\n\n隣接記事（企業の社会的責任4,439字／エコマーク413字／持続可能性7,862字）にも代替記述は無い。\n「環境広告」は記事が存在しない。",
+      "search_terms": [
+        "SDGsウォッシュ",
+        "カーボンニュートラル",
+        "グリーンクレーム",
+        "規制",
+        "EU",
+        "景品表示法",
+        "消費者庁",
+        "グリーンハッシング",
+        "7つの罪"
+      ],
+      "checked_containers": [
+        "企業の社会的責任(4439字)",
+        "エコマーク(413字)",
+        "持続可能性(7862字)",
+        "環境広告(記事なし)"
+      ],
+      "ja_revids": [
+        110815854
+      ],
+      "judged_en_revid": 1369810533,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1369810533",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1369810533,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1369810533",
+          "body_chars": 50191,
+          "sections": 9,
+          "ref_domains": 113,
+          "last_modified": "2026-08-17T08:49:16Z"
+        },
+        "ja": {
+          "revid": 110815854,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110815854",
+          "body_chars": 3395,
+          "sections": 4,
+          "ref_domains": 24,
+          "last_modified": "2026-08-29T02:38:30Z"
+        },
+        "body_char_ratio": 0.0676,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "グリーンウォッシング",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "グリーンウォッシング",
+          "revid": 110815854,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110815854",
+          "body_chars": 3395
+        },
+        {
+          "title": "グリーンウォッシュ",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "グリーンウォッシング",
+          "revid": 110815854,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110815854",
+          "body_chars": 3395
+        }
+      ],
+      "observation_notes": [],
+      "correction": null
+    },
+    {
+      "concept_id": "thermal-comfort",
+      "judgment_id": "j-0009",
+      "theme": "住まい",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Thermal comfort",
+      "display_name": "温熱快適性",
+      "ja_selected": "快適性評価",
+      "why": "暑い・寒いを決める要素の体系。エアコン設定の科学的な土台",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "high",
+        "label": "根拠を引用できる",
+        "note": "本文を通読し、判断の根拠を具体的に示せる。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "記事は実在する（「快適性評価」revid 92542712）。Wikidata の ja sitelink も正しい:\n日本語版の定義は「乾球温度・湿球温度・放射温度・気流・着衣量・作業量」を挙げており、\nこれは温熱快適性（PMV）の6つの入力パラメータそのものである。\n\n**しかし本文は114字。定義文1つと「体感温度の評価、熱中症予防に用いられる」の1行のみ。**\n英語版は35,062字（比 0.0033）。47概念中で最も低い。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（**本文限定で確認**。ナビボックスのリンクは記述と数えない）:\n  PMV / 予測平均温冷感 / ファンガー / 適応モデル / 作用温度 / SET / 不快指数 / ISO 7730\n  ※ PMV・作用温度・SET・不快指数は wikitext のテンプレートにリンクとして現れるが、本文に説明は無い。\n\n**実質包含も無いことを確認した**:\n  - 「体感温度」（24,128字）— PMV / 予測平均温冷感 / ファンガー / 快適 / 温熱環境 / 着衣量 /\n    作用温度 / 適応モデル / ISO 7730 / 放射温度 のいずれも本文に無い。\n    体感温度は風速冷却・暑さ指数系の記事で、温熱快適性の枠組みは扱っていない。\n  - 「予測平均温冷感申告」— 記事が存在しない。\n  - 「空気調和」936字 / 「空気調和工学」670字 / 「コンフォートゾーン」661字 — いずれも該当記述なし。\n\n確認した6記事の範囲では、暑さ寒さの感じ方を評価する枠組みの実質的な説明を確認できなかった。",
+      "search_terms": [],
+      "checked_containers": [
+        "体感温度",
+        "空気調和",
+        "空気調和工学",
+        "不快指数",
+        "コンフォートゾーン",
+        "予測平均温冷感申告"
+      ],
+      "ja_revids": [
+        92542712
+      ],
+      "judged_en_revid": 1368891851,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1368891851",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1368891851,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1368891851",
+          "body_chars": 35062,
+          "sections": 6,
+          "ref_domains": 17,
+          "last_modified": "2026-08-11T17:41:28Z"
+        },
+        "ja": {
+          "revid": 92542712,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=92542712",
+          "body_chars": 114,
+          "sections": 0,
+          "ref_domains": 0,
+          "last_modified": "2022-11-22T10:42:39Z"
+        },
+        "body_char_ratio": 0.0033,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "快適性評価",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "快適性評価",
+          "revid": 92542712,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=92542712",
+          "body_chars": 114
+        },
+        {
+          "title": "熱快適性",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "温熱快適性",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "熱的快適性",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "温熱環境",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
       "correction": null
     },
     {
@@ -690,8 +1504,9 @@
         "japanese_sources": []
       },
       "en_title": "Bystander effect",
+      "display_name": "傍観者効果",
       "ja_selected": "傍観者効果",
-      "why": "心理学の教科書に必ず載る古典的概念。それでも日本語版は薄い",
+      "why": "他に人がいるほど、人は助けに入りにくくなるという現象",
       "verdict": {
         "internal": "薄い",
         "public": "論点に差がある",
@@ -747,6 +1562,373 @@
         "body_char_ratio": 0.0441,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "傍観者効果",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "傍観者効果",
+          "revid": 108550162,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108550162",
+          "body_chars": 1402
+        }
+      ],
+      "observation_notes": [],
+      "correction": null
+    },
+    {
+      "concept_id": "indoor-air-quality",
+      "judgment_id": "j-0012",
+      "theme": "住まい",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Indoor air quality",
+      "display_name": "室内空気質",
+      "ja_selected": "空気質",
+      "why": "人は生涯の大半を屋内で過ごす。その空気の質を扱う概念",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "medium",
+        "label": "探索済み・断定保留",
+        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "記事は実在する（「空気質」revid 102875434）。本文1,102字。英語版は31,699字（比 0.0348）。\n\n**当初は粒度の不一致（屋外を含む一般的な空気質 vs 室内空気質）を疑ったが、これは誤りだった。**\n日本語版の冒頭は「空気質（くうきしつ）、または室内空気質とは、一般に建物内等の空気中の組成\nおよびその評価を指す」であり、Indoor Air Quality を扱う記事として対応は正しい。\n\n日本語版は概要・汚染源・各国の指標（日本／アメリカ）を持ち、\n「日本においては、室内空気質に対する基準値は設定されていない」という記述がある。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **健康影響の具体** — 英語版 Health effects 888字。日本語版は「人体に悪影響を及ぼす」の一文のみ。\n  2. **気候変動との関係** — 英語版 IAQ and climate change 781字。日本語版は言及なし。\n  3. **測定・監視の標準** — 英語版 Indoor air quality standards and monitoring 節。日本語版は言及なし。\n  4. **改善策** — 英語版 Improvement measures 636字。日本語版は換気の重要性に触れるのみ。\n  5. 主要汚染物質のうち、ホルムアルデヒド・二酸化炭素・一酸化炭素の語が本文に無い\n     （ラドン・揮発性有機化合物は本文にある。PM2.5 は wikitext のテンプレートのみで本文には無い）。\n\n**確からしさを「探索済み・断定保留」にした理由**: 上記1〜5の一部は隣接記事に分散して存在する。\n「シックハウス症候群」5,204字にホルムアルデヒド・VOC・換気の記述があり、\n「換気」3,559字に二酸化炭素・センサーの記述、「大気汚染」23,429字に汚染物質の広範な記述がある。\n「薄い」と「実質包含」の中間にあたるため、公開前に包含の程度をもう一段詰める。",
+      "search_terms": [],
+      "checked_containers": [
+        "シックハウス症候群",
+        "換気",
+        "大気汚染"
+      ],
+      "ja_revids": [
+        102875434
+      ],
+      "judged_en_revid": 1373560095,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373560095",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1373560095,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373560095",
+          "body_chars": 31699,
+          "sections": 7,
+          "ref_domains": 45,
+          "last_modified": "2026-09-06T17:06:15Z"
+        },
+        "ja": {
+          "revid": 102875434,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=102875434",
+          "body_chars": 1102,
+          "sections": 3,
+          "ref_domains": 6,
+          "last_modified": "2024-12-10T00:02:21Z"
+        },
+        "body_char_ratio": 0.0348,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "空気質",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "空気質",
+          "revid": 102875434,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=102875434",
+          "body_chars": 1102
+        },
+        {
+          "title": "室内空気質",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "空気質",
+          "revid": 102875434,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=102875434",
+          "body_chars": 1102
+        },
+        {
+          "title": "室内空気環境",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "空気質",
+          "revid": 102875434,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=102875434",
+          "body_chars": 1102
+        },
+        {
+          "title": "室内空気の質",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "屋内空気質",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
+      "correction": null
+    },
+    {
+      "concept_id": "food-desert",
+      "judgment_id": "j-0020",
+      "theme": "食",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": null,
+        "japanese_sources": []
+      },
+      "en_title": "Food desert",
+      "display_name": "食の砂漠",
+      "ja_selected": "食の砂漠",
+      "why": "生鮮食品を買える店が近くにない状態。日本の地方と高齢者に直結する",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "medium",
+        "label": "探索済み・断定保留",
+        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "記事は実在する（「食の砂漠」revid 105269775）。本文2,118字だが**節は「概要」1つのみ**。\n英語版は31,200字・9節（比 0.068）。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **栄養・健康への影響** — 英語版 Nutrition 3,096字。「肥満」「健康格差」の語が本文に無い。\n  2. **定義の議論** — 英語版 Definitions 983字。何をもって食の砂漠とするかの基準が書かれていない。\n  3. **代替枠組み** — 英語版 Alternative frameworks to food deserts 3,436字（food apartheid 等の批判）。\n  4. **歴史** — 英語版 History 1,957字。\n  5. **対策** — 英語版 Strategies to address food deserts 838字。\n\n**確からしさを「探索済み・断定保留」にした理由**: 日本語圏では「買い物難民」（4,379字）という別の枠組みで\n論じられており、そちらには買い物弱者・経済産業省・公共交通・高齢者の記述がある。\n日本固有の枠組みと英語圏の枠組みの対応関係は、まだ詰め切れていない。今後の課題として残す。",
+      "search_terms": [
+        "買い物弱者",
+        "買い物難民",
+        "経済産業省",
+        "農林水産省",
+        "肥満",
+        "健康格差",
+        "測定",
+        "定義",
+        "公共交通",
+        "高齢者"
+      ],
+      "checked_containers": [
+        "買い物難民(4379字)",
+        "限界集落(4888字)",
+        "フードバンク(2279字)",
+        "過疎(4313字)"
+      ],
+      "ja_revids": [
+        105269775
+      ],
+      "judged_en_revid": 1374033802,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1374033802",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1373359321,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373359321",
+          "body_chars": 31200,
+          "sections": 9,
+          "ref_domains": 28,
+          "last_modified": "2026-09-05T15:30:27Z"
+        },
+        "ja": {
+          "revid": 105269775,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105269775",
+          "body_chars": 2118,
+          "sections": 1,
+          "ref_domains": 1,
+          "last_modified": "2025-06-18T03:50:38Z"
+        },
+        "body_char_ratio": 0.0679,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "食の砂漠",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "食の砂漠",
+          "revid": 105269775,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105269775",
+          "body_chars": 2118
+        },
+        {
+          "title": "フードデサート",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "食の砂漠",
+          "revid": 105269775,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105269775",
+          "body_chars": 2118
+        },
+        {
+          "title": "フードデザート",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "食の砂漠",
+          "revid": 105269775,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105269775",
+          "body_chars": 2118
+        },
+        {
+          "title": "買い物難民",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "買い物難民",
+          "revid": 110385324,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110385324",
+          "body_chars": 4379
+        }
+      ],
+      "observation_notes": [
+        [
+          {
+            "text": "判定時に読んだ英語版は "
+          },
+          {
+            "text": "rev.1374033802",
+            "href": "https://en.wikipedia.org/w/index.php?oldid=1374033802"
+          },
+          {
+            "text": "。観測はその前の版で行った。"
+          }
+        ]
+      ],
+      "correction": null
+    },
+    {
+      "concept_id": "health-literacy",
+      "judgment_id": "j-0010",
+      "theme": "健康・からだ",
+      "eligibility": "a",
+      "eligibility_text": "国に依存しない概念",
+      "eligibility_detail": {
+        "criterion": "a",
+        "status": "confirmed",
+        "note": "健康情報を読み解く能力。制度ではなく個人の能力に関する概念",
+        "japanese_sources": []
+      },
+      "en_title": "Health literacy",
+      "display_name": "ヘルスリテラシー",
+      "ja_selected": "ヘルス・リテラシー",
+      "why": "健康の情報を調べ、理解し、使うための力を指す概念",
+      "verdict": {
+        "internal": "薄い",
+        "public": "論点に差がある",
+        "order": 2
+      },
+      "confidence": {
+        "internal": "high",
+        "label": "根拠を引用できる",
+        "note": "本文を通読し、判断の根拠を具体的に示せる。"
+      },
+      "judged_at": "2026-09-09",
+      "rationale": "記事は実在する（「ヘルス・リテラシー」revid 108330095）。本文442字。英語版は28,887字（比 0.0153）。\n\n日本語版の内容は、定義、ナットビームの言及、公衆衛生上の目的、米国 Healthy People 2010 での\n位置づけ、の4点にとどまる。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **測定・尺度** — 「尺度」「測定」「評価法」のいずれも無い。\n     英語版が扱う REALM / TOFHLA / NVS といった測定道具への言及が無い。\n  2. **eヘルスリテラシー** — 英語版は eHealth literacy 節に 2,501字を割く。日本語版は言及なし。\n  3. **患者安全とアウトカム** — 英語版 Patient safety and outcomes 2,084字。日本語版は言及なし。\n  4. **改善方法** — 英語版 Improvement 節に対応する記述が無い。\n\n隣接記事4本（リテラシー2,557字 / 健康教育6,116字 / 公衆衛生23,936字 / 健康の社会的決定要因4,287字）\nも確認したが、上記の論点を代替する記述は見つからなかった。",
+      "search_terms": [],
+      "checked_containers": [
+        "リテラシー",
+        "健康教育",
+        "公衆衛生",
+        "健康の社会的決定要因"
+      ],
+      "ja_revids": [
+        108330095
+      ],
+      "judged_en_revid": 1371175182,
+      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371175182",
+      "observations": {
+        "invalid": false,
+        "en": {
+          "revid": 1371175182,
+          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371175182",
+          "body_chars": 28887,
+          "sections": 7,
+          "ref_domains": 33,
+          "last_modified": "2026-08-25T01:28:20Z"
+        },
+        "ja": {
+          "revid": 108330095,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108330095",
+          "body_chars": 442,
+          "sections": 0,
+          "ref_domains": 3,
+          "last_modified": "2026-02-09T07:33:38Z"
+        },
+        "body_char_ratio": 0.0153,
+        "ja_candidate_missing": false
+      },
+      "candidates": [
+        {
+          "title": "ヘルス・リテラシー",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "ヘルス・リテラシー",
+          "revid": 108330095,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108330095",
+          "body_chars": 442
+        },
+        {
+          "title": "ヘルスリテラシー",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "ヘルス・リテラシー",
+          "revid": 108330095,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108330095",
+          "body_chars": 442
+        },
+        {
+          "title": "健康リテラシー",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
       "correction": null
     },
     {
@@ -762,6 +1944,7 @@
         "japanese_sources": []
       },
       "en_title": "Emotional labor",
+      "display_name": "感情労働",
       "ja_selected": "感情労働",
       "why": "接客業で笑顔を作り続ける負荷。日本の労働環境と直結する",
       "verdict": {
@@ -822,333 +2005,42 @@
         "body_char_ratio": 0.0851,
         "ja_candidate_missing": false
       },
-      "correction": null
-    },
-    {
-      "concept_id": "food-desert",
-      "judgment_id": "j-0020",
-      "theme": "食",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Food desert",
-      "ja_selected": "食の砂漠",
-      "why": "生鮮食品を買える店が近くにない状態。日本の地方と高齢者に直結する",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "medium",
-        "label": "探索済み・断定保留",
-        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "記事は実在する（「食の砂漠」revid 105269775）。本文2,118字だが**節は「概要」1つのみ**。\n英語版は31,200字・9節（比 0.068）。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **栄養・健康への影響** — 英語版 Nutrition 3,096字。「肥満」「健康格差」の語が本文に無い。\n  2. **定義の議論** — 英語版 Definitions 983字。何をもって食の砂漠とするかの基準が書かれていない。\n  3. **代替枠組み** — 英語版 Alternative frameworks to food deserts 3,436字（food apartheid 等の批判）。\n  4. **歴史** — 英語版 History 1,957字。\n  5. **対策** — 英語版 Strategies to address food deserts 838字。\n\n**確からしさを「探索済み・断定保留」にした理由**: 日本語圏では「買い物難民」（4,379字）という別の枠組みで\n論じられており、そちらには買い物弱者・経済産業省・公共交通・高齢者の記述がある。\n日本固有の枠組みと英語圏の枠組みの対応関係は、まだ詰め切れていない。今後の課題として残す。",
-      "search_terms": [
-        "買い物弱者",
-        "買い物難民",
-        "経済産業省",
-        "農林水産省",
-        "肥満",
-        "健康格差",
-        "測定",
-        "定義",
-        "公共交通",
-        "高齢者"
-      ],
-      "checked_containers": [
-        "買い物難民(4379字)",
-        "限界集落(4888字)",
-        "フードバンク(2279字)",
-        "過疎(4313字)"
-      ],
-      "ja_revids": [
-        105269775
-      ],
-      "judged_en_revid": 1374033802,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1374033802",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1373359321,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373359321",
-          "body_chars": 31200,
-          "sections": 9,
-          "ref_domains": 28,
-          "last_modified": "2026-09-05T15:30:27Z"
+      "candidates": [
+        {
+          "title": "感情労働",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "感情労働",
+          "revid": 109937661,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109937661",
+          "body_chars": 2021
         },
-        "ja": {
-          "revid": 105269775,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105269775",
-          "body_chars": 2118,
-          "sections": 1,
-          "ref_domains": 1,
-          "last_modified": "2025-06-18T03:50:38Z"
+        {
+          "title": "エモーショナルレイバー",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
         },
-        "body_char_ratio": 0.0679,
-        "ja_candidate_missing": false
-      },
-      "correction": null
-    },
-    {
-      "concept_id": "greenwashing",
-      "judgment_id": "j-0019",
-      "theme": "くらし・権利",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Greenwashing",
-      "ja_selected": "グリーンウォッシング",
-      "why": "環境に良さそうに見せる表示。買う側が見抜くための概念",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "high",
-        "label": "根拠を引用できる",
-        "note": "本文を通読し、判断の根拠を具体的に示せる。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "記事は実在する（「グリーンウォッシング」revid 110815854）。本文3,395字。英語版は50,191字（比 0.068）。\n日本語版は概要・見抜き方・例・反感の4節を持つ。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **規制** — 英語版 Regulation 節に対応する記述が無い。「景品表示法」「消費者庁」の語が本文に無く、\n     **日本の法制度との接続がまったく書かれていない**（「EU」「カーボンニュートラル」は\n     wikitext のテンプレートのみで本文には無い）。\n  2. **類型** — 英語版 Types of greenwashing 2,238字。日本語版に体系的な分類が無い。\n  3. **歴史** — 英語版 History 4,005字。日本語版は言及なし。\n  4. **抑止** — 英語版 Deterrence 1,126字。日本語版は言及なし。\n  5. **関連語** — グリーンハッシング、SDGsウォッシュへの言及が無い。\n\n隣接記事（企業の社会的責任4,439字／エコマーク413字／持続可能性7,862字）にも代替記述は無い。\n「環境広告」は記事が存在しない。",
-      "search_terms": [
-        "SDGsウォッシュ",
-        "カーボンニュートラル",
-        "グリーンクレーム",
-        "規制",
-        "EU",
-        "景品表示法",
-        "消費者庁",
-        "グリーンハッシング",
-        "7つの罪"
+        {
+          "title": "エモーショナル・レイバー",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
       ],
-      "checked_containers": [
-        "企業の社会的責任(4439字)",
-        "エコマーク(413字)",
-        "持続可能性(7862字)",
-        "環境広告(記事なし)"
-      ],
-      "ja_revids": [
-        110815854
-      ],
-      "judged_en_revid": 1369810533,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1369810533",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1369810533,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1369810533",
-          "body_chars": 50191,
-          "sections": 9,
-          "ref_domains": 113,
-          "last_modified": "2026-08-17T08:49:16Z"
-        },
-        "ja": {
-          "revid": 110815854,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110815854",
-          "body_chars": 3395,
-          "sections": 4,
-          "ref_domains": 24,
-          "last_modified": "2026-08-29T02:38:30Z"
-        },
-        "body_char_ratio": 0.0676,
-        "ja_candidate_missing": false
-      },
-      "correction": null
-    },
-    {
-      "concept_id": "health-literacy",
-      "judgment_id": "j-0010",
-      "theme": "健康・からだ",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": "健康情報を読み解く能力。制度ではなく個人の能力に関する概念",
-        "japanese_sources": []
-      },
-      "en_title": "Health literacy",
-      "ja_selected": "ヘルス・リテラシー",
-      "why": "医療情報を自分で判断する力そのもの。ここが薄いと他のすべての健康情報の土台が欠ける",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "high",
-        "label": "根拠を引用できる",
-        "note": "本文を通読し、判断の根拠を具体的に示せる。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "記事は実在する（「ヘルス・リテラシー」revid 108330095）。本文442字。英語版は28,887字（比 0.0153）。\n\n日本語版の内容は、定義、ナットビームの言及、公衆衛生上の目的、米国 Healthy People 2010 での\n位置づけ、の4点にとどまる。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **測定・尺度** — 「尺度」「測定」「評価法」のいずれも無い。\n     英語版が扱う REALM / TOFHLA / NVS といった測定道具への言及が無い。\n  2. **eヘルスリテラシー** — 英語版は eHealth literacy 節に 2,501字を割く。日本語版は言及なし。\n  3. **患者安全とアウトカム** — 英語版 Patient safety and outcomes 2,084字。日本語版は言及なし。\n  4. **改善方法** — 英語版 Improvement 節に対応する記述が無い。\n\n隣接記事4本（リテラシー2,557字 / 健康教育6,116字 / 公衆衛生23,936字 / 健康の社会的決定要因4,287字）\nも確認したが、上記の論点を代替する記述は見つからなかった。",
-      "search_terms": [],
-      "checked_containers": [
-        "リテラシー",
-        "健康教育",
-        "公衆衛生",
-        "健康の社会的決定要因"
-      ],
-      "ja_revids": [
-        108330095
-      ],
-      "judged_en_revid": 1371175182,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371175182",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1371175182,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1371175182",
-          "body_chars": 28887,
-          "sections": 7,
-          "ref_domains": 33,
-          "last_modified": "2026-08-25T01:28:20Z"
-        },
-        "ja": {
-          "revid": 108330095,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108330095",
-          "body_chars": 442,
-          "sections": 0,
-          "ref_domains": 3,
-          "last_modified": "2026-02-09T07:33:38Z"
-        },
-        "body_char_ratio": 0.0153,
-        "ja_candidate_missing": false
-      },
-      "correction": null
-    },
-    {
-      "concept_id": "indoor-air-quality",
-      "judgment_id": "j-0012",
-      "theme": "住まい",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Indoor air quality",
-      "ja_selected": "空気質",
-      "why": "人は生涯の大半を屋内で過ごす。その空気の質を扱う概念",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "medium",
-        "label": "探索済み・断定保留",
-        "note": "示した範囲は確認した。範囲外の記事に記述が残っている可能性がある。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "記事は実在する（「空気質」revid 102875434）。本文1,102字。英語版は31,699字（比 0.0348）。\n\n**当初は粒度の不一致（屋外を含む一般的な空気質 vs 室内空気質）を疑ったが、これは誤りだった。**\n日本語版の冒頭は「空気質（くうきしつ）、または室内空気質とは、一般に建物内等の空気中の組成\nおよびその評価を指す」であり、Indoor Air Quality を扱う記事として対応は正しい。\n\n日本語版は概要・汚染源・各国の指標（日本／アメリカ）を持ち、\n「日本においては、室内空気質に対する基準値は設定されていない」という記述がある。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（本文限定で確認）:\n  1. **健康影響の具体** — 英語版 Health effects 888字。日本語版は「人体に悪影響を及ぼす」の一文のみ。\n  2. **気候変動との関係** — 英語版 IAQ and climate change 781字。日本語版は言及なし。\n  3. **測定・監視の標準** — 英語版 Indoor air quality standards and monitoring 節。日本語版は言及なし。\n  4. **改善策** — 英語版 Improvement measures 636字。日本語版は換気の重要性に触れるのみ。\n  5. 主要汚染物質のうち、ホルムアルデヒド・二酸化炭素・一酸化炭素の語が本文に無い\n     （ラドン・揮発性有機化合物は本文にある。PM2.5 は wikitext のテンプレートのみで本文には無い）。\n\n**確からしさを「探索済み・断定保留」にした理由**: 上記1〜5の一部は隣接記事に分散して存在する。\n「シックハウス症候群」5,204字にホルムアルデヒド・VOC・換気の記述があり、\n「換気」3,559字に二酸化炭素・センサーの記述、「大気汚染」23,429字に汚染物質の広範な記述がある。\n「薄い」と「実質包含」の中間にあたるため、公開前に包含の程度をもう一段詰める。",
-      "search_terms": [],
-      "checked_containers": [
-        "シックハウス症候群",
-        "換気",
-        "大気汚染"
-      ],
-      "ja_revids": [
-        102875434
-      ],
-      "judged_en_revid": 1373560095,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373560095",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1373560095,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373560095",
-          "body_chars": 31699,
-          "sections": 7,
-          "ref_domains": 45,
-          "last_modified": "2026-09-06T17:06:15Z"
-        },
-        "ja": {
-          "revid": 102875434,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=102875434",
-          "body_chars": 1102,
-          "sections": 3,
-          "ref_domains": 6,
-          "last_modified": "2024-12-10T00:02:21Z"
-        },
-        "body_char_ratio": 0.0348,
-        "ja_candidate_missing": false
-      },
-      "correction": null
-    },
-    {
-      "concept_id": "postpartum-depression",
-      "judgment_id": "j-0008",
-      "theme": "育児",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Postpartum depression",
-      "ja_selected": "産後うつ病",
-      "why": "実測で日本語版の本文は2,148字、英語版は67,816字。出産した人の約1割に関わる",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "high",
-        "label": "根拠を引用できる",
-        "note": "本文を通読し、判断の根拠を具体的に示せる。"
-      },
-      "judged_at": "2026-09-08",
-      "rationale": "記事は実在する（「産後うつ病」revid 107909526）。**欠落ではない。**\nただし本文は2,118字で、英語版は57,735字。文字数だけでなく、英語版で扱われていて日本語版の記事では確認できなかった論点を特定した。\n\n日本語版の節ごとの実測:\n  概要 543字 / 原因 171字 / 産後うつ病を招く危険因子 115字 / 予防・治療法 239字 /\n  産後精神病 128字 / 症状・新生児への影響 99字 / 男性の産後うつ病 683字\n\n**英語版で扱われ、日本語版本文に一度も現れない論点**（本文・wikitext の両方で確認）:\n\n1. **スクリーニング全般** — 「エジンバラ」「EPDS」「Edinburgh」「質問票」「尺度」\n   「スクリーニング」「健診」「検診」のいずれの語も出現しない。\n   英語版は Screening 節だけで 2,595字あり、**日本語版の記事全体（2,118字）より長い**。\n2. **授乳中の薬物治療** — 英語版 Treatments/Breastfeeding（441字）に対応する記述が無い。\n3. **近年承認された治療薬** — brexanolone / zuranolone への言及が無い。\n4. **疫学の地域差** — 英語版は南米・アジア・欧州・アフリカ別に記述（計4,600字超）。日本語版は無い。\n5. **歴史・社会文化的側面** — 英語版は History（2,889字）と Society and culture（5,543字）を持つ。日本語版は無い。\n\n日本語版で最も長い節が「男性の産後うつ病」（683字）で、記事全体の約3分の1を占める一方、\n「症状・新生児への影響」は99字にとどまる。\n\n**注意**: 本判定は Wikipedia 日本語版の記述の網羅性についてのものであり、\n日本語の医療情報全般について述べたものではない。また記述内容の正確性は評価対象外とする。\n\n**公開前に要出典**: 「EPDS は日本の産婦健康診査で実際に用いられている」という文脈を\n公開ページに書く場合は、必ず日本語の一次資料を添えること。現時点では未検証。",
-      "search_terms": [],
-      "checked_containers": [
-        "うつ病"
-      ],
-      "ja_revids": [
-        107909526
-      ],
-      "judged_en_revid": 1373391668,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373391668",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1373391668,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1373391668",
-          "body_chars": 57735,
-          "sections": 15,
-          "ref_domains": 40,
-          "last_modified": "2026-09-05T18:38:28Z"
-        },
-        "ja": {
-          "revid": 107909526,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107909526",
-          "body_chars": 2118,
-          "sections": 7,
-          "ref_domains": 12,
-          "last_modified": "2026-01-06T23:58:02Z"
-        },
-        "body_char_ratio": 0.0367,
-        "ja_candidate_missing": false
-      },
+      "observation_notes": [],
       "correction": null
     },
     {
@@ -1164,6 +2056,7 @@
         "japanese_sources": []
       },
       "en_title": "Shrinkflation",
+      "display_name": "シュリンクフレーション",
       "ja_selected": "シュリンクフレーション",
       "why": "値段は同じで中身が減る。日本で「ステルス値上げ」として話題になり続けている",
       "verdict": {
@@ -1220,6 +2113,42 @@
         "body_char_ratio": 0.095,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "シュリンクフレーション",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "シュリンクフレーション",
+          "revid": 107464339,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107464339",
+          "body_chars": 1021
+        },
+        {
+          "title": "実質値上げ",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シュリンクフレーション",
+          "revid": 107464339,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107464339",
+          "body_chars": 1021
+        },
+        {
+          "title": "ステルス値上げ",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シュリンクフレーション",
+          "revid": 107464339,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=107464339",
+          "body_chars": 1021
+        }
+      ],
+      "observation_notes": [],
       "correction": null
     },
     {
@@ -1235,6 +2164,7 @@
         "japanese_sources": []
       },
       "en_title": "Thermal bridge",
+      "display_name": "熱橋",
       "ja_selected": "熱橋",
       "why": "壁の一部から熱が逃げる現象。日本の住宅が寒い理由の中核",
       "verdict": {
@@ -1290,70 +2220,42 @@
         "body_char_ratio": 0.0587,
         "ja_candidate_missing": false
       },
-      "correction": null
-    },
-    {
-      "concept_id": "thermal-comfort",
-      "judgment_id": "j-0009",
-      "theme": "住まい",
-      "eligibility": "a",
-      "eligibility_text": "国に依存しない概念",
-      "eligibility_detail": {
-        "criterion": "a",
-        "status": "confirmed",
-        "note": null,
-        "japanese_sources": []
-      },
-      "en_title": "Thermal comfort",
-      "ja_selected": "快適性評価",
-      "why": "暑い・寒いを決める要素の体系。エアコン設定の科学的な土台",
-      "verdict": {
-        "internal": "薄い",
-        "public": "論点に差がある",
-        "order": 2
-      },
-      "confidence": {
-        "internal": "high",
-        "label": "根拠を引用できる",
-        "note": "本文を通読し、判断の根拠を具体的に示せる。"
-      },
-      "judged_at": "2026-09-09",
-      "rationale": "記事は実在する（「快適性評価」revid 92542712）。Wikidata の ja sitelink も正しい:\n日本語版の定義は「乾球温度・湿球温度・放射温度・気流・着衣量・作業量」を挙げており、\nこれは温熱快適性（PMV）の6つの入力パラメータそのものである。\n\n**しかし本文は114字。定義文1つと「体感温度の評価、熱中症予防に用いられる」の1行のみ。**\n英語版は35,062字（比 0.0033）。47概念中で最も低い。\n\n英語版で扱われ、日本語版本文では確認できなかった論点（**本文限定で確認**。ナビボックスのリンクは記述と数えない）:\n  PMV / 予測平均温冷感 / ファンガー / 適応モデル / 作用温度 / SET / 不快指数 / ISO 7730\n  ※ PMV・作用温度・SET・不快指数は wikitext のテンプレートにリンクとして現れるが、本文に説明は無い。\n\n**実質包含も無いことを確認した**:\n  - 「体感温度」（24,128字）— PMV / 予測平均温冷感 / ファンガー / 快適 / 温熱環境 / 着衣量 /\n    作用温度 / 適応モデル / ISO 7730 / 放射温度 のいずれも本文に無い。\n    体感温度は風速冷却・暑さ指数系の記事で、温熱快適性の枠組みは扱っていない。\n  - 「予測平均温冷感申告」— 記事が存在しない。\n  - 「空気調和」936字 / 「空気調和工学」670字 / 「コンフォートゾーン」661字 — いずれも該当記述なし。\n\n確認した6記事の範囲では、暑さ寒さの感じ方を評価する枠組みの実質的な説明を確認できなかった。",
-      "search_terms": [],
-      "checked_containers": [
-        "体感温度",
-        "空気調和",
-        "空気調和工学",
-        "不快指数",
-        "コンフォートゾーン",
-        "予測平均温冷感申告"
-      ],
-      "ja_revids": [
-        92542712
-      ],
-      "judged_en_revid": 1368891851,
-      "judged_en_rev_url": "https://en.wikipedia.org/w/index.php?oldid=1368891851",
-      "observations": {
-        "invalid": false,
-        "en": {
-          "revid": 1368891851,
-          "rev_url": "https://en.wikipedia.org/w/index.php?oldid=1368891851",
-          "body_chars": 35062,
-          "sections": 6,
-          "ref_domains": 17,
-          "last_modified": "2026-08-11T17:41:28Z"
+      "candidates": [
+        {
+          "title": "熱橋",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "熱橋",
+          "revid": 106334958,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106334958",
+          "body_chars": 561
         },
-        "ja": {
-          "revid": 92542712,
-          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=92542712",
-          "body_chars": 114,
-          "sections": 0,
-          "ref_domains": 0,
-          "last_modified": "2022-11-22T10:42:39Z"
+        {
+          "title": "ヒートブリッジ",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
         },
-        "body_char_ratio": 0.0033,
-        "ja_candidate_missing": false
-      },
+        {
+          "title": "熱橋部",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
       "correction": null
     },
     {
@@ -1369,6 +2271,7 @@
         "japanese_sources": []
       },
       "en_title": "Compassion fatigue",
+      "display_name": "共感疲労",
       "ja_selected": "二次受傷",
       "why": "看護・介護・支援職、および災害報道を見続ける人に起きる消耗",
       "verdict": {
@@ -1423,13 +2326,51 @@
         "body_char_ratio": 0.0285,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "二次受傷",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "二次受傷",
+          "revid": 108959421,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108959421",
+          "body_chars": 581
+        },
+        {
+          "title": "共感疲労",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "共感疲弊",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
+      "observation_notes": [],
       "correction": {
         "kind": "verdict",
         "prev_verdict": "薄い",
         "prev_verdict_public": "論点に差がある",
         "prev_judged_at": "2026-09-09",
         "reason": "日本語版は上位概念を、英語版はより狭い概念を扱っており粒度が違う。文字数の比較で断ずるのは不公正と判断した",
-        "supersedes": "j-0011"
+        "supersedes": "j-0011",
+        "label": "判定を変更",
+        "body": "初回 **論点に差がある** → 現在 **比較できない**。日本語版は上位概念を、英語版はより狭い概念を扱っており粒度が違う。文字数の比較で断ずるのは不公正と判断した"
       }
     },
     {
@@ -1445,8 +2386,9 @@
         "japanese_sources": []
       },
       "en_title": "Overdiagnosis",
+      "display_name": "過剰診断",
       "ja_selected": "過剰診断",
-      "why": "★反例候補。日本語版のほうが厚い可能性が高い。まだら性の証拠として必要",
+      "why": "検査で見つかった病気の一部は生涯症状を起こさなかったかもしれない、という研究上の論点。本項目は記事の構成を比べたもので、検査や治療の判断を扱わない",
       "verdict": {
         "internal": "該当なし",
         "public": "日本語版が上回る",
@@ -1487,6 +2429,20 @@
         "body_char_ratio": 1.1024,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "過剰診断",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "過剰診断",
+          "revid": 110811475,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110811475",
+          "body_chars": 12368
+        }
+      ],
+      "observation_notes": [],
       "correction": null
     }
   ],
@@ -1517,6 +2473,30 @@
         "body_char_ratio": 0.2218,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "サルコペニア",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "サルコペニア",
+          "revid": 109883603,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109883603",
+          "body_chars": 2771
+        },
+        {
+          "title": "筋肉減少症",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1545,6 +2525,41 @@
         "body_char_ratio": 0.1321,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "インスリン抵抗性",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "インスリン抵抗性",
+          "revid": 110383986,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110383986",
+          "body_chars": 2662
+        },
+        {
+          "title": "インシュリン抵抗性",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "インスリン抵抗性",
+          "revid": 110383986,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110383986",
+          "body_chars": 2662
+        },
+        {
+          "title": "高インスリン血症",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "インスリン抵抗性",
+          "revid": 110383986,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110383986",
+          "body_chars": 2662
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1573,6 +2588,19 @@
         "body_char_ratio": 0.284,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "睡眠衛生",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "睡眠衛生",
+          "revid": 105798585,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=105798585",
+          "body_chars": 3657
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1601,6 +2629,63 @@
         "body_char_ratio": 0.2444,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "座りがちなライフスタイル",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "座りがちなライフスタイル",
+          "revid": 108243282,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108243282",
+          "body_chars": 1606
+        },
+        {
+          "title": "体を動かさない生活",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "座りがちなライフスタイル",
+          "revid": 108243282,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108243282",
+          "body_chars": 1606
+        },
+        {
+          "title": "身体活動量の少ない生活",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "座位行動",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "身体不活動",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1629,6 +2714,30 @@
         "body_char_ratio": 0.4298,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "骨盤底",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "骨盤底",
+          "revid": 106029037,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106029037",
+          "body_chars": 1786
+        },
+        {
+          "title": "骨盤底筋",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "骨盤底筋",
+          "revid": 110285611,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110285611",
+          "body_chars": 281
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1657,6 +2766,52 @@
         "body_char_ratio": 0.2054,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "遅発性筋肉痛",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "遅発性筋肉痛",
+          "revid": 101861974,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=101861974",
+          "body_chars": 1551
+        },
+        {
+          "title": "筋肉痛",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "筋肉痛",
+          "revid": 110258092,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110258092",
+          "body_chars": 752
+        },
+        {
+          "title": "DOMS",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "遅発性筋痛",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1685,6 +2840,52 @@
         "body_char_ratio": 0.1864,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "反芻思考",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "反芻思考",
+          "revid": 109636657,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109636657",
+          "body_chars": 3415
+        },
+        {
+          "title": "反すう思考",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "反芻思考",
+          "revid": 109636657,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109636657",
+          "body_chars": 3415
+        },
+        {
+          "title": "ぐるぐる思考",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "反芻思考",
+          "revid": 109636657,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109636657",
+          "body_chars": 3415
+        },
+        {
+          "title": "反芻 (心理学)",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1713,6 +2914,30 @@
         "body_char_ratio": 0.1991,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "学習性無力感",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "学習性無力感",
+          "revid": 110067240,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110067240",
+          "body_chars": 2679
+        },
+        {
+          "title": "学習性無力症",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1741,13 +2966,59 @@
         "body_char_ratio": 0.3809,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "感情調節障害",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "感情調節障害",
+          "revid": 109207489,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109207489",
+          "body_chars": 5728
+        },
+        {
+          "title": "情動調整不全",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "情動調節不全",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "感情調節不全",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
       "concept_id": "hedonic-treadmill",
       "theme": "こころ",
       "en_title": "Hedonic treadmill",
-      "why": "★反例候補。日本語版が同等以上の可能性",
+      "why": "良いことが起きても、しばらくすると幸福感が元の水準に戻るという現象",
       "observations": {
         "invalid": false,
         "en": {
@@ -1769,6 +3040,63 @@
         "body_char_ratio": 0.4998,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "快楽順応",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "快楽順応",
+          "revid": 109626649,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109626649",
+          "body_chars": 7265
+        },
+        {
+          "title": "ヘドニック・トレッドミル",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "快楽適応",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "ヘドニックトレッドミル",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "幸福の順応",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1797,6 +3125,52 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "ドリップ・プライシング",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "ドリップ価格",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "段階的価格表示",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "追加料金の後出し",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1825,6 +3199,19 @@
         "body_char_ratio": 0.2902,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "ダークパターン",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "ダークパターン",
+          "revid": 110758569,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110758569",
+          "body_chars": 4157
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1853,13 +3240,37 @@
         "body_char_ratio": 0.1505,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "つながらない権利",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "つながらない権利",
+          "revid": 106898913,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106898913",
+          "body_chars": 2208
+        },
+        {
+          "title": "接続を断つ権利",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
       "concept_id": "planned-obsolescence",
       "theme": "くらし・権利",
       "en_title": "Planned obsolescence",
-      "why": "★反例候補。日本語版のほうが厚い可能性",
+      "why": "製品が一定期間で使えなくなるよう設計されているという主張と、その議論",
       "observations": {
         "invalid": false,
         "en": {
@@ -1881,13 +3292,37 @@
         "body_char_ratio": 0.5775,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "計画的陳腐化",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "計画的陳腐化",
+          "revid": 110842247,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110842247",
+          "body_chars": 11486
+        },
+        {
+          "title": "計画的旧式化",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "計画的陳腐化",
+          "revid": 110842247,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=110842247",
+          "body_chars": 11486
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
       "concept_id": "cooling-off-period",
       "theme": "くらし・権利",
       "en_title": "Cooling-off period (consumer rights)",
-      "why": "★反例。日本語版のほうが厚い（実測 ja 8,550B > en 5,529B）。3点セットの③",
+      "why": "契約後に一定期間内なら無条件で申込みを撤回できる制度",
       "observations": {
         "invalid": false,
         "en": {
@@ -1909,6 +3344,41 @@
         "body_char_ratio": 0.6075,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "クーリングオフ",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "クーリングオフ",
+          "revid": 108782347,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108782347",
+          "body_chars": 1464
+        },
+        {
+          "title": "クーリング・オフ",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "クーリングオフ",
+          "revid": 108782347,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108782347",
+          "body_chars": 1464
+        },
+        {
+          "title": "撤回",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "撤回",
+          "revid": 109681332,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109681332",
+          "body_chars": 663
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1937,6 +3407,41 @@
         "body_char_ratio": 0.3616,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "超加工食品",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "超加工食品",
+          "revid": 109973895,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109973895",
+          "body_chars": 7145
+        },
+        {
+          "title": "UPF",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "UPF",
+          "revid": 108552412,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108552412",
+          "body_chars": 184
+        },
+        {
+          "title": "ウルトラプロセスフード",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "超加工食品",
+          "revid": 109973895,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109973895",
+          "body_chars": 7145
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1965,6 +3470,85 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "栄養強化",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "栄養強化剤",
+          "revid": 108826938,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108826938",
+          "body_chars": 1034
+        },
+        {
+          "title": "栄養強化を目的とする食品添加物",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "栄養補助食品",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "サプリメント",
+          "revid": 109529745,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109529745",
+          "body_chars": 5888
+        },
+        {
+          "title": "食品強化",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "食品強化品",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "強化食品",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "栄養素添加",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -1993,6 +3577,52 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "満腹感",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "食",
+          "revid": 109725883,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109725883",
+          "body_chars": 7490
+        },
+        {
+          "title": "満腹度",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "飽満感",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "満腹指数",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2021,13 +3651,81 @@
         "body_char_ratio": 0.9108,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "コンタミネーション",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "コンタミネーション",
+          "revid": 108486013,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108486013",
+          "body_chars": 5827
+        },
+        {
+          "title": "コンタミ",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "コンタミネーション",
+          "revid": 108486013,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108486013",
+          "body_chars": 5827
+        },
+        {
+          "title": "実験汚染",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "実験室汚染",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "試料汚染",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "コンタミネーション",
+          "revid": 108486013,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108486013",
+          "body_chars": 5827
+        },
+        {
+          "title": "交差汚染",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
       "concept_id": "acrylamide",
       "theme": "食",
       "en_title": "Acrylamide",
-      "why": "★反例候補。加熱調理で生じる物質。日本語版が同等の可能性",
+      "why": "でんぷんの多い食品を高温で加熱したときに生じる物質",
       "observations": {
         "invalid": false,
         "en": {
@@ -2049,6 +3747,30 @@
         "body_char_ratio": 0.5874,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "アクリルアミド",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "アクリルアミド",
+          "revid": 109920544,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109920544",
+          "body_chars": 3710
+        },
+        {
+          "title": "アクリルアマイド",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "アクリルアミド",
+          "revid": 109920544,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=109920544",
+          "body_chars": 3710
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2077,6 +3799,52 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "遊離糖類",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "添加糖",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "添加糖類",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "遊離糖",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2105,6 +3873,52 @@
         "body_char_ratio": 0.0294,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "雨漏り",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "雨漏り",
+          "revid": 108495211,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108495211",
+          "body_chars": 1054
+        },
+        {
+          "title": "湿気 (建築)",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "結露",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "結露",
+          "revid": 106038980,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106038980",
+          "body_chars": 2695
+        },
+        {
+          "title": "建物の湿気",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2133,6 +3947,96 @@
         "body_char_ratio": 0.2337,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "シックハウス症候群",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックカー症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックカー",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "ハウスシック症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックハウス",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックビルディング症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックビル",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        },
+        {
+          "title": "シックビル症候群",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": true,
+          "redirected": true,
+          "resolved_title": "シックハウス症候群",
+          "revid": 108731572,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108731572",
+          "body_chars": 4207
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2161,6 +4065,19 @@
         "body_char_ratio": 0.1305,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "パッシブハウス",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "パッシブハウス",
+          "revid": 101704991,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=101704991",
+          "body_chars": 927
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2189,6 +4106,41 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "カビと健康",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "カビ (健康影響)",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "真菌症",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "真菌症",
+          "revid": 106206202,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106206202",
+          "body_chars": 1551
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
@@ -2217,13 +4169,81 @@
         "body_char_ratio": null,
         "ja_candidate_missing": true
       },
+      "candidates": [
+        {
+          "title": "赤ちゃん主導の離乳食",
+          "source": "wikidata_label",
+          "source_label": "ラベル",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "Baby-led weaning 略称: BLW",
+          "source": "wikidata_alias",
+          "source_label": "別名",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "赤ちゃん主導の離乳",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "手づかみ食べ",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "ベビーレッドウィーニング",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": false,
+          "redirected": false,
+          "resolved_title": null,
+          "revid": null,
+          "rev_url": null,
+          "body_chars": null
+        },
+        {
+          "title": "離乳食",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "離乳食",
+          "revid": 108438932,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=108438932",
+          "body_chars": 9892
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     },
     {
       "concept_id": "sids",
       "theme": "育児",
       "en_title": "SIDS",
-      "why": "★反例候補。日本語版も充実している可能性が高い",
+      "why": "乳児が睡眠中に予期せず亡くなる、原因が特定できない事象",
       "observations": {
         "invalid": false,
         "en": {
@@ -2245,6 +4265,30 @@
         "body_char_ratio": 0.2844,
         "ja_candidate_missing": false
       },
+      "candidates": [
+        {
+          "title": "乳幼児突然死症候群",
+          "source": "wikidata_sitelink",
+          "source_label": "sitelink",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "乳幼児突然死症候群",
+          "revid": 106683449,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106683449",
+          "body_chars": 4476
+        },
+        {
+          "title": "SIDS",
+          "source": "manual",
+          "source_label": "人手",
+          "exists": true,
+          "redirected": false,
+          "resolved_title": "SIDS",
+          "revid": 106844106,
+          "rev_url": "https://ja.wikipedia.org/w/index.php?oldid=106844106",
+          "body_chars": 122
+        }
+      ],
       "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。"
     }
   ],
@@ -2257,6 +4301,8 @@
       "prev_judged_at": "2026-09-14",
       "reason": "専門用語だけを完全一致で検索し、転送先の本文を読んでいなかった。「更年期障害」の中に期間そのものの定義があった",
       "supersedes": "j-0022",
+      "label": "判定を変更",
+      "body": "初回 **比較できない** → 現在 **別記事の中にある**。専門用語だけを完全一致で検索し、転送先の本文を読んでいなかった。「更年期障害」の中に期間そのものの定義があった",
       "verdict_public": "別記事の中にある"
     },
     {
@@ -2267,6 +4313,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "隣接記事の改訂IDを記録しておらず、公開した3つの文字数が再現できなかった。今日の版で測り直し、改訂IDを固定して証拠バンドルに収めた",
       "supersedes": "j-0002",
+      "label": "根拠を更新",
+      "body": "判定は「別記事の中にある」のまま。隣接記事の改訂IDを記録しておらず、公開した3つの文字数が再現できなかった。今日の版で測り直し、改訂IDを固定して証拠バンドルに収めた",
       "verdict_public": "別記事の中にある"
     },
     {
@@ -2277,6 +4325,8 @@
       "prev_judged_at": "2026-09-09",
       "reason": "日本語版は上位概念を、英語版はより狭い概念を扱っており粒度が違う。文字数の比較で断ずるのは不公正と判断した",
       "supersedes": "j-0011",
+      "label": "判定を変更",
+      "body": "初回 **論点に差がある** → 現在 **比較できない**。日本語版は上位概念を、英語版はより狭い概念を扱っており粒度が違う。文字数の比較で断ずるのは不公正と判断した",
       "verdict_public": "比較できない"
     },
     {
@@ -2287,6 +4337,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "隣接記事の確認を4本から9本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "supersedes": "j-0005",
+      "label": "根拠を更新",
+      "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接記事の確認を4本から9本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "verdict_public": "確認できず"
     },
     {
@@ -2297,6 +4349,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "隣接記事の確認を3本から7本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "supersedes": "j-0006",
+      "label": "根拠を更新",
+      "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接記事の確認を3本から7本に広げ、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "verdict_public": "確認できず"
     },
     {
@@ -2307,6 +4361,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "隣接6記事の確認と Wikidata 項目の対照を追加し、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "supersedes": "j-0003",
+      "label": "根拠を更新",
+      "body": "判定は「確認できず」のまま。確からしさ **根拠を引用できる** → **探索済み・断定保留**。隣接6記事の確認と Wikidata 項目の対照を追加し、各記事の改訂IDを記録した。判定は変えていないが、不在を断定しない扱いに改めた",
       "verdict_public": "確認できず"
     },
     {
@@ -2317,6 +4373,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "探索範囲を5記事から11記事に広げた結果、ダイアナ・バウムリンドの記事に概念の定義が見つかったため",
       "supersedes": "j-0001",
+      "label": "判定を変更",
+      "body": "初回 **確認できず** → 現在 **別記事の中にある**。探索範囲を5記事から11記事に広げた結果、ダイアナ・バウムリンドの記事に概念の定義が見つかったため",
       "verdict_public": "別記事の中にある"
     },
     {
@@ -2327,6 +4385,8 @@
       "prev_judged_at": "2026-09-08",
       "reason": "隣接記事の確認を2本から8本に広げた結果、「添い寝」に節見出しとしての「愛着育児」が見つかった。判定は維持するが、境界事例として明記する",
       "supersedes": "j-0007",
+      "label": "根拠を更新",
+      "body": "判定は「確認できず」のまま。隣接記事の確認を2本から8本に広げた結果、「添い寝」に節見出しとしての「愛着育児」が見つかった。判定は維持するが、境界事例として明記する",
       "verdict_public": "確認できず"
     }
   ],

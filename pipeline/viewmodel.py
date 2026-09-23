@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import sys
 import tomllib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -57,6 +58,15 @@ CONFIDENCE_PUBLIC = {
 }
 
 
+# 候補の出どころ。内部語をそのまま出さない。
+SOURCE_LABEL = {
+    "wikidata_sitelink": "sitelink",
+    "wikidata_label": "ラベル",
+    "wikidata_alias": "別名",
+    "manual": "人手",
+}
+
+
 def rev_url(project: str, revid) -> str | None:
     """改訂IDから permalink を作る。第三者が測定した版そのものを開けるように。"""
     return f"https://{project}.wikipedia.org/w/index.php?oldid={revid}" if revid else None
@@ -93,6 +103,67 @@ def change_kind(now: dict, chain: list) -> tuple[str | None, dict | None]:
         return None, None
     p = prev[-1]
     return ("verdict" if p["verdict"] != now["verdict"] else "evidence"), p
+
+
+def candidates(c_ev: dict) -> list[dict]:
+    """照会した候補タイトル。全文検索で拾っただけのものは探索記録に出さない
+    （候補を思いつくためだけに使い、比較対象には選ばない規則）。"""
+    out = []
+    for r in c_ev.get("ja_candidates", []):
+        if r.get("candidate_source") == "ja_search_candidate":
+            continue
+        out.append({
+            "title": r.get("candidate"),
+            "source": r.get("candidate_source"),
+            "source_label": SOURCE_LABEL.get(r.get("candidate_source"), r.get("candidate_source")),
+            "exists": bool(r.get("exists")),
+            "redirected": bool(r.get("redirected")),
+            "resolved_title": r.get("resolved_title"),
+            "revid": r.get("revid"),
+            "rev_url": rev_url("ja", r.get("revid")),
+            "body_chars": r.get("body_chars"),
+        })
+    return out
+
+
+def observation_notes(c_ev: dict, j: dict) -> list[list[dict]]:
+    """観測表に添える注記。**文言はここで決める**。
+
+    表示層には解釈を持たせないので、リンクを含む文を「断片の配列」で渡す。
+    断片は {"text":...} か {"text":..., "href":...}。表示層はそれを並べるだけ。
+    """
+    notes: list[list[dict]] = []
+    en = c_ev.get("en") or {}
+
+    # 候補が実在するのに日本語版の列が空欄だと、探索記録と矛盾して見える。
+    # 「見つかったが比較対象にしなかった」理由を必ず書く。
+    if not c_ev.get("ja_selected"):
+        found = [r for r in candidates(c_ev) if r["exists"]]
+        if found:
+            seg = [{"text": "日本語版に同じ名前の記事 "}]
+            for i, r in enumerate(found):
+                if i:
+                    seg.append({"text": "、"})
+                seg.append({"text": f"「{r['title']}」("})
+                seg.append({"text": f"rev.{r['revid']}", "href": r["rev_url"]})
+                chars = r["body_chars"]
+                seg.append({"text": f"、{chars:,}字)" if chars is not None else ")"})
+            seg.append({"text": " はあるが、扱っている概念が異なるため比較の対象にしていない。"
+                                "そのため日本語版の列は空欄にしてある。"})
+            notes.append(seg)
+        else:
+            notes.append([{"text": "照会した候補がいずれも存在しなかったため、"
+                                   "日本語版の列は空欄にしてある。0字の記事があるという意味ではない。"}])
+
+    # 判定時に読んだ版が観測時と違う場合は隠さず併記する。
+    jrev = j.get("en_revid")
+    if jrev and en.get("revid") and jrev != en.get("revid"):
+        notes.append([
+            {"text": "判定時に読んだ英語版は "},
+            {"text": f"rev.{jrev}", "href": rev_url("en", jrev)},
+            {"text": "。観測はその前の版で行った。"},
+        ])
+    return notes
 
 
 def observations(c_ev: dict) -> dict:
@@ -145,10 +216,11 @@ def build() -> dict:
         if not j:
             unjudged.append({
                 "concept_id": cid,
-                "theme": c_ev.get("theme"),
+                "theme": c.get("theme") or c_ev.get("theme"),
                 "en_title": (c_ev.get("en") or {}).get("resolved_title") or c.get("en_title"),
-                "why": c_ev.get("why"),
+                "why": (c.get("why") or "").strip(),
                 "observations": observations(c_ev),
+                "candidates": candidates(c_ev),
                 # 未検証は「欠けている」ことを意味しない。
                 "note": "観測値は取得したが、人手での確認をしていない。欠けていることを意味しない。",
             })
@@ -160,15 +232,19 @@ def build() -> dict:
             "concept_id": cid,
             # 判定イベントの識別子。訂正履歴を追うときの鍵なので表示にも出す。
             "judgment_id": j["id"],
-            "theme": c_ev.get("theme"),
+            "theme": c.get("theme") or c_ev.get("theme"),
             # concepts 側は "a"/"b"/"c" の文字列、evidence 側は辞書。
             # 現行の表示は concepts 側の文字列を使っているので合わせる。
             "eligibility": c.get("eligibility"),
             "eligibility_text": ELIGIBILITY_TEXT.get(c.get("eligibility"), ""),
             "eligibility_detail": c_ev.get("eligibility"),
             "en_title": (c_ev.get("en") or {}).get("resolved_title") or c.get("en_title"),
+            # 見出しに出す日本語名。概念側の第一候補で、実際に採用した記事名とは別。
+            "display_name": (c.get("ja_candidates") or [cid])[0],
             "ja_selected": c_ev.get("ja_selected"),
-            "why": c_ev.get("why"),
+            # **説明文は concepts 側**。evidence 側の why は収集時点の内部メモで、
+            # ★誤判定事例 のような編集用の目印が残っており、文面も古い。
+            "why": (c.get("why") or "").strip(),
             "verdict": {
                 "internal": j["verdict"],
                 "public": VERDICT_PUBLIC[j["verdict"]],
@@ -185,22 +261,43 @@ def build() -> dict:
             "judged_en_revid": j.get("en_revid"),
             "judged_en_rev_url": rev_url("en", j.get("en_revid")),
             "observations": observations(c_ev),
+            "candidates": candidates(c_ev),
+            "observation_notes": observation_notes(c_ev, j),
             "correction": None,
         }
         if kind:
             item["correction"] = {
-                "kind": kind,                      # verdict = 判定が変わった / evidence = 根拠を更新
+                "kind": kind,   # verdict = 判定が変わった / evidence = 根拠を更新
                 "prev_verdict": prev["verdict"],
                 "prev_verdict_public": VERDICT_PUBLIC[prev["verdict"]],
                 "prev_judged_at": prev.get("judged_at"),
                 "reason": j.get("correction_reason", ""),
                 "supersedes": j.get("supersedes"),
+                # 見出しと本文の文言はここで決める。表示層に解釈を持たせない。
+                # 判定が変わっていないのに「初回X → 現在X」と出すと意味が伝わらないので、
+                # 根拠更新のときは確からしさの変化だけを書く。
+                "label": "判定を変更" if kind == "verdict" else "根拠を更新",
+                "body": (
+                    f'初回 **{VERDICT_PUBLIC[prev["verdict"]]}** → '
+                    f'現在 **{VERDICT_PUBLIC[j["verdict"]]}**。{j.get("correction_reason", "")}'
+                    if kind == "verdict" else
+                    f'判定は「{VERDICT_PUBLIC[j["verdict"]]}」のまま。'
+                    + (f'確からしさ **{CONFIDENCE_PUBLIC.get(prev.get("confidence"), CONFIDENCE_PUBLIC["low"])["label"]}**'
+                       f' → **{CONFIDENCE_PUBLIC.get(j.get("confidence"), CONFIDENCE_PUBLIC["low"])["label"]}**。'
+                       if CONFIDENCE_PUBLIC.get(prev.get("confidence"), CONFIDENCE_PUBLIC["low"])["label"]
+                          != CONFIDENCE_PUBLIC.get(j.get("confidence"), CONFIDENCE_PUBLIC["low"])["label"]
+                       else "")
+                    + j.get("correction_reason", "")
+                ),
             }
             corrections.append({"concept_id": cid, **item["correction"],
                                 "verdict_public": item["verdict"]["public"]})
         items.append(item)
 
-    items.sort(key=lambda x: (x["verdict"]["order"], x["concept_id"]))
+    # 判定の種類ごとに並べ、その中は英語版の本文文字数の降順。
+    # 並び順も表示の意味なので契約側で決める（通し番号がこれで決まる）。
+    items.sort(key=lambda x: (x["verdict"]["order"],
+                              -(x["observations"]["en"]["body_chars"] or 0)))
     return {
         "schema_version": SCHEMA_VERSION,
         "edition": ev.get("edition"),
@@ -232,8 +329,25 @@ def build() -> dict:
     }
 
 
+def check_internal_markers(vm: dict) -> list[str]:
+    """編集用の目印が公開側に混ざっていないか。黙って消すと出どころの誤りに気づけない。"""
+    bad = []
+    for item in vm["items"] + vm["unjudged"]:
+        for field in ("why", "display_name"):
+            v = item.get(field) or ""
+            if "★" in v:
+                bad.append(f'{item["concept_id"]}.{field} に編集用の目印: {v[:40]}')
+    return bad
+
+
 def main() -> int:
     vm = build()
+    problems = check_internal_markers(vm)
+    if problems:
+        print("編集用の目印が公開側に混ざっている:", file=sys.stderr)
+        for p in problems:
+            print("  ✗ " + p, file=sys.stderr)
+        return 1
     OUT.write_text(json.dumps(vm, ensure_ascii=False, indent=2), encoding="utf-8")
     c = vm["counts"]
     print(f"描画契約を書き出した: {OUT.relative_to(ROOT)}")

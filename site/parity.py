@@ -116,10 +116,31 @@ def check_contract(doc: str) -> list[str]:
     if missing:
         problems.append(f"契約から引けない数値 {len(missing)}種: {missing[:10]}")
 
+    # 改訂IDは**構造化されたフィールドから**集める。JSON 文字列全体への
+    # 文字列一致だと、判定文の散文にたまたま同じ数字があるだけで通ってしまう。
+    # 実際そうなっていて、契約に候補の構造が無いことを見逃した。
+    def structured_revids(o, key=None):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                yield from structured_revids(v, k)
+        elif isinstance(o, list):
+            for v in o:
+                yield from structured_revids(v, key)
+        elif isinstance(o, int) and key in ("revid", "en_revid", "judged_en_revid"):
+            yield str(o)
+        elif isinstance(o, int) and key == "ja_revids":
+            yield str(o)
+        elif isinstance(o, str) and key in ("rev_url", "judged_en_rev_url"):
+            m = re.search(r"oldid=(\d+)", o)
+            if m:
+                yield m.group(1)
+
+    doc_obj = json.loads(vm)
+    have = set(structured_revids(doc_obj))
     revs = {a or b for a, b in re.findall(r"oldid=(\d+)|rev\.(\d+)", doc)}
-    lost = sorted(r for r in revs if r not in vm)
+    lost = sorted(r for r in revs if r not in have)
     if lost:
-        problems.append(f"契約に無い改訂ID: {lost}")
+        problems.append(f"契約の構造化フィールドに無い改訂ID: {lost}")
 
     # 文字列一致だと、訂正一覧に id が残っているだけで通ってしまう。
     # 描画対象の items に居ることを厳密に見る。
