@@ -85,3 +85,7 @@ jobs:
       # adapter-cloudflare は .assetsignore を自前のもので上書きするため。
       - name: 配信物の一覧
         run: python3 ../site/parity.py --inventory .svelte-kit/cloudflare
+
+      # 第3段階の完了条件。事前生成HTMLの主張が基準と一致すること。
+      - name: 主張の同一性
+        run: python3 ../site/parity.py --check .svelte-kit/cloudflare/index.html

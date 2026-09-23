@@ -236,7 +236,9 @@ def diff(old: dict, new: dict) -> list[str]:
 
 def main(argv: list[str]) -> int:
     if "--baseline" in argv:
-        src = ROOT / "site" / "public" / "index.html"
+        i = argv.index("--baseline")
+        src = (pathlib.Path(argv[i + 1]) if i + 1 < len(argv) and not argv[i + 1].startswith("--")
+               else ROOT / "site" / "public" / "index.html")
         if not src.exists():
             print("公開物が無い。先に ./run.sh build を実行すること", file=sys.stderr)
             return 2
@@ -256,10 +258,17 @@ def main(argv: list[str]) -> int:
             print("--check にHTMLのパスが要る", file=sys.stderr)
             return 2
         target = pathlib.Path(argv[i + 1])
-        if not BASELINE.exists():
-            print("基準が無い。先に --baseline を実行すること", file=sys.stderr)
+        # 移行中は基準が2つある。旧生成器の頁は移行前の基準と、
+        # 新しいビルドは移行後の基準と突き合わせる。
+        bpath = BASELINE
+        if "--against" in argv:
+            j = argv.index("--against")
+            if j + 1 < len(argv):
+                bpath = pathlib.Path(argv[j + 1])
+        if not bpath.exists():
+            print(f"基準が無い: {bpath}", file=sys.stderr)
             return 2
-        old = json.loads(BASELINE.read_text(encoding="utf-8"))
+        old = json.loads(bpath.read_text(encoding="utf-8"))
         new = fingerprint(target.read_text(encoding="utf-8"))
         problems = diff(old, new)
         if not problems:

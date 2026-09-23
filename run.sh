@@ -24,6 +24,12 @@ build() {
   # 生成を忘れると契約だけ古いまま残り、そのまま古い主張が公開される。
   python3 -m pipeline.viewmodel > /dev/null
   python3 site/build_site.py
+  # 配布ファイルを表示層の静的配信にも渡す。プリレンダがリンク先を辿るので、
+  # 置き忘れるとビルドが 404 で落ちる（実際に落ちた）。
+  # 正本は site/public 側で、こちらは生成物なので git には入れない。
+  mkdir -p web/static
+  cp site/public/kuhaku-zukan.csv site/public/kuhaku-zukan.json \
+     site/public/naive-check.csv web/static/
 }
 
 check() {
@@ -38,7 +44,10 @@ check() {
   echo "── 配信物の一覧"
   python3 site/parity.py --inventory site/public
   echo "── 主張の同一性"
-  python3 site/parity.py --check site/public/index.html
+  # 旧生成器の頁は**移行前の基準**と比べる。移行は表示だけを作り直す作業なので、
+  # こちらは一字も動かないのが正しい。新しいビルドは CI の web ジョブが見る。
+  python3 site/parity.py --check site/public/index.html \
+    --against site/parity-baseline-prelaunch.json
   if [ -f "$DOCS/kuhaku-zukan-note-article.md" ]; then
     echo "── 記事・投稿案"
     python3 site/lint_copy.py "$DOCS"/kuhaku-zukan-note-article.md "$DOCS"/kuhaku-zukan-x-posts.md

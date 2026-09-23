@@ -6,3 +6,5 @@ node_modules/
 .wrangler/
 .svelte-kit/
 web/.svelte-kit/
+web/static/*.csv
+web/static/*.json
