@@ -75,6 +75,12 @@ jobs:
       - name: 依存を入れる
         run: pnpm install --frozen-lockfile
 
+      # 表示層は Python が作ったデータを読む。配布ファイルを渡さないと
+      # プリレンダがリンク先を辿って 404 で落ちる。
+      - name: データを生成する
+        working-directory: .
+        run: ./run.sh build
+
       - name: 型検査
         run: pnpm check
 
