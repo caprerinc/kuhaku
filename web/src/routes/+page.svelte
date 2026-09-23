@@ -3,6 +3,11 @@
   let { data } = $props();
   // $derived にしないと data の初期値だけを捕まえる（Svelte 5）。
   const vm = $derived(data.vm);
+
+  // 判定語の union は **契約の JSON 自身から導く**。
+  // ここで型を手書きすると Python が持つ意味づけが二重化して、いずれずれる。
+  type VerdictKey = keyof typeof data.vm.labels.verdict_public;
+  const order = $derived(vm.labels.verdict_order as VerdictKey[]);
 </script>
 
 <svelte:head><title>空白図鑑 暮らし編</title></svelte:head>
@@ -16,7 +21,7 @@
   </ul>
   <h2>判定の種類</h2>
   <dl>
-    {#each vm.labels.verdict_order as v}
+    {#each order as v}
       <dt>{vm.labels.verdict_public[v]}</dt>
       <dd>{vm.labels.verdict_def[v]}</dd>
     {/each}
