@@ -70,10 +70,20 @@ case "${1:-check}" in
       (cd site && npx --yes "wrangler@${WRANGLER_VERSION}" deploy)
     fi
     echo "── 配信後の確認"
-    for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json" "/.claude/"; do
-      printf "   %-22s HTTP %s\n" "$p" \
-        "$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")"
+    # 以前は表示するだけで、落ちていても成功扱いだった。CI 側(deploy.yml)は
+    # 強制しているのに手元だけ素通りする、という食い違いも直す。
+    post_ok=1
+    for p in "/" "/kuhaku-zukan.csv" "/kuhaku-zukan.json" "/naive-check.csv"; do
+      code="$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")"
+      printf "   %-22s HTTP %s\n" "$p" "$code"
+      [ "$code" = "200" ] || post_ok=0
     done
+    for p in "/.claude/" "/.claude/settings.local.json" "/.assetsignore"; do
+      code="$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://kuhaku.caprer.co.jp$p")"
+      printf "   %-22s HTTP %s （公開されていないこと）\n" "$p" "$code"
+      [ "$code" != "200" ] || post_ok=0
+    done
+    [ "$post_ok" = "1" ] || { echo "   ★ 配信後の確認に失敗"; exit 1; }
     ;;
   *)
     echo "usage: ./run.sh {collect|build|check|stats|verify|drift|deploy}" >&2

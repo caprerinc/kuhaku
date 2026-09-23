@@ -179,7 +179,16 @@ def main() -> int:
 
     # --file が指定されたら、そのファイルだけを検査する（note記事・X投稿案など）
     files = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if files and "--sources" in sys.argv:
+        # 以前は --sources が黙って無視されていた。検査したつもりで
+        # 検査していない状態が一番まずいので、はっきり落とす。
+        print("エラー: ファイル指定と --sources は同時に使えない", file=sys.stderr)
+        return 2
     if files:
+        # 注意: この経路は指定ファイル単体の文面検査であり、
+        # 公開HTMLに対する数値照合・構造検査・必須文言検査は**含まない**。
+        print("※ ファイル指定モード: 禁止表現と不在断定のみ検査する"
+              "（数値照合・構造・必須文言は公開HTMLに対してのみ行う）")
         for f in files:
             path = pathlib.Path(f)
             problems += check_text(path.read_text(encoding="utf-8"), path.name)
