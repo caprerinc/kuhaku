@@ -59,7 +59,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # uses: は defaults.working-directory が効かないので、リポジトリ直下の
+      # package.json を見にいって版を決められず落ちる。web/ を明示する。
+      # 版は web/package.json の packageManager 一箇所で決める。
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: web/package.json
 
       - uses: actions/setup-node@v4
         with:
