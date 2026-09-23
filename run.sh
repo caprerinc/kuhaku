@@ -37,6 +37,8 @@ check() {
   python3 site/parity.py --contract
   echo "── 配信物の一覧"
   python3 site/parity.py --inventory site/public
+  echo "── 主張の同一性"
+  python3 site/parity.py --check site/public/index.html
   if [ -f "$DOCS/kuhaku-zukan-note-article.md" ]; then
     echo "── 記事・投稿案"
     python3 site/lint_copy.py "$DOCS"/kuhaku-zukan-note-article.md "$DOCS"/kuhaku-zukan-x-posts.md

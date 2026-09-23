@@ -24,8 +24,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      # 依存パッケージは入れない。標準ライブラリだけで動くことがこの製品の一部。
-      - name: 依存が無いことを確かめる
+      # **検算の経路**に依存パッケージを持ち込まない。第三者が pip install 無しで
+      # 公開値を再計算できることが製品の一部。表示層(web/)の node 依存は別の話で、
+      # verify にも stats にも関与しない。
+      - name: 検算の経路に依存が無いことを確かめる
         run: |
           test ! -f requirements.txt && test ! -f pyproject.toml \
             || { echo "依存ファイルが増えている"; exit 1; }
@@ -46,3 +48,35 @@ jobs:
             echo "::error::公開物が判定から再生成した内容と一致しない。./run.sh build してコミットすること。"
             exit 1
           fi
+
+  # 表示層。移行中は「ビルドが通り、配信物に余計なものが混ざらない」ことだけを見る。
+  # 事前生成HTMLへの主張の指紋照合は、部品移植が終わってから有効にする（第3段階の完了条件）。
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: 依存を入れる
+        run: pnpm install --frozen-lockfile
+
+      - name: 型検査
+        run: pnpm check
+
+      - name: ビルド
+        run: pnpm build
+
+      # 除外設定に頼らず、配信されるファイルの一覧そのものを見る。
+      # adapter-cloudflare は .assetsignore を自前のもので上書きするため。
+      - name: 配信物の一覧
+        run: python3 ../site/parity.py --inventory .svelte-kit/cloudflare
