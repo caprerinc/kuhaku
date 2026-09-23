@@ -45,7 +45,99 @@
     "judged": 20,
     "unjudged": 27,
     "verdict_changed": 3,
-    "evidence_updated": 5
+    "evidence_updated": 5,
+    "found_in_other_article": 1,
+    "by_verdict": {
+      "欠落": 4,
+      "実質包含": 4,
+      "薄い": 10,
+      "判定不能": 1,
+      "該当なし": 1
+    }
+  },
+  "scorecard": {
+    "judged": 20,
+    "flagged_missing": 7,
+    "contradicted": [
+      "parenting-styles",
+      "unit-price",
+      "parasocial-interaction"
+    ],
+    "not_contradicted": [
+      "screen-time",
+      "moral-injury",
+      "parental-burnout",
+      "attachment-parenting"
+    ]
+  },
+  "verification": {
+    "raw_hash_ok": 344,
+    "recomputed": 128,
+    "observations": 213,
+    "pages": 95,
+    "absent_checked": 85,
+    "published_rows": 47,
+    "mismatches": 0
+  },
+  "drift": {
+    "measured_at": "2026-09-23",
+    "against_run_id": "run-20260908T120726Z",
+    "targets": 81,
+    "unchanged": 51,
+    "changed": 30,
+    "fetch_failed": 0,
+    "changed_by_language": {
+      "en": 28,
+      "ja": 2
+    },
+    "targets_by_language": {
+      "en": 47,
+      "ja": 34
+    },
+    "DO_NOT_USE_FOR": "言語間の更新頻度の比較。対象記事の集合が日英で違い、期間も短い。この数値からどちらの言語版がよく更新されているかは言えない。",
+    "why_measured": "公開した観測値が「いつの時点のものか」を示すため。記事が変わっていること自体は誤りではない。",
+    "how_to_reproduce": "./run.sh drift",
+    "details": [
+      "[en] 「Added sugar」 rev.1351451869 → rev.1374092972",
+      "[en] 「Baby-led weaning」 rev.1348372293 → rev.1374811390",
+      "[en] 「Bystander effect」 rev.1364396221 → rev.1374912124",
+      "[en] 「Compassion fatigue」 rev.1373260190 → rev.1375973136",
+      "[en] 「Damp (structural)」 rev.1373748412 → rev.1373902743",
+      "[en] 「Dark pattern」 rev.1373488615 → rev.1375897284",
+      "[en] 「Emotional dysregulation」 rev.1368437745 → rev.1375101336",
+      "[en] 「Emotional labor」 rev.1370202618 → rev.1374821778",
+      "[en] 「Food desert」 rev.1373359321 → rev.1374741447",
+      "[en] 「Food fortification」 rev.1353831254 → rev.1374065894",
+      "[en] 「Greenwashing」 rev.1369810533 → rev.1376120605",
+      "[en] 「Hedonic treadmill」 rev.1372405198 → rev.1374611242",
+      "[en] 「Indoor air quality」 rev.1373560095 → rev.1376180453",
+      "[en] 「Insulin resistance」 rev.1373855861 → rev.1375440865",
+      "[en] 「Menopause」 rev.1373253600 → rev.1374832734",
+      "[en] 「Overdiagnosis」 rev.1368886660 → rev.1374423726",
+      "[en] 「Parasocial interaction」 rev.1373745353 → rev.1374202839",
+      "[en] 「Parenting styles」 rev.1369278186 → rev.1375523003",
+      "[en] 「Passive house」 rev.1370673992 → rev.1375276646",
+      "[en] 「Planned obsolescence」 rev.1370762595 → rev.1374443928",
+      "[en] 「Postpartum depression」 rev.1373391668 → rev.1374626049",
+      "[en] 「Right to disconnect」 rev.1367908803 → rev.1374792083",
+      "[en] 「Rumination (psychology)」 rev.1370705343 → rev.1375708833",
+      "[en] 「Sarcopenia」 rev.1370503742 → rev.1376090879",
+      "[en] 「Satiety value」 rev.1372166885 → rev.1375950660",
+      "[en] 「Screen time」 rev.1370383795 → rev.1374672143",
+      "[en] 「Sedentary lifestyle」 rev.1368414226 → rev.1374449591",
+      "[en] 「Thermal comfort」 rev.1368891851 → rev.1375880570",
+      "[ja] 「更年期障害」 rev.108390311 → rev.111023781",
+      "[ja] 「過剰診断」 rev.110811475 → rev.111088282"
+    ]
+  },
+  "flagship_quote": {
+    "concept_id": "parenting-styles",
+    "text": "養育スタイル（en:parenting styles）について研究し、スタイルを「消極・受け身型」「独裁・支配型」「民主型」「無関心型」の4つに分類した。",
+    "source_title": "ダイアナ・バウムリンド",
+    "source_revid": 103834617,
+    "source_rev_url": "https://ja.wikipedia.org/w/index.php?oldid=103834617",
+    "source_body_chars": 354,
+    "en_body_chars": 48396
   },
   "items": [
     {

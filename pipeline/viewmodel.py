@@ -204,7 +204,19 @@ def observations(c_ev: dict) -> dict:
 
 
 def build() -> dict:
+    from . import stats as _stats
+    from . import verify as _verify
+
     concepts, events, ev, evmap, _ = load()
+    sc = _stats.naive_scorecard()
+    dr = _verify.latest_drift()
+    # 検算をその場で走らせて結果を持つ。ネットワークは使わない。
+    bundle = _verify.load_bundle()
+    vproblems, vstats, vrecomputed = _verify.check_offline(bundle)
+    vpub = _verify.check_published(vrecomputed)
+    published_rows = int(vpub[0].removeprefix("__OK__")) if (
+        len(vpub) == 1 and vpub[0].startswith("__OK__")) else 0
+    vproblems = vproblems + ([] if published_rows else vpub)
     current, history = resolve_judgments(events)
 
     items, corrections, unjudged = [], [], []
@@ -296,6 +308,38 @@ def build() -> dict:
 
     # 判定の種類ごとに並べ、その中は英語版の本文文字数の降順。
     # 並び順も表示の意味なので契約側で決める（通し番号がこれで決まる）。
+    # 「無い」と判断したものが別の記事の中にあった件数。
+    # ヒーローの数字は直書きで、判定ログから導けなかった（fix⑧）。
+    # 導出できるのは「欠落 → 実質包含」の遷移だけ。看板の語り（代表例を2回続けて
+    # 外した話）には、記録前に見つけて最初から実質包含で記録したものが含まれる。
+    # **数えられるものと語りを混ぜない。**
+    found_in_other = sum(
+        1 for c in corrections
+        if c["kind"] == "verdict" and c["prev_verdict"] == "欠落"
+        and c["verdict_public"] == VERDICT_PUBLIC["実質包含"])
+
+    # 看板の引用。旧版はカード生成ループに直書きされていた。
+    # 一箇所に集めて実データと突き合わせられるようにする。
+    ps = next((i for i in items if i["concept_id"] == "parenting-styles"), None)
+    flagship = None
+    if ps:
+        flagship = {
+            "concept_id": ps["concept_id"],
+            "text": "養育スタイル（en:parenting styles）について研究し、"
+                    "スタイルを「消極・受け身型」「独裁・支配型」「民主型」「無関心型」の4つに分類した。",
+            "source_title": "ダイアナ・バウムリンド",
+            "source_revid": ps["ja_revids"][0] if ps["ja_revids"] else None,
+            "source_rev_url": rev_url("ja", ps["ja_revids"][0]) if ps["ja_revids"] else None,
+            "source_body_chars": 354,
+            "en_body_chars": ps["observations"]["en"]["body_chars"],
+        }
+        # 引用の出典が判定の包含先と一致していること。ずれたら公開しない。
+        if not flagship["source_revid"]:
+            raise SystemExit("看板の引用に出典の改訂IDが無い")
+        if not any(str(flagship["source_revid"]) in c for c in ps["checked_containers"]):
+            raise SystemExit(
+                f'看板の引用の出典 revid {flagship["source_revid"]} が探索記録に無い')
+
     items.sort(key=lambda x: (x["verdict"]["order"],
                               -(x["observations"]["en"]["body_chars"] or 0)))
     return {
@@ -315,7 +359,31 @@ def build() -> dict:
             "unjudged": len(unjudged),
             "verdict_changed": sum(1 for c in corrections if c["kind"] == "verdict"),
             "evidence_updated": sum(1 for c in corrections if c["kind"] == "evidence"),
+            "found_in_other_article": found_in_other,
+            "by_verdict": {v: sum(1 for i in items if i["verdict"]["internal"] == v)
+                           for v in VERDICT_ORDER},
         },
+        # 素朴な自動判定と人手検証の突き合わせ。割合は出さない
+        # （手選びで無作為抽出ではないため精度評価にならない）。
+        "scorecard": {
+            "judged": sc["judged"],
+            "flagged_missing": sc["flagged_missing"],
+            "contradicted": sc["contradicted"],
+            "not_contradicted": sc["not_contradicted"],
+        },
+        # 検算の結果。旧版は「2026-09-14 に実行した結果です」と日付を直書きしていて
+        # 古くなっていた（鮮度表示と同じ問題）。作り直して数字ごと持たせる。
+        "verification": {
+            "raw_hash_ok": vstats["hash_ok"],
+            "recomputed": vstats["recomputed"],
+            "observations": vstats["obs"],
+            "pages": len(vstats["pages"]),
+            "absent_checked": vstats["absent_checked"],
+            "published_rows": published_rows,
+            "mismatches": len(vproblems),
+        },
+        "drift": dr,
+        "flagship_quote": flagship,
         "items": items,
         "unjudged": unjudged,
         "corrections": corrections,
