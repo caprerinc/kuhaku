@@ -103,7 +103,9 @@ jobs:
             "https://kuhaku.caprer.co.jp/__does-not-exist-$(date +%s)")
           printf "  %-24s HTTP %s （404であること）\n" "(存在しないパス)" "$code"
           [ "$code" = "404" ] || fail=1
-          # 配信された本文が、検査した成果物と同じ主張を持つか。
-          curl -s -m 30 https://kuhaku.caprer.co.jp/ -o /tmp/served.html
-          python3 site/parity.py --check /tmp/served.html || fail=1
           [ "$fail" = "0" ] || { echo "::error::配信後の確認に失敗"; exit 1; }
+
+      # 配信されている全ページが、公開履歴とバイト単位で一致しているか。
+      # 1ページだけ見ても足りない（分割後にそれで誤検知した）。
+      - name: 配信内容と公開履歴の一致
+        run: python3 site/parity.py --served https://kuhaku.caprer.co.jp published

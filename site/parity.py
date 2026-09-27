@@ -256,6 +256,46 @@ def check_published(pub: pathlib.Path, built: pathlib.Path) -> list[str]:
     return problems
 
 
+def url_for(rel: str) -> str | None:
+    """公開履歴のファイル名から、配信される URL を作る。"""
+    if rel == "index.html":
+        return "/"
+    if rel == "404.html":
+        return None          # 直接の URL を持たない
+    return "/" + rel[: -len(".html")]
+
+
+def check_served(base: str, pub: pathlib.Path) -> list[str]:
+    """**実際に配信されている中身**が、公開履歴と一致しているか。
+
+    配信後の確認で1ページだけを見ても足りない。分割したので、
+    記録した全ページが記録どおりに配信されているかを見る。
+    """
+    # curl を使う。urllib は環境のプロキシ設定で本文が壊れることがあり、
+    # 実際に全ページを「中身が違う」と誤検知した。curl は同じ環境で通る。
+    import subprocess
+    problems = []
+    checked = 0
+    for f in sorted(pub.rglob("*.html")):
+        rel = f.relative_to(pub).as_posix()
+        u = url_for(rel)
+        if u is None:
+            continue
+        r = subprocess.run(
+            ["curl", "-sS", "-m", "30", "-A", "kuhaku-zukan/parity",
+             base.rstrip("/") + u],
+            capture_output=True)
+        if r.returncode != 0:
+            problems.append(f"{u} を取得できない: {r.stderr.decode()[:80]}")
+            continue
+        checked += 1
+        if hashlib.sha256(r.stdout).hexdigest() != hashlib.sha256(f.read_bytes()).hexdigest():
+            problems.append(f"{u} の中身が公開履歴と違う")
+    if checked == 0:
+        problems.append("1ページも確認できなかった")
+    return problems
+
+
 def diff(old: dict, new: dict) -> list[str]:
     problems: list[str] = []
 
@@ -371,6 +411,20 @@ def main(argv: list[str]) -> int:
         print(f"配信物の一覧: {len(problems)}件の問題\n")
         for p in problems:
             print("  ✗ " + p)
+        return 1
+
+    if "--served" in argv:
+        i = argv.index("--served")
+        base = argv[i + 1] if i + 1 < len(argv) else "https://kuhaku.caprer.co.jp"
+        pub = pathlib.Path(argv[i + 2]) if i + 2 < len(argv) else ROOT / "published"
+        problems = check_served(base, pub)
+        n = len([f for f in pub.rglob("*.html") if url_for(f.relative_to(pub).as_posix())])
+        if not problems:
+            print(f"配信内容: 公開履歴と一致（{n}ページを取得して照合）")
+            return 0
+        print(f"配信内容: {len(problems)}件の不一致\n")
+        for pr in problems:
+            print("  ✗ " + pr)
         return 1
 
     if "--published" in argv:
