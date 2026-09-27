@@ -63,14 +63,27 @@ web_build() {
   echo "── 配信物の一覧"
   python3 site/parity.py --inventory web/.svelte-kit/cloudflare
   echo "── 主張の同一性"
-  python3 site/parity.py --check web/.svelte-kit/cloudflare/index.html
+  python3 site/parity.py --check web/.svelte-kit/cloudflare
   echo "── 文面と描画値"
-  python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html
+  python3 site/lint_copy.py --html web/.svelte-kit/cloudflare
   # 「何を公開したか」の履歴。旧構成では生成HTMLをコミットして差分で残していた。
   # ビルド成果物は git に入れないので、公開する版だけをここへ写して追跡する。
-  mkdir -p published
-  cp web/.svelte-kit/cloudflare/index.html published/index.html
-  echo "── 公開履歴: published/index.html を更新（コミットすること）"
+  # ページを分割したので、公開する版を丸ごと写す。
+  # cp --parents は macOS に無いので Python で写す（環境依存を避ける）。
+  python3 - <<'PYEOF'
+import pathlib, shutil
+src = pathlib.Path("web/.svelte-kit/cloudflare")
+dst = pathlib.Path("published")
+if dst.exists():
+    shutil.rmtree(dst)
+n = 0
+for f in src.rglob("*.html"):
+    out = dst / f.relative_to(src)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(f, out)
+    n += 1
+print(f"── 公開履歴: published/ を更新（{n}ページ。コミットすること）")
+PYEOF
 }
 
 case "${1:-check}" in

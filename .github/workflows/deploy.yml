@@ -67,22 +67,15 @@ jobs:
         run: python3 site/parity.py --inventory web/.svelte-kit/cloudflare
 
       - name: 主張の同一性
-        run: python3 site/parity.py --check web/.svelte-kit/cloudflare/index.html
+        run: python3 site/parity.py --check web/.svelte-kit/cloudflare
 
       - name: 文面と描画値
-        run: python3 site/lint_copy.py --html web/.svelte-kit/cloudflare/index.html
+        run: python3 site/lint_copy.py --html web/.svelte-kit/cloudflare
 
       # ④ 公開履歴がこれから配信するものと一致しているか。
       #    ずれていると「何を公開したか」の記録が実態と食い違う。
       - name: 公開履歴と一致するか
-        run: |
-          # cmp を使う。diff は環境によって別物(delta 等)に置き換わっていることがある。
-          if ! cmp -s published/index.html web/.svelte-kit/cloudflare/index.html; then
-            echo "::error::published/index.html が配信物と違う。./run.sh web してコミットすること。"
-            echo "  公開履歴: $(shasum -a 256 published/index.html | cut -d' ' -f1)"
-            echo "  配信物  : $(shasum -a 256 web/.svelte-kit/cloudflare/index.html | cut -d' ' -f1)"
-            exit 1
-          fi
+        run: python3 site/parity.py --published published web/.svelte-kit/cloudflare
 
       # ⑤ 検査した成果物をそのまま配信（作り直さない）
       - name: 配信

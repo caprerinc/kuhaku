@@ -271,7 +271,14 @@ def main() -> int:
             target = pathlib.Path(sys.argv[k + 1])
 
     if target.exists():
-        raw = target.read_text(encoding="utf-8")
+        # ディレクトリなら中の .html を全部つなげる。分割したので主張は
+        # ページをまたいで散らばる。必須文言も全体として在ればよい。
+        if target.is_dir():
+            files = sorted(target.rglob("*.html"))
+            raw = "\n".join(f.read_text(encoding="utf-8") for f in files)
+            print(f"※ {len(files)}ページをまとめて検査する")
+        else:
+            raw = target.read_text(encoding="utf-8")
         text = strip_html(raw)
         problems += check_text(text, "公開HTML")
         problems += check_absence_claims(text, "公開HTML")

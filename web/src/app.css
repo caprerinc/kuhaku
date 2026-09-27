@@ -707,3 +707,75 @@ footer {
   color: var(--ai);
   font-size: 0.9rem;
 }
+
+/* ── 分割後の部品 ─────────────────────── */
+
+/* パンくず */
+.crumb {
+  padding: 2.5rem 0 0;
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--sumi);
+}
+.crumb a {
+  color: var(--ai);
+}
+
+/* 一覧の表。20行をスキャンできることが目的なので、行は詰める。 */
+table.plain.index td,
+table.plain.index th {
+  padding: 0.6rem 0.6rem;
+}
+table.plain.index td.idx {
+  width: 2.5rem;
+  color: var(--sumi);
+}
+table.plain.index a {
+  color: var(--ai);
+  font-size: 1rem;
+}
+/* 英語タイトルは識別子。行を増やさず添える。 */
+.idx-en {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--sumi);
+}
+.cbadge.mini {
+  margin: 0 0 0 0.5rem;
+  padding: 0 0.35rem;
+  font-size: 0.66rem;
+  vertical-align: 0.1em;
+}
+.vgroup h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.35rem;
+  color: var(--ai);
+}
+.vcount {
+  margin-left: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--sumi);
+  letter-spacing: 0;
+}
+
+/* 概念ごとのページでは、カードが主役なので上の罫を外す。 */
+.card.standalone {
+  border-top: none;
+  padding-top: 0.5rem;
+}
+
+/* 前後の項目 */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2.5rem 0 0;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--kei);
+  font-size: 0.88rem;
+}
+.pager a {
+  color: var(--ai);
+}

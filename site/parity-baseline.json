@@ -1203,5 +1203,34 @@
         "未検証"
       ]
     ]
-  }
+  },
+  "pages": [
+    "404.html",
+    "c/attachment-parenting.html",
+    "c/bystander-effect.html",
+    "c/compassion-fatigue.html",
+    "c/emotional-labor.html",
+    "c/food-desert.html",
+    "c/greenwashing.html",
+    "c/health-literacy.html",
+    "c/indoor-air-quality.html",
+    "c/moral-injury.html",
+    "c/overdiagnosis.html",
+    "c/parasocial-interaction.html",
+    "c/parental-burnout.html",
+    "c/parenting-styles.html",
+    "c/perimenopause.html",
+    "c/postpartum-depression.html",
+    "c/screen-time.html",
+    "c/shrinkflation.html",
+    "c/thermal-bridge.html",
+    "c/thermal-comfort.html",
+    "c/unit-price.html",
+    "corrections.html",
+    "data.html",
+    "index.html",
+    "limits.html",
+    "method.html",
+    "unjudged.html"
+  ]
 }

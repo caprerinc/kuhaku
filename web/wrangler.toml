@@ -19,6 +19,12 @@ zone_name = "caprer.co.jp"
 [assets]
 binding = "ASSETS"
 directory = ".svelte-kit/cloudflare"
+# 旧構成から引き継ぐ。移行時に落としかけた。
+# 404.html を返す（旧構成では 404.html 自体が無く既定に落ちていたが、
+# 事前生成で 404.html ができたので今度は実際に効く）。
+not_found_handling = "404-page"
+# /corrections で corrections.html を返す。既定任せにせず明示する。
+html_handling = "auto-trailing-slash"
 
 [observability]
 enabled = true

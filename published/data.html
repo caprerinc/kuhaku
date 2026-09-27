@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--1yre5p1--><!----><title>データ — 空白図鑑 暮らし編</title>
+		<link href="/_app/immutable/assets/0.B5Xv01Sc.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="tap"><!--[--><!--[0--><!--[--><div class="wrap"><!--[--><p class="crumb"><a href="/">空白図鑑</a> ／ データ</p> <section><h2>データ</h2> <p class="sec-note prose">全47件分を配布します。人手検証をしていない27件も、 <strong>必ず「未検証」と記録した上で</strong>含めています。数値だけを取り出せる表は作っていません。
+    引用の際は判定と確からしさも併せてご利用ください。</p> <div class="dl"><a href="/kuhaku-zukan.csv" download="">CSV をダウンロード</a> <a href="/kuhaku-zukan.json" download="">JSON をダウンロード（探索記録・訂正履歴つき）</a> <a href="/naive-check.csv" download="">機械判定と人手判定の突き合わせ（CSV）</a></div> <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div> <p class="sec-note prose" style="margin-top:1rem">観測の実行ID <code>run-20260908T120726Z</code>／算出規則 <code>1.1.0</code>。
+    各項目の改訂IDから、測定した版そのものを開けます。</p> <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字を検算する</h3> <p class="sec-note prose">「再現できます」と書くだけでは足りないので、検算するコマンドを用意しました。
+    取得したAPI応答は1件ずつ保存してあり（344件）、そこから観測値を作り直して、 <strong>上で配布しているCSVの数字</strong>に突き合わせます。<strong>ネットワークは使いません。</strong></p> <pre class="cmd">git clone https://github.com/caprerinc/kuhaku
+cd kuhaku &amp;&amp; ./run.sh verify</pre> <p class="sec-note prose">保存した生データ344件はすべてファイル名のハッシュと一致。
+    観測128件（実ページ95件）を作り直し、記事が無いと記録した85件も応答で確認しました。 <strong>公開しているCSVの47行すべてが再計算値と一致</strong>し、不一致はありません。</p> <p class="sec-note prose">この検査が示すのは<strong>「同梱の応答から公開値を作り直せる」ことだけ</strong>です。
+    その応答が本当にWikipediaから取得されたものであること、算出規則そのものの妥当性、人手判定の妥当性は示しません。</p> <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字はいつのものか</h3> <p class="sec-note prose">記事は日々書き換わるので、ここの数字は測定した版のものです。 <code>./run.sh drift</code> で、現在の版と比べて何が変わったかを確認できます。</p> <p class="sec-note prose"><!--[0-->2026-09-23 に実行したところ、対象81ページのうち<strong>30ページ</strong>で改訂IDが変わっていました。<!--]--> 記事が変わること自体は当たり前で、誤りではありません。
+    ここで言えるのは、公開した数字は時間とともに古くなる、ということだけです。
+    実行結果は <code>data/drift/</code> に日付つきで残してあります。</p></section><!--]--><!----> <footer><p class="flinks"><a href="/">図鑑</a> <a href="/corrections">訂正の記録</a> <a href="/method">調べかた</a> <a href="/limits">この調査の限界</a> <a href="/data">データ</a> <a href="/unjudged">未検証</a></p> <p class="flinks"><a href="https://github.com/caprerinc/kuhaku">ソースコードとデータ</a> <a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">誤りを報告する</a></p> <p>空白図鑑 暮らし編</p> <p>Wikipedia 由来のデータは <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" rel="license">CC BY-SA 4.0</a> です。
+      本文の引用および観測値は、日本語版・英語版Wikipedia の各改訂版に基づきます。</p> <p>誤りを見つけたら<a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">Issue</a>で教えてください。訂正は上書きせず、履歴として公開します。</p></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]--></body>
+</html>

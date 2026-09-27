@@ -5,11 +5,16 @@
   import { rich, richInline } from './rich';
 
   /** 概念1件。判定・観測値・探索記録・訂正・根拠を1枚にまとめる。 */
-  let { item, index }: { item: any; index: number } = $props();
+  // standalone = 概念ごとのページ。一覧の中に並ぶときと見出しの重みが違う。
+  let {
+    item,
+    index,
+    standalone = false,
+  }: { item: any; index: number; standalone?: boolean } = $props();
   const no = $derived(String(index).padStart(2, '0'));
 </script>
 
-<article class="card v-{item.verdict.order}" id={item.concept_id}>
+<article class="card v-{item.verdict.order}" class:standalone id={item.concept_id}>
   <header>
     <div class="cno">{no}</div>
     <div class="ctitles">
@@ -39,7 +44,7 @@
     {@html rich(item.rationale)}
     <p class="meta">
       判定 {item.judgment_id}・確認日 {item.judged_at}・ 対象 {item.theme}・採用基準 {item.eligibility}（{item.eligibility_text}）・
-      <a href="#{item.concept_id}">この項目のURL</a>
+<a href="/c/{item.concept_id}">この項目のURL</a>
     </p>
   </details>
 </article>

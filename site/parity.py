@@ -93,6 +93,20 @@ def tables(doc: str) -> dict[str, list[list[str]]]:
     return out
 
 
+def read_html(target: pathlib.Path) -> tuple[str, list[str]]:
+    """検査対象を読む。ディレクトリなら中の .html を全部つなげる。
+
+    1ページ構成を分割したので、主張はページをまたいで散らばる。
+    「どのページにあるか」ではなく「全体として残っているか」を見たいので、
+    連結した1つの文書として扱う。
+    """
+    if target.is_dir():
+        files = sorted(f for f in target.rglob("*.html"))
+        return "\n".join(f.read_text(encoding="utf-8") for f in files), [
+            f.relative_to(target).as_posix() for f in files]
+    return target.read_text(encoding="utf-8"), [target.name]
+
+
 def fingerprint(doc: str) -> dict:
     cs = cards(doc)
     body = strip_html(doc)
@@ -214,6 +228,34 @@ def check_inventory(root: pathlib.Path) -> list[str]:
     return problems
 
 
+def check_published(pub: pathlib.Path, built: pathlib.Path) -> list[str]:
+    """公開履歴が、これから配信するものと一致しているか。
+
+    ページを分割したので1ファイルの比較では足りない。HTML の集合と
+    中身のハッシュを突き合わせる。ずれていると「何を公開したか」の記録が
+    実態と食い違う。
+    """
+    def index(root: pathlib.Path) -> dict[str, str]:
+        return {
+            f.relative_to(root).as_posix():
+                hashlib.sha256(f.read_bytes()).hexdigest()
+            for f in root.rglob("*.html")
+        } if root.exists() else {}
+
+    a, b = index(pub), index(built)
+    if not b:
+        return [f"配信物が無い: {built}"]
+    problems = []
+    for k in sorted(set(a) - set(b)):
+        problems.append(f"公開履歴にあるが配信物に無い: {k}")
+    for k in sorted(set(b) - set(a)):
+        problems.append(f"配信物にあるが公開履歴に無い: {k}")
+    for k in sorted(set(a) & set(b)):
+        if a[k] != b[k]:
+            problems.append(f"中身が違う: {k}")
+    return problems
+
+
 def diff(old: dict, new: dict) -> list[str]:
     problems: list[str] = []
 
@@ -276,9 +318,11 @@ def main(argv: list[str]) -> int:
         if not src.exists():
             print("公開物が無い。先に ./run.sh build を実行すること", file=sys.stderr)
             return 2
-        fp = fingerprint(src.read_text(encoding="utf-8"))
+        doc, files = read_html(src)
+        fp = fingerprint(doc)
+        fp["pages"] = files
         BASELINE.write_text(json.dumps(fp, ensure_ascii=False, indent=2), encoding="utf-8")
-        print(f"基準を保存: {BASELINE.relative_to(ROOT)}")
+        print(f"基準を保存: {BASELINE.relative_to(ROOT)}（{len(files)}ページ）")
         print(f"  概念 {fp['concept_count']}件 / 改訂ID {len(fp['outside_cards']['revids'])}件 / "
               f"外部リンク {len(fp['outside_cards']['external_links'])}件")
         missing = [p for p, v in fp["outside_cards"]["required_phrases"].items() if not v]
@@ -303,10 +347,12 @@ def main(argv: list[str]) -> int:
             print(f"基準が無い: {bpath}", file=sys.stderr)
             return 2
         old = json.loads(bpath.read_text(encoding="utf-8"))
-        new = fingerprint(target.read_text(encoding="utf-8"))
+        doc, files = read_html(target)
+        new = fingerprint(doc)
+        new["pages"] = files
         problems = diff(old, new)
         if not problems:
-            print(f"主張の同一性: 基準と一致（概念{new['concept_count']}件）")
+            print(f"主張の同一性: 基準と一致（概念{new['concept_count']}件 / {len(files)}ページ）")
             return 0
         print(f"主張の同一性: {len(problems)}件の差\n")
         for p in problems:
@@ -325,6 +371,22 @@ def main(argv: list[str]) -> int:
         print(f"配信物の一覧: {len(problems)}件の問題\n")
         for p in problems:
             print("  ✗ " + p)
+        return 1
+
+    if "--published" in argv:
+        i = argv.index("--published")
+        pub = pathlib.Path(argv[i + 1]) if i + 1 < len(argv) else ROOT / "published"
+        built = pathlib.Path(argv[i + 2]) if i + 2 < len(argv) else \
+            ROOT / "web" / ".svelte-kit" / "cloudflare"
+        problems = check_published(pub, built)
+        n = len(list(built.rglob("*.html"))) if built.exists() else 0
+        if not problems:
+            print(f"公開履歴: 配信物と一致（{n}ページ）")
+            return 0
+        print(f"公開履歴: {len(problems)}件の不一致\n")
+        for pr in problems:
+            print("  ✗ " + pr)
+        print("\n  ./run.sh web を実行して published/ をコミットすること。")
         return 1
 
     if "--contract" in argv:
