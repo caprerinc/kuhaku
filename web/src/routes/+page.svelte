@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   import Verdict from '$lib/Verdict.svelte';
 
   let { data } = $props();
@@ -24,9 +25,13 @@
   );
 </script>
 
-<svelte:head>
-  <title>空白図鑑 暮らし編 — 日本語版Wikipediaの空白を、探索記録つきで</title>
-</svelte:head>
+<Meta
+  title="空白図鑑 暮らし編 — 日本語版Wikipediaの空白を、探索記録つきで"
+  ogTitle="空白図鑑 暮らし編"
+  description="暮らしに関わる{c.concepts_total}の概念について、日本語版Wikipediaに対応する記事があるかを調べ、{c.judged}件を人手で検証した記録。判定手順・誤り・訂正履歴をすべて公開しています。"
+  ogDescription="日本語版Wikipediaに対応する記事があるかを{c.concepts_total}概念で調べ、{c.judged}件を人手検証した記録。"
+  path="/"
+/>
 
 <header class="cover">
   <h1 class="brand">空白図鑑</h1>

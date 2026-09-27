@@ -1,10 +1,15 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   let { data } = $props();
   const vm = $derived(data.vm);
   const nm = (n: number | null) => (n === null ? '—' : n.toLocaleString('ja-JP'));
 </script>
 
-<svelte:head><title>人手検証をしていない項目 — 空白図鑑 暮らし編</title></svelte:head>
+<Meta
+  title="人手検証をしていない項目 — 空白図鑑 暮らし編"
+  description="観測値だけを取得した{vm.counts.unjudged}件。欠けていることを意味しません。"
+  path="/unjudged"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ 未検証</p>
 

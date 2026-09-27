@@ -1,13 +1,15 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   import Card from '$lib/Card.svelte';
   let { data } = $props();
   const item = $derived(data.item);
 </script>
 
-<svelte:head>
-  <title>{item.display_name} — 空白図鑑 暮らし編</title>
-  <meta name="description" content={item.why} />
-</svelte:head>
+<Meta
+  title="{item.display_name} — 空白図鑑 暮らし編"
+  description="{item.verdict.public}。{item.why}（英語版 {item.en_title} と日本語版Wikipediaを比べた探索記録つき）"
+  path="/c/{item.concept_id}"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ {item.verdict.public}</p>
 

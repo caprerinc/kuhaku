@@ -1,11 +1,16 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   let { data } = $props();
   const vm = $derived(data.vm);
   const c = $derived(vm.counts);
   const ver = $derived(vm.verification);
 </script>
 
-<svelte:head><title>データ — 空白図鑑 暮らし編</title></svelte:head>
+<Meta
+  title="データ — 空白図鑑 暮らし編"
+  description="全{c.concepts_total}件の CSV/JSON と、公開値をネットワーク無しで検算する手順。"
+  path="/data"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ データ</p>
 

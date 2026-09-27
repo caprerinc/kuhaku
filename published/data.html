@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--1yre5p1--><!----><title>データ — 空白図鑑 暮らし編</title>
+    <!--14ibltm--><meta name="description" content="全47件の CSV/JSON と、公開値をネットワーク無しで検算する手順。"/> <link rel="canonical" href="https://kuhaku.caprer.co.jp/data"/> <meta property="og:site_name" content="空白図鑑 暮らし編"/> <meta property="og:title" content="データ — 空白図鑑 暮らし編"/> <meta property="og:description" content="全47件の CSV/JSON と、公開値をネットワーク無しで検算する手順。"/> <meta property="og:type" content="article"/> <meta property="og:url" content="https://kuhaku.caprer.co.jp/data"/> <meta property="og:locale" content="ja_JP"/><!----><title>データ — 空白図鑑 暮らし編</title>
 		<link href="/_app/immutable/assets/0.B5Xv01Sc.css" rel="stylesheet">
     <!-- 計測。csr=false でハイドレーションが無いので、素のスクリプトで入れる。
          移植で一度落とした。parity は <script> を除外して比較するので検査に映らない。 -->
@@ -30,7 +30,7 @@
     });
     </script>
   </head>
-  <body data-sveltekit-preload-data="tap"><!--[--><!--[0--><!--[--><div class="wrap"><!--[--><p class="crumb"><a href="/">空白図鑑</a> ／ データ</p> <section><h2>データ</h2> <p class="sec-note prose">全47件分を配布します。人手検証をしていない27件も、 <strong>必ず「未検証」と記録した上で</strong>含めています。数値だけを取り出せる表は作っていません。
+  <body data-sveltekit-preload-data="tap"><!--[--><!--[0--><!--[--><div class="wrap"><!--[--><!----> <p class="crumb"><a href="/">空白図鑑</a> ／ データ</p> <section><h2>データ</h2> <p class="sec-note prose">全47件分を配布します。人手検証をしていない27件も、 <strong>必ず「未検証」と記録した上で</strong>含めています。数値だけを取り出せる表は作っていません。
     引用の際は判定と確からしさも併せてご利用ください。</p> <div class="dl"><a href="/kuhaku-zukan.csv" download="">CSV をダウンロード</a> <a href="/kuhaku-zukan.json" download="">JSON をダウンロード（探索記録・訂正履歴つき）</a> <a href="/naive-check.csv" download="">機械判定と人手判定の突き合わせ（CSV）</a></div> <div class="dl"><a href="https://github.com/caprerinc/kuhaku">ソースコードと生データ（GitHub）</a></div> <p class="sec-note prose" style="margin-top:1rem">観測の実行ID <code>run-20260908T120726Z</code>／算出規則 <code>1.1.0</code>。
     各項目の改訂IDから、測定した版そのものを開けます。</p> <h3 style="font-size:1rem;margin:2.2rem 0 .5rem">この数字を検算する</h3> <p class="sec-note prose">「再現できます」と書くだけでは足りないので、検算するコマンドを用意しました。
     取得したAPI応答は1件ずつ保存してあり（344件）、そこから観測値を作り直して、 <strong>上で配布しているCSVの数字</strong>に突き合わせます。<strong>ネットワークは使いません。</strong></p> <pre class="cmd">git clone https://github.com/caprerinc/kuhaku

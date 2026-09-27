@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   let { data } = $props();
   const vm = $derived(data.vm);
   const c = $derived(vm.counts);
@@ -6,7 +7,11 @@
     vm.items.find((i: any) => i.concept_id === cid)?.display_name ?? cid;
 </script>
 
-<svelte:head><title>訂正の記録 — 空白図鑑 暮らし編</title></svelte:head>
+<Meta
+  title="訂正の記録 — 空白図鑑 暮らし編"
+  description="判定を変更した{c.verdict_changed}件と、根拠を更新した{c.evidence_updated}件。過去の判定は消さず履歴として残しています。"
+  path="/corrections"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ 訂正の記録</p>
 

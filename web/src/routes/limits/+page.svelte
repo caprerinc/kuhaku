@@ -1,4 +1,12 @@
-<svelte:head><title>この調査の限界 — 空白図鑑 暮らし編</title></svelte:head>
+<script lang="ts">
+  import Meta from '$lib/Meta.svelte';
+</script>
+
+<Meta
+  title="この調査の限界 — 空白図鑑 暮らし編"
+  description="調べたのは Wikipedia 日本語版だけ。「確認できず」は不在の証明ではない。言えないことを先に書いています。"
+  path="/limits"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ この調査の限界</p>
 

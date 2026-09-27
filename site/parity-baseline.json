@@ -873,7 +873,33 @@
       "https://ja.wikipedia.org/w/index.php?oldid=110401007",
       "https://ja.wikipedia.org/w/index.php?oldid=110811475",
       "https://ja.wikipedia.org/w/index.php?oldid=110815854",
-      "https://ja.wikipedia.org/w/index.php?oldid=92542712"
+      "https://ja.wikipedia.org/w/index.php?oldid=92542712",
+      "https://kuhaku.caprer.co.jp/",
+      "https://kuhaku.caprer.co.jp/c/attachment-parenting",
+      "https://kuhaku.caprer.co.jp/c/bystander-effect",
+      "https://kuhaku.caprer.co.jp/c/compassion-fatigue",
+      "https://kuhaku.caprer.co.jp/c/emotional-labor",
+      "https://kuhaku.caprer.co.jp/c/food-desert",
+      "https://kuhaku.caprer.co.jp/c/greenwashing",
+      "https://kuhaku.caprer.co.jp/c/health-literacy",
+      "https://kuhaku.caprer.co.jp/c/indoor-air-quality",
+      "https://kuhaku.caprer.co.jp/c/moral-injury",
+      "https://kuhaku.caprer.co.jp/c/overdiagnosis",
+      "https://kuhaku.caprer.co.jp/c/parasocial-interaction",
+      "https://kuhaku.caprer.co.jp/c/parental-burnout",
+      "https://kuhaku.caprer.co.jp/c/parenting-styles",
+      "https://kuhaku.caprer.co.jp/c/perimenopause",
+      "https://kuhaku.caprer.co.jp/c/postpartum-depression",
+      "https://kuhaku.caprer.co.jp/c/screen-time",
+      "https://kuhaku.caprer.co.jp/c/shrinkflation",
+      "https://kuhaku.caprer.co.jp/c/thermal-bridge",
+      "https://kuhaku.caprer.co.jp/c/thermal-comfort",
+      "https://kuhaku.caprer.co.jp/c/unit-price",
+      "https://kuhaku.caprer.co.jp/corrections",
+      "https://kuhaku.caprer.co.jp/data",
+      "https://kuhaku.caprer.co.jp/limits",
+      "https://kuhaku.caprer.co.jp/method",
+      "https://kuhaku.caprer.co.jp/unjudged"
     ]
   },
   "tables": {
@@ -1205,7 +1231,16 @@
     ]
   },
   "non_text": {
-    "analytics": true
+    "analytics": true,
+    "head": {
+      "description": 26,
+      "og:title": 26,
+      "og:description": 26,
+      "og:type": 26,
+      "og:url": 26,
+      "canonical": 26,
+      "_pages": 26
+    }
   },
   "pages": [
     "404.html",

@@ -1,9 +1,14 @@
 <script lang="ts">
+  import Meta from '$lib/Meta.svelte';
   let { data } = $props();
   const sc = $derived(data.vm.scorecard);
 </script>
 
-<svelte:head><title>調べかた — 空白図鑑 暮らし編</title></svelte:head>
+<Meta
+  title="調べかた — 空白図鑑 暮らし編"
+  description="候補の集め方から判定規則まで。機械的な差分だけでは「日本語版に無い」とは言えない理由。"
+  path="/method"
+/>
 
 <p class="crumb"><a href="/">空白図鑑</a> ／ 調べかた</p>
 

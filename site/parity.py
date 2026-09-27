@@ -134,6 +134,7 @@ def fingerprint(doc: str) -> dict:
         # 本文に出ないもの。消えても文言の比較では分からない。
         "non_text": {
             "analytics": ANALYTICS_MARKER in doc,
+            "head": head_meta_counts(doc),
         },
     }
 
@@ -202,6 +203,26 @@ FORBIDDEN_NAMES = re.compile(
     re.I)
 # 先頭が . のものはこれだけ許す。増やすときは理由を書くこと。
 ALLOWED_DOTFILES = {".assetsignore"}
+
+# <head> の中で、共有・検索に効くもの。これも本文に出ないので文言の比較に映らない。
+# 移植で description と OGP を丸ごと落とした。
+HEAD_KEYS = ("description", "og:title", "og:description", "og:type", "og:url", "canonical")
+
+
+def head_meta_counts(doc: str) -> dict[str, int]:
+    """各 head 要素を持つページの数。ページごとに数えるので、1ページだけ
+    欠けても分かる（全ページの和集合では、他のページが持っていると見逃す）。"""
+    pages = [p for p in re.split(r"(?i)<!doctype html>", doc) if "<head" in p]
+    out = {}
+    for k in HEAD_KEYS:
+        if k == "canonical":
+            pat = r'<link[^>]*rel="canonical"'
+        else:
+            pat = rf'<meta[^>]*(?:name|property)="{re.escape(k)}"'
+        out[k] = sum(1 for p in pages if re.search(pat, p))
+    out["_pages"] = len(pages)
+    return out
+
 
 # 計測。**本文ではないので strip_html で消える**＝これまでの指紋に映らなかった。
 # 実際に移植で丸ごと落とし、どの検査も通ってしまった。明示的に見る。
@@ -346,9 +367,12 @@ def diff(old: dict, new: dict) -> list[str]:
         problems.append(f"外部リンクが消えた: {lost_links}")
 
     onx, nnx = old.get("non_text", {}), new.get("non_text", {})
-    for k, had in onx.items():
-        if had and not nnx.get(k):
-            problems.append(f"本文に出ないものが消えた: {k}")
+    if onx.get("analytics") and not nnx.get("analytics"):
+        problems.append("本文に出ないものが消えた: analytics")
+    oh, nh = onx.get("head", {}), nnx.get("head", {})
+    for k in HEAD_KEYS:
+        if nh.get(k, 0) < oh.get(k, 0):
+            problems.append(f"<head> の {k} を持つページが減った: {oh.get(k, 0)} → {nh.get(k, 0)}")
 
     ot, nt = old.get("tables", {}), new.get("tables", {})
     for key in sorted(set(ot) | set(nt)):
