@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--2kelm9--><!----><title>この調査の限界 — 空白図鑑 暮らし編</title>
 		<link href="/_app/immutable/assets/0.B5Xv01Sc.css" rel="stylesheet">
+    <!-- 計測。csr=false でハイドレーションが無いので、素のスクリプトで入れる。
+         移植で一度落とした。parity は <script> を除外して比較するので検査に映らない。 -->
+    <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagResult reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_D9sYCu42uZ9R2fiL6LvnawEWRwrH7WdisdUNhn6ezQCz",{
+      api_host:"https://us.i.posthog.com",
+      ui_host:"https://us.posthog.com",
+      defaults:"2026-08-30",
+      capture_pageview:true,
+      capture_pageleave:true,
+      autocapture:true,
+      person_profiles:"identified_only",
+      capture_performance:{web_vitals:true},
+      capture_exceptions:true,
+      session_recording:{maskAllInputs:true,maskTextSelector:"[data-ph-mask]"},
+      // 全イベントに service を付ける。register() ではなく before_send なのは、
+      // posthog-js が init() の中で出す最初のイベント（$set など）が register() より
+      // 先に出てしまい、service の付かないイベントが混ざるため（実データで観測済み）。
+      before_send:function(event){
+        if(event)event.properties=Object.assign({},event.properties,{service:"kuhaku"});
+        return event;
+      }
+    });
+    </script>
   </head>
   <body data-sveltekit-preload-data="tap"><!--[--><!--[0--><!--[--><div class="wrap"><!--[--><p class="crumb"><a href="/">空白図鑑</a> ／ この調査の限界</p> <section><h2>この調査の限界</h2> <ul class="limits sec-note prose"><li><strong>調べたのは Wikipedia 日本語版だけです。</strong>辞典、論文、書籍、記事など日本語の情報源全体を調べたものではありません。「日本語に情報が無い」ことは主張していません。</li> <li><strong>「確認できず」は不在の証明ではありません。</strong>示した別名と隣接記事の範囲で見つからなかった、という意味です。範囲外に記述がある可能性は常に残ります。見つけた方はご指摘ください。</li> <li><strong>文字数の比較には限界があります。</strong>英語1文字と日本語1文字は情報量が同じではありません。文字数は内容の量そのものを表しません。</li> <li><strong>脚注の数え方に取りこぼしがあります。</strong>本文に直接書かれた <code>&lt;ref></code> の中のURLだけを数えており、テンプレート形式の脚注は拾えません。この形式を多用する記事では実際より少なく出ます。</li> <li><strong>ドメイン数は発行元の独立性を保証しません。</strong>同じ発行元が複数のドメインを持つこともあります。名称も「脚注内の外部参照ドメイン数」であり、「出典の数」ではありません。</li> <li><strong>英語版が正しい基準だとは考えていません。</strong>記述が長いことと正確であることは別です。日本語版が独立記事を作らず上位記事に統合しているのは、多くの場合それ自体が妥当な編集判断です。</li> <li><strong>記述内容の正確性は評価していません。</strong>調べたのは、どの論点が扱われているかだけです。</li></ul></section><!--]--><!----> <footer><p class="flinks"><a href="/">図鑑</a> <a href="/corrections">訂正の記録</a> <a href="/method">調べかた</a> <a href="/limits">この調査の限界</a> <a href="/data">データ</a> <a href="/unjudged">未検証</a></p> <p class="flinks"><a href="https://github.com/caprerinc/kuhaku">ソースコードとデータ</a> <a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">誤りを報告する</a></p> <p>空白図鑑 暮らし編</p> <p>Wikipedia 由来のデータは <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" rel="license">CC BY-SA 4.0</a> です。
       本文の引用および観測値は、日本語版・英語版Wikipedia の各改訂版に基づきます。</p> <p>誤りを見つけたら<a href="https://github.com/caprerinc/kuhaku/issues/new?template=correction.yml">Issue</a>で教えてください。訂正は上書きせず、履歴として公開します。</p></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]--></body>

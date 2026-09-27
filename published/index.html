@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--1uha8ag--><!----><title>空白図鑑 暮らし編 — 日本語版Wikipediaの空白を、探索記録つきで</title>
 		<link href="/_app/immutable/assets/0.B5Xv01Sc.css" rel="stylesheet">
+    <!-- 計測。csr=false でハイドレーションが無いので、素のスクリプトで入れる。
+         移植で一度落とした。parity は <script> を除外して比較するので検査に映らない。 -->
+    <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagResult reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init("phc_D9sYCu42uZ9R2fiL6LvnawEWRwrH7WdisdUNhn6ezQCz",{
+      api_host:"https://us.i.posthog.com",
+      ui_host:"https://us.posthog.com",
+      defaults:"2026-08-30",
+      capture_pageview:true,
+      capture_pageleave:true,
+      autocapture:true,
+      person_profiles:"identified_only",
+      capture_performance:{web_vitals:true},
+      capture_exceptions:true,
+      session_recording:{maskAllInputs:true,maskTextSelector:"[data-ph-mask]"},
+      // 全イベントに service を付ける。register() ではなく before_send なのは、
+      // posthog-js が init() の中で出す最初のイベント（$set など）が register() より
+      // 先に出てしまい、service の付かないイベントが混ざるため（実データで観測済み）。
+      before_send:function(event){
+        if(event)event.properties=Object.assign({},event.properties,{service:"kuhaku"});
+        return event;
+      }
+    });
+    </script>
   </head>
   <body data-sveltekit-preload-data="tap"><!--[--><!--[0--><!--[--><div class="wrap"><!--[--><header class="cover"><h1 class="brand">空白図鑑</h1> <p class="brand-sub">暮らし編</p> <p class="thesis prose">英語版にある概念が、日本語版に見当たらない。<br/> 機械的にそう出た7件のうち3件は、探索範囲を広げると<br/> 別の記事の中に書かれていました。</p> <p class="thesis2 prose">差分を取るだけでは、あるとも無いとも言えない。これはその記録です。</p> <p class="lede prose">暮らしに関わる<strong>47の概念</strong>について、日本語版Wikipediaに対応する記事があるかを調べ、 <strong>20件</strong>を人手で検証しました。分かったのは、日本語の知識が全体的に遅れているということではありません。 <strong>抜けかたが一様ではない</strong>ということです。独立した記事が無くても、別の記事の一文として存在していることがある。
     記事があっても、同じ名前の別の概念だったりする。観測した指標では日本語版が上回る概念もある。<br/><br/> ここで言えるのは<strong>「Wikipedia日本語版に対応する記事を確認できたか」だけ</strong>です。

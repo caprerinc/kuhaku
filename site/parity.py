@@ -131,6 +131,10 @@ def fingerprint(doc: str) -> dict:
             }),
         },
         "tables": tables(doc),
+        # 本文に出ないもの。消えても文言の比較では分からない。
+        "non_text": {
+            "analytics": ANALYTICS_MARKER in doc,
+        },
     }
 
 
@@ -198,6 +202,10 @@ FORBIDDEN_NAMES = re.compile(
     re.I)
 # 先頭が . のものはこれだけ許す。増やすときは理由を書くこと。
 ALLOWED_DOTFILES = {".assetsignore"}
+
+# 計測。**本文ではないので strip_html で消える**＝これまでの指紋に映らなかった。
+# 実際に移植で丸ごと落とし、どの検査も通ってしまった。明示的に見る。
+ANALYTICS_MARKER = "phc_D9sYCu42uZ9R2fiL6LvnawEWRwrH7WdisdUNhn6ezQCz"
 
 
 def check_inventory(root: pathlib.Path) -> list[str]:
@@ -336,6 +344,11 @@ def diff(old: dict, new: dict) -> list[str]:
     lost_links = sorted(set(oa["external_links"]) - set(nb["external_links"]))
     if lost_links:
         problems.append(f"外部リンクが消えた: {lost_links}")
+
+    onx, nnx = old.get("non_text", {}), new.get("non_text", {})
+    for k, had in onx.items():
+        if had and not nnx.get(k):
+            problems.append(f"本文に出ないものが消えた: {k}")
 
     ot, nt = old.get("tables", {}), new.get("tables", {})
     for key in sorted(set(ot) | set(nt)):
