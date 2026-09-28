@@ -59,21 +59,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # uses: は defaults.working-directory が効かないので、リポジトリ直下の
-      # package.json を見にいって版を決められず落ちる。web/ を明示する。
-      # 版は web/package.json の packageManager 一箇所で決める。
-      - uses: pnpm/action-setup@v4
+      # uses: は defaults.working-directory が効かないので、web/ を明示する。
+      # pnpm の版は web/package.json の packageManager、Node は web/.node-version で決める。
+      # Vite+ の公式アクション。Node（web/.node-version）と pnpm の用意、web/ の依存のインストール
+      # （vp install）までやる。v1 タグは v1.15.0 で止まっているので、コミットに固定する。
+      - uses: voidzero-dev/setup-vp@3754dd7dbdb32bd8f6d28b6043de13ad3a75f21f # v1.21.1
         with:
-          package_json_file: web/package.json
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "26"
-          cache: pnpm
-          cache-dependency-path: web/pnpm-lock.yaml
-
-      - name: 依存を入れる
-        run: pnpm install --frozen-lockfile
+          working-directory: web
+          node-version-file: .node-version
+          cache: true
 
       # 表示層は Python が作ったデータを読む。配布ファイルを渡さないと
       # プリレンダがリンク先を辿って 404 で落ちる。
@@ -81,7 +75,8 @@ jobs:
         working-directory: .
         run: ./run.sh build
 
-      - name: 型検査
+      # vp check（oxfmt ＋ oxlint）と svelte-check（テンプレート・a11y・型）
+      - name: 書式・lint・型
         run: pnpm check
 
       - name: ビルド
