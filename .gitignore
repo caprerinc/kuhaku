@@ -1,7 +1,9 @@
 __pycache__/
 *.pyc
 .DS_Store
-.claude/
+# 手元の Claude Code の状態は入れない。共有する設定（settings.json）だけ追跡する。
+.claude/*
+!.claude/settings.json
 node_modules/
 .wrangler/
 .svelte-kit/
