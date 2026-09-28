@@ -10,91 +10,91 @@
  */
 
 :root {
-  --paper: #fbfaf7;
-  --ink: #16161a;
-  --ai: #1c3a5e;
-  --shu: #a63a2a;
-  /* 実測 #6E6E75 は --kuu(#EFEDE7) の上で 4.32:1 と AA(4.5) 未満だった。
+	--paper: #fbfaf7;
+	--ink: #16161a;
+	--ai: #1c3a5e;
+	--shu: #a63a2a;
+	/* 実測 #6E6E75 は --kuu(#EFEDE7) の上で 4.32:1 と AA(4.5) 未満だった。
      #5F5F66 なら paper 6.07:1 / kuu 5.41:1。 */
-  --sumi: #5f5f66;
-  --kei: #dedcd5;
-  --kuu: #efede7;
-  --mincho: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', serif;
-  --gothic: 'Hiragino Sans', 'Yu Gothic', YuGothic, 'Noto Sans JP', sans-serif;
-  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
-  /* 本文の行長。旧 50rem では 47.5 全角字/行で、`palt` の字詰めで実質さらに増えていた。
+	--sumi: #5f5f66;
+	--kei: #dedcd5;
+	--kuu: #efede7;
+	--mincho: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', serif;
+	--gothic: 'Hiragino Sans', 'Yu Gothic', YuGothic, 'Noto Sans JP', sans-serif;
+	--mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+	/* 本文の行長。旧 50rem では 47.5 全角字/行で、`palt` の字詰めで実質さらに増えていた。
      日本語本文の快適域は 35〜45 字。40rem = 640px ≒ 40 字。
      表・カードは従来どおり --wrap 幅を使う（列が潰れるため狭めない）。 */
-  --measure: 40rem;
-  --wrap: 50rem;
+	--measure: 40rem;
+	--wrap: 50rem;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #141416;
-    --ink: #e8e6e0;
-    --ai: #8fb3d9;
-    --shu: #e0776a;
-    /* ダークの弱色は実測 6.59:1(paper) / 5.95:1(kuu) で基準を満たすため据え置き。 */
-    --sumi: #9a9aa2;
-    --kei: #33333a;
-    --kuu: #1e1e22;
-  }
+	:root {
+		--paper: #141416;
+		--ink: #e8e6e0;
+		--ai: #8fb3d9;
+		--shu: #e0776a;
+		/* ダークの弱色は実測 6.59:1(paper) / 5.95:1(kuu) で基準を満たすため据え置き。 */
+		--sumi: #9a9aa2;
+		--kei: #33333a;
+		--kuu: #1e1e22;
+	}
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 html {
-  -webkit-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--gothic);
-  font-size: 16px;
-  line-height: 1.85;
-  font-feature-settings: 'palt';
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--gothic);
+	font-size: 16px;
+	line-height: 1.85;
+	font-feature-settings: 'palt';
 }
 .wrap {
-  max-width: var(--wrap);
-  margin: 0 auto;
-  padding: 0 1.25rem;
+	max-width: var(--wrap);
+	margin: 0 auto;
+	padding: 0 1.25rem;
 }
 /* 読ませる文章だけ行長を絞る。表と探索記録には掛けない。 */
 .prose {
-  max-width: var(--measure);
+	max-width: var(--measure);
 }
 a {
-  color: inherit;
-  text-underline-offset: 0.2em;
-  text-decoration-thickness: 0.5px;
+	color: inherit;
+	text-underline-offset: 0.2em;
+	text-decoration-thickness: 0.5px;
 }
 a:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--ai);
-  outline-offset: 3px;
+	outline: 2px solid var(--ai);
+	outline-offset: 3px;
 }
 h1,
 h2,
 h3 {
-  font-family: var(--mincho);
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+	font-family: var(--mincho);
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 0.02em;
 }
 code {
-  font-family: var(--mono);
-  font-size: 0.9em;
+	font-family: var(--mono);
+	font-size: 0.9em;
 }
 /* 等幅は**識別子と数値だけ**。旧版は探索記録ブロック全体に掛けていて、
    日本語の記事名まで等幅になり読みにくかった。 */
 .n,
 .rev,
 .revcell {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
+	font-family: var(--mono);
+	font-variant-numeric: tabular-nums;
 }
 
 /* ── 判定ラベル ─────────────────────────
@@ -106,45 +106,45 @@ code {
  * AA 未満になる（--ink なら最悪でも 6.56:1）。枠線は --ai のまま。
  */
 .vlabel {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-family: var(--gothic);
-  padding: 0.22rem 0.6rem;
-  border: 1px solid var(--ai);
-  color: var(--ink);
-  white-space: nowrap;
-  line-height: 1.5;
+	display: inline-block;
+	font-size: 0.78rem;
+	font-family: var(--gothic);
+	padding: 0.22rem 0.6rem;
+	border: 1px solid var(--ai);
+	color: var(--ink);
+	white-space: nowrap;
+	line-height: 1.5;
 }
 .v-0 .vlabel,
 .dl-0 {
-  background: transparent;
+	background: transparent;
 }
 .v-1 .vlabel,
 .dl-1 {
-  background: color-mix(in srgb, var(--ai) 18%, transparent);
+	background: color-mix(in srgb, var(--ai) 18%, transparent);
 }
 .v-2 .vlabel,
 .dl-2 {
-  background: color-mix(in srgb, var(--ai) 38%, transparent);
+	background: color-mix(in srgb, var(--ai) 38%, transparent);
 }
 /* 比較できない = 斜線。塗りの序列とは別種であることを模様で示す。 */
 .v-3 .vlabel,
 .dl-3 {
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent 0 4px,
-    color-mix(in srgb, var(--ai) 28%, transparent) 4px 8px
-  );
+	background: repeating-linear-gradient(
+		-45deg,
+		transparent 0 4px,
+		color-mix(in srgb, var(--ai) 28%, transparent) 4px 8px
+	);
 }
 .v-4 .vlabel,
 .dl-4 {
-  background: var(--ai);
-  color: var(--paper);
-  border-color: var(--ai);
+	background: var(--ai);
+	color: var(--paper);
+	border-color: var(--ai);
 }
 /* 未検証 = 破線。旧版は生成側のインライン style で付けていた。 */
 .vlabel.unverified {
-  border-style: dashed;
+	border-style: dashed;
 }
 
 /* ── 観測値の図示 ───────────────────────
@@ -153,45 +153,45 @@ code {
  * 60個を超えると「…」で切っていた。数えられない図は符号化として嘘になる。
  */
 .count {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.5rem;
 }
 .count .num {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
+	font-family: var(--mono);
+	font-variant-numeric: tabular-nums;
 }
 .count .glyphs {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  gap: 2px;
-  align-items: center;
-  overflow: hidden;
+	display: inline-flex;
+	flex-wrap: nowrap;
+	gap: 2px;
+	align-items: center;
+	overflow: hidden;
 }
 .count .glyphs i {
-  width: 6px;
-  height: 6px;
-  background: var(--ai);
-  display: block;
-  flex: none;
+	width: 6px;
+	height: 6px;
+	background: var(--ai);
+	display: block;
+	flex: none;
 }
 .count .glyphs i.ci {
-  border-radius: 50%;
+	border-radius: 50%;
 }
 /* 図が入りきらないことがあるのは前提。数値が真を持つので図は欠けてよい。 */
 .count .glyphs[data-clipped='true']::after {
-  content: '';
+	content: '';
 }
 /* 欠測の記号。同じ「—」でも等幅の中と外で幅が違って見えるので、
    どの欄でも同じ見え方になるよう専用の class に寄せる。 */
 .missing,
 .count.none {
-  color: var(--sumi);
-  font-family: var(--gothic);
+	color: var(--sumi);
+	font-family: var(--gothic);
 }
 .count.zero {
-  color: var(--sumi);
-  font-size: 0.8rem;
+	color: var(--sumi);
+	font-size: 0.8rem;
 }
 
 /* ── カード ─────────────────────────────
@@ -199,79 +199,79 @@ code {
  * 番号の側に太い罫を立てて、カードの始まりを明示する。
  */
 .card {
-  padding: 2rem 0 2.2rem;
-  border-top: 3px solid var(--kei);
+	padding: 2rem 0 2.2rem;
+	border-top: 3px solid var(--kei);
 }
 .card > header {
-  display: grid;
-  grid-template-columns: 2.6rem 1fr auto;
-  gap: 0.9rem;
-  align-items: start;
+	display: grid;
+	grid-template-columns: 2.6rem 1fr auto;
+	gap: 0.9rem;
+	align-items: start;
 }
 .cno {
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--sumi);
-  padding-top: 0.35rem;
+	font-family: var(--mono);
+	font-size: 0.85rem;
+	color: var(--sumi);
+	padding-top: 0.35rem;
 }
 .ctitles h3 {
-  margin: 0;
-  font-size: 1.35rem;
+	margin: 0;
+	font-size: 1.35rem;
 }
 /* 英語タイトルは識別子なので等幅のまま。 */
 .ctitles .en {
-  margin: 0.15rem 0 0;
-  font-size: 0.8rem;
-  color: var(--sumi);
-  font-family: var(--mono);
+	margin: 0.15rem 0 0;
+	font-size: 0.8rem;
+	color: var(--sumi);
+	font-family: var(--mono);
 }
 .verdict {
-  text-align: right;
+	text-align: right;
 }
 .conf {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.72rem;
-  color: var(--sumi);
+	display: block;
+	margin-top: 0.35rem;
+	font-size: 0.72rem;
+	color: var(--sumi);
 }
 .why {
-  margin: 0.9rem 0 0 3.5rem;
-  font-size: 0.95rem;
-  max-width: var(--measure);
+	margin: 0.9rem 0 0 3.5rem;
+	font-size: 0.95rem;
+	max-width: var(--measure);
 }
 @media (max-width: 38rem) {
-  .card > header {
-    grid-template-columns: 2.2rem 1fr;
-  }
-  .verdict {
-    grid-column: 2;
-    text-align: left;
-    margin-top: 0.4rem;
-  }
-  .why {
-    margin-left: 0;
-  }
+	.card > header {
+		grid-template-columns: 2.2rem 1fr;
+	}
+	.verdict {
+		grid-column: 2;
+		text-align: left;
+		margin-top: 0.4rem;
+	}
+	.why {
+		margin-left: 0;
+	}
 }
 
 /* ── 訂正 ─────────────────────────────── */
 .change {
-  margin: 1rem 0 0;
-  padding: 0.7rem 0.9rem;
-  border-left: 2px solid var(--shu);
-  background: color-mix(in srgb, var(--shu) 6%, transparent);
-  font-size: 0.86rem;
-  max-width: var(--measure);
+	margin: 1rem 0 0;
+	padding: 0.7rem 0.9rem;
+	border-left: 2px solid var(--shu);
+	background: color-mix(in srgb, var(--shu) 6%, transparent);
+	font-size: 0.86rem;
+	max-width: var(--measure);
 }
 .cbadge {
-  display: inline-block;
-  margin-right: 0.6rem;
-  padding: 0.1rem 0.5rem;
-  font-size: 0.72rem;
-  border: 1px solid var(--shu);
-  color: var(--shu);
+	display: inline-block;
+	margin-right: 0.6rem;
+	padding: 0.1rem 0.5rem;
+	font-size: 0.72rem;
+	border: 1px solid var(--shu);
+	color: var(--shu);
 }
 .cbadge.evidence {
-  border-style: dashed;
+	border-style: dashed;
 }
 
 /* ── 探索記録 ────────────────────────────
@@ -279,95 +279,95 @@ code {
  * 等幅は改訂ID・数値だけに掛ける。
  */
 .trail {
-  margin: 1.6rem 0 0;
-  border: 1px solid var(--kei);
-  border-left: 3px solid var(--ai);
-  background: var(--kuu);
-  padding: 1rem 1.1rem;
-  font-family: var(--gothic);
-  font-size: 0.82rem;
-  line-height: 1.85;
+	margin: 1.6rem 0 0;
+	border: 1px solid var(--kei);
+	border-left: 3px solid var(--ai);
+	background: var(--kuu);
+	padding: 1rem 1.1rem;
+	font-family: var(--gothic);
+	font-size: 0.82rem;
+	line-height: 1.85;
 }
 .trail .rev,
 .trail .n {
-  font-family: var(--mono);
+	font-family: var(--mono);
 }
 .trail-head {
-  color: var(--ai);
-  letter-spacing: 0.14em;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px dashed var(--kei);
-  margin-bottom: 0.7rem;
+	color: var(--ai);
+	letter-spacing: 0.14em;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px dashed var(--kei);
+	margin-bottom: 0.7rem;
 }
 .trail-sec {
-  display: flex;
-  gap: 0.7rem;
-  align-items: baseline;
-  margin: 0.7rem 0 0.2rem;
+	display: flex;
+	gap: 0.7rem;
+	align-items: baseline;
+	margin: 0.7rem 0 0.2rem;
 }
 .trail-sec .tl {
-  color: var(--ai);
+	color: var(--ai);
 }
 .trail-sec .tn {
-  color: var(--sumi);
-  font-size: 0.72rem;
+	color: var(--sumi);
+	font-size: 0.72rem;
 }
 .cands,
 .conts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 .cands li,
 .conts li {
-  padding: 0.1rem 0;
+	padding: 0.1rem 0;
 }
 .cands .mk {
-  display: inline-block;
-  width: 1.2em;
-  color: var(--sumi);
+	display: inline-block;
+	width: 1.2em;
+	color: var(--sumi);
 }
 .cands li.hit .mk {
-  color: var(--ai);
+	color: var(--ai);
 }
 .cands .src {
-  color: var(--sumi);
-  font-size: 0.7rem;
-  margin-left: 0.6rem;
+	color: var(--sumi);
+	font-size: 0.7rem;
+	margin-left: 0.6rem;
 }
 .conts li {
-  padding-left: 1.2em;
-  text-indent: -1.2em;
+	padding-left: 1.2em;
+	text-indent: -1.2em;
 }
 .conts li::before {
-  content: '・';
-  color: var(--sumi);
+	content: '・';
+	color: var(--sumi);
 }
 .terms {
-  margin: 0.2rem 0 0;
+	margin: 0.2rem 0 0;
 }
 .terms span {
-  display: inline-block;
-  margin: 0 0.5rem 0.2rem 0;
-  padding: 0 0.35rem;
-  background: var(--paper);
-  border: 1px solid var(--kei);
+	display: inline-block;
+	margin: 0 0.5rem 0.2rem 0;
+	padding: 0 0.35rem;
+	background: var(--paper);
+	border: 1px solid var(--kei);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .card {
-    animation: fade 0.5s ease both;
-  }
-  @keyframes fade {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
+	.card {
+		animation: fade 0.5s ease both;
+	}
+	@keyframes fade {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
 }
 
 /* ── 移植で落としていた体裁 ───────────────────
@@ -377,405 +377,405 @@ code {
 
 a:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--ai);
-  outline-offset: 3px;
+	outline: 2px solid var(--ai);
+	outline-offset: 3px;
 }
 
 /* 表紙 */
 .cover {
-  padding: 4.5rem 0 2.5rem;
-  border-bottom: 1px solid var(--kei);
+	padding: 4.5rem 0 2.5rem;
+	border-bottom: 1px solid var(--kei);
 }
 .brand {
-  font-family: var(--mincho);
-  font-size: 2.6rem;
-  letter-spacing: 0.28em;
-  margin: 0 0 0.2rem;
+	font-family: var(--mincho);
+	font-size: 2.6rem;
+	letter-spacing: 0.28em;
+	margin: 0 0 0.2rem;
 }
 .brand-sub {
-  font-family: var(--mincho);
-  font-size: 0.95rem;
-  letter-spacing: 0.4em;
-  color: var(--sumi);
-  margin: 0;
+	font-family: var(--mincho);
+	font-size: 0.95rem;
+	letter-spacing: 0.4em;
+	color: var(--sumi);
+	margin: 0;
 }
 .thesis {
-  margin: 3rem 0 0;
-  font-family: var(--mincho);
-  font-size: 1.32rem;
-  line-height: 1.95;
+	margin: 3rem 0 0;
+	font-family: var(--mincho);
+	font-size: 1.32rem;
+	line-height: 1.95;
 }
 .thesis2 {
-  margin: 1.4rem 0 0;
-  font-family: var(--mincho);
-  font-size: 1.05rem;
-  color: var(--ai);
+	margin: 1.4rem 0 0;
+	font-family: var(--mincho);
+	font-size: 1.05rem;
+	color: var(--ai);
 }
 .breakdown {
-  margin: 1.8rem 0 0;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--kei);
-  background: var(--kuu);
-  font-size: 0.92rem;
-  line-height: 1.9;
+	margin: 1.8rem 0 0;
+	padding: 1rem 1.1rem;
+	border: 1px solid var(--kei);
+	background: var(--kuu);
+	font-size: 0.92rem;
+	line-height: 1.9;
 }
 .quote {
-  margin: 1.6rem 0 0;
-  padding: 1.3rem 1.4rem;
-  background: var(--kuu);
-  border-left: 2px solid var(--ai);
+	margin: 1.6rem 0 0;
+	padding: 1.3rem 1.4rem;
+	background: var(--kuu);
+	border-left: 2px solid var(--ai);
 }
 .quote p {
-  margin: 0;
-  font-family: var(--mincho);
-  font-size: 1.05rem;
+	margin: 0;
+	font-family: var(--mincho);
+	font-size: 1.05rem;
 }
 .quote cite {
-  display: block;
-  margin-top: 0.7rem;
-  font-style: normal;
-  font-size: 0.8rem;
-  color: var(--sumi);
-  font-family: var(--gothic);
+	display: block;
+	margin-top: 0.7rem;
+	font-style: normal;
+	font-size: 0.8rem;
+	color: var(--sumi);
+	font-family: var(--gothic);
 }
 .lede {
-  margin: 2.4rem 0 0;
-  color: var(--sumi);
-  font-size: 0.95rem;
+	margin: 2.4rem 0 0;
+	color: var(--sumi);
+	font-size: 0.95rem;
 }
 .lede strong {
-  color: var(--ink);
+	color: var(--ink);
 }
 
 /* 節 */
 section {
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--kei);
+	padding: 3rem 0;
+	border-bottom: 1px solid var(--kei);
 }
 section > h2 {
-  font-size: 1.25rem;
-  margin: 0 0 1rem;
-  color: var(--ai);
+	font-size: 1.25rem;
+	margin: 0 0 1rem;
+	color: var(--ai);
 }
 section > h2::before {
-  content: '';
-  display: inline-block;
-  width: 1.6rem;
-  height: 1px;
-  background: var(--ai);
-  vertical-align: 0.35em;
-  margin-right: 0.7rem;
+	content: '';
+	display: inline-block;
+	width: 1.6rem;
+	height: 1px;
+	background: var(--ai);
+	vertical-align: 0.35em;
+	margin-right: 0.7rem;
 }
 .sec-note {
-  color: var(--sumi);
-  font-size: 0.9rem;
+	color: var(--sumi);
+	font-size: 0.9rem;
 }
 .tiny {
-  font-size: 0.75rem;
-  color: var(--sumi);
-  margin: 0.5rem 0 0;
-  max-width: var(--measure);
+	font-size: 0.75rem;
+	color: var(--sumi);
+	margin: 0.5rem 0 0;
+	max-width: var(--measure);
 }
 
 /* 訂正方針 */
 .corr-policy {
-  background: var(--kuu);
-  padding: 1.2rem 1.3rem;
-  border-top: 2px solid var(--shu);
+	background: var(--kuu);
+	padding: 1.2rem 1.3rem;
+	border-top: 2px solid var(--shu);
 }
 .corr-policy h2 {
-  color: var(--shu);
-  font-size: 1.05rem;
-  margin: 0 0 0.5rem;
+	color: var(--shu);
+	font-size: 1.05rem;
+	margin: 0 0 0.5rem;
 }
 .corr-policy p {
-  margin: 0.3rem 0;
-  font-size: 0.92rem;
+	margin: 0.3rem 0;
+	font-size: 0.92rem;
 }
 .corr-policy .n {
-  color: var(--shu);
-  font-weight: 700;
+	color: var(--shu);
+	font-weight: 700;
 }
 
 /* 判定の定義 */
 .defs {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 .defs li {
-  display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-top: 1px solid var(--kei);
-  align-items: start;
+	display: grid;
+	grid-template-columns: 11rem 1fr;
+	gap: 1rem;
+	padding: 0.85rem 0;
+	border-top: 1px solid var(--kei);
+	align-items: start;
 }
 .defs li:last-child {
-  border-bottom: 1px solid var(--kei);
+	border-bottom: 1px solid var(--kei);
 }
 .defs .d {
-  font-size: 0.9rem;
-  color: var(--sumi);
-  max-width: var(--measure);
+	font-size: 0.9rem;
+	color: var(--sumi);
+	max-width: var(--measure);
 }
 
 /* 判定ごとの見出し */
 .vgroup {
-  margin: 3rem 0 1.2rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--ai);
+	margin: 3rem 0 1.2rem;
+	padding-top: 1.5rem;
+	border-top: 2px solid var(--ai);
 }
 .vgroup h2 {
-  font-size: 1.35rem;
-  margin: 0 0 0.35rem;
-  color: var(--ai);
+	font-size: 1.35rem;
+	margin: 0 0 0.35rem;
+	color: var(--ai);
 }
 .vgroup p {
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--sumi);
-  max-width: var(--measure);
+	margin: 0;
+	font-size: 0.88rem;
+	color: var(--sumi);
+	max-width: var(--measure);
 }
 
 /* 観測表 */
 .obs {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.4rem 0 0;
-  font-size: 0.86rem;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.4rem 0 0;
+	font-size: 0.86rem;
 }
 .obs th,
 .obs td {
-  text-align: left;
-  padding: 0.5rem 0.6rem;
-  border-bottom: 1px solid var(--kei);
-  vertical-align: top;
+	text-align: left;
+	padding: 0.5rem 0.6rem;
+	border-bottom: 1px solid var(--kei);
+	vertical-align: top;
 }
 .obs thead th {
-  font-weight: 400;
-  font-size: 0.78rem;
-  color: var(--sumi);
-  border-bottom: 1px solid var(--ai);
-  white-space: nowrap;
+	font-weight: 400;
+	font-size: 0.78rem;
+	color: var(--sumi);
+	border-bottom: 1px solid var(--ai);
+	white-space: nowrap;
 }
 .obs thead th:nth-child(2),
 .obs thead th:nth-child(3) {
-  width: 8.5rem;
+	width: 8.5rem;
 }
 .obs tbody th {
-  font-weight: 400;
-  color: var(--sumi);
-  width: 9.5rem;
+	font-weight: 400;
+	color: var(--sumi);
+	width: 9.5rem;
 }
 /* 注記が数文字ごとに折り返して読めなくなっていた。数値を主にしたぶん
    指標の欄が広がったので、その分を注記に回す。 */
 .obs .note {
-  min-width: 11rem;
+	min-width: 11rem;
 }
 .obs .note {
-  color: var(--sumi);
-  font-size: 0.72rem;
-  line-height: 1.6;
+	color: var(--sumi);
+	font-size: 0.72rem;
+	line-height: 1.6;
 }
 .revcell a {
-  color: var(--ai);
-  font-size: 0.72rem;
+	color: var(--ai);
+	font-size: 0.72rem;
 }
 
 /* 根拠 */
 .reason {
-  margin: 1.2rem 0 0;
-  font-size: 0.9rem;
-  max-width: var(--measure);
+	margin: 1.2rem 0 0;
+	font-size: 0.9rem;
+	max-width: var(--measure);
 }
 .reason summary {
-  cursor: pointer;
-  color: var(--ai);
-  font-size: 0.85rem;
+	cursor: pointer;
+	color: var(--ai);
+	font-size: 0.85rem;
 }
 .reason p {
-  margin: 0.8rem 0;
+	margin: 0.8rem 0;
 }
 .reason .meta {
-  font-size: 0.75rem;
-  color: var(--sumi);
-  border-top: 1px solid var(--kei);
-  padding-top: 0.6rem;
+	font-size: 0.75rem;
+	color: var(--sumi);
+	border-top: 1px solid var(--kei);
+	padding-top: 0.6rem;
 }
 
 /* 表 */
 .tblwrap {
-  overflow-x: auto;
+	overflow-x: auto;
 }
 table.plain {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-  min-width: 34rem;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.84rem;
+	min-width: 34rem;
 }
 table.plain th,
 table.plain td {
-  text-align: left;
-  padding: 0.45rem 0.6rem;
-  border-bottom: 1px solid var(--kei);
+	text-align: left;
+	padding: 0.45rem 0.6rem;
+	border-bottom: 1px solid var(--kei);
 }
 table.plain thead th {
-  font-weight: 400;
-  color: var(--sumi);
-  border-bottom: 1px solid var(--ai);
+	font-weight: 400;
+	color: var(--sumi);
+	border-bottom: 1px solid var(--ai);
 }
 table.plain td.n {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+	font-family: var(--mono);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
 }
 /* 「判定を変更」が1文字ずつ折り返して読めなくなっていた。 */
 table.plain td.kind {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 td.un {
-  color: var(--sumi);
-  font-size: 0.78rem;
-  white-space: nowrap;
+	color: var(--sumi);
+	font-size: 0.78rem;
+	white-space: nowrap;
 }
 /* テーマ名が「健康・か / らだ」と割れて読めなくなっていた。 */
 table.plain td.theme {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 .arw {
-  color: var(--shu);
-  padding: 0 0.4rem;
+	color: var(--shu);
+	padding: 0 0.4rem;
 }
 
 .limits li,
 .method li {
-  margin: 0.5rem 0;
+	margin: 0.5rem 0;
 }
 .dl {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin: 1rem 0 0;
+	display: flex;
+	gap: 0.8rem;
+	flex-wrap: wrap;
+	margin: 1rem 0 0;
 }
 .dl a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--ai);
-  color: var(--ai);
-  text-decoration: none;
-  font-size: 0.88rem;
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--ai);
+	color: var(--ai);
+	text-decoration: none;
+	font-size: 0.88rem;
 }
 .dl a:hover {
-  background: var(--ai);
-  color: var(--paper);
+	background: var(--ai);
+	color: var(--paper);
 }
 .cmd {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  background: var(--kuu);
-  border: 1px solid var(--kei);
-  padding: 0.8rem 1rem;
-  overflow-x: auto;
-  line-height: 1.8;
-  margin: 0.8rem 0;
+	font-family: var(--mono);
+	font-size: 0.8rem;
+	background: var(--kuu);
+	border: 1px solid var(--kei);
+	padding: 0.8rem 1rem;
+	overflow-x: auto;
+	line-height: 1.8;
+	margin: 0.8rem 0;
 }
 .cta {
-  border: 1px solid var(--kei);
-  padding: 1.3rem;
-  margin: 1rem 0 0;
-  background: var(--kuu);
+	border: 1px solid var(--kei);
+	padding: 1.3rem;
+	margin: 1rem 0 0;
+	background: var(--kuu);
 }
 .cta h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.05rem;
+	margin: 0 0 0.4rem;
+	font-size: 1.05rem;
 }
 footer {
-  padding: 3rem 0 5rem;
-  color: var(--sumi);
-  font-size: 0.82rem;
+	padding: 3rem 0 5rem;
+	color: var(--sumi);
+	font-size: 0.82rem;
 }
 .flinks {
-  display: flex;
-  gap: 1.4rem;
-  flex-wrap: wrap;
-  padding-bottom: 1.2rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 1px solid var(--kei);
+	display: flex;
+	gap: 1.4rem;
+	flex-wrap: wrap;
+	padding-bottom: 1.2rem;
+	margin-bottom: 1.2rem;
+	border-bottom: 1px solid var(--kei);
 }
 .flinks a {
-  color: var(--ai);
-  font-size: 0.9rem;
+	color: var(--ai);
+	font-size: 0.9rem;
 }
 
 /* ── 分割後の部品 ─────────────────────── */
 
 /* パンくず */
 .crumb {
-  padding: 2.5rem 0 0;
-  margin: 0;
-  font-size: 0.82rem;
-  color: var(--sumi);
+	padding: 2.5rem 0 0;
+	margin: 0;
+	font-size: 0.82rem;
+	color: var(--sumi);
 }
 .crumb a {
-  color: var(--ai);
+	color: var(--ai);
 }
 
 /* 一覧の表。20行をスキャンできることが目的なので、行は詰める。 */
 table.plain.index td,
 table.plain.index th {
-  padding: 0.6rem 0.6rem;
+	padding: 0.6rem 0.6rem;
 }
 table.plain.index td.idx {
-  width: 2.5rem;
-  color: var(--sumi);
+	width: 2.5rem;
+	color: var(--sumi);
 }
 table.plain.index a {
-  color: var(--ai);
-  font-size: 1rem;
+	color: var(--ai);
+	font-size: 1rem;
 }
 /* 英語タイトルは識別子。行を増やさず添える。 */
 .idx-en {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--sumi);
+	display: block;
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	color: var(--sumi);
 }
 .cbadge.mini {
-  margin: 0 0 0 0.5rem;
-  padding: 0 0.35rem;
-  font-size: 0.66rem;
-  vertical-align: 0.1em;
+	margin: 0 0 0 0.5rem;
+	padding: 0 0.35rem;
+	font-size: 0.66rem;
+	vertical-align: 0.1em;
 }
 .vgroup h3 {
-  font-size: 1.2rem;
-  margin: 0 0 0.35rem;
-  color: var(--ai);
+	font-size: 1.2rem;
+	margin: 0 0 0.35rem;
+	color: var(--ai);
 }
 .vcount {
-  margin-left: 0.8rem;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--sumi);
-  letter-spacing: 0;
+	margin-left: 0.8rem;
+	font-family: var(--mono);
+	font-size: 0.78rem;
+	color: var(--sumi);
+	letter-spacing: 0;
 }
 
 /* 概念ごとのページでは、カードが主役なので上の罫を外す。 */
 .card.standalone {
-  border-top: none;
-  padding-top: 0.5rem;
+	border-top: none;
+	padding-top: 0.5rem;
 }
 
 /* 前後の項目 */
 .pager {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 2.5rem 0 0;
-  margin-top: 2.5rem;
-  border-top: 1px solid var(--kei);
-  font-size: 0.88rem;
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 2.5rem 0 0;
+	margin-top: 2.5rem;
+	border-top: 1px solid var(--kei);
+	font-size: 0.88rem;
 }
 .pager a {
-  color: var(--ai);
+	color: var(--ai);
 }
