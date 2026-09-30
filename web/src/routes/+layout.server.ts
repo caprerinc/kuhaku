@@ -3,5 +3,5 @@
 import vm from '../../../data/viewmodel.json';
 
 export function load() {
-  return { vm };
+	return { vm };
 }
