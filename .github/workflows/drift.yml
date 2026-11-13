@@ -12,9 +12,19 @@ permissions:
 
 jobs:
   drift:
+    permissions:
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Load R2 actions from the workflow revision
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: .ci-artifact-actions
+          persist-credentials: false
+          sparse-checkout: .github/actions/ci-artifacts
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -22,9 +32,10 @@ jobs:
       - name: 現在の版と比べる
         run: ./run.sh drift | tee drift-report.txt
 
-      - uses: actions/upload-artifact@v4
+      - uses: ./.ci-artifact-actions/.github/actions/ci-artifacts/upload
         with:
           name: drift
           path: |
             drift-report.txt
             data/drift/
+          retention-days: 7

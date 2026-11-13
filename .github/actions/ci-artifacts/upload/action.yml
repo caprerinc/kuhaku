@@ -1,0 +1,33 @@
+name: Upload artifact to Caprer R2
+description: Store an artifact outside GitHub; keep the latest generation during cleanup
+inputs:
+  name:
+    description: Artifact name
+    required: true
+  path:
+    description: Newline-separated files, directories or glob patterns
+    required: true
+  retention-days:
+    description: Days to keep old generations; latest is always retained
+    default: '7'
+  retention-key:
+    description: Stable group for versioned artifact names; defaults to name
+  if-no-files-found:
+    description: warn, error or ignore
+    default: warn
+  include-hidden-files:
+    description: Include dotfiles (off by default)
+    default: 'false'
+  endpoint:
+    description: Organization artifact service
+    default: https://caprer-ci-artifacts.caprer.workers.dev
+outputs:
+  artifact-url:
+    description: Authenticated download URL
+  artifact-digest:
+    description: SHA256 of the compressed archive
+  artifact-id:
+    description: Immutable R2 object key
+runs:
+  using: node24
+  main: ../client/upload.mjs

@@ -1,0 +1,17 @@
+name: Download artifact from Caprer R2
+description: Download and verify an artifact from an earlier job in this run
+inputs:
+  name:
+    description: Artifact name
+    required: true
+  path:
+    description: Directory in which to extract the artifact
+    default: .
+  run-id:
+    description: Workflow run ID (defaults to the current run)
+  endpoint:
+    description: Organization artifact service
+    default: https://caprer-ci-artifacts.caprer.workers.dev
+runs:
+  using: node24
+  main: ../client/download-action.mjs
