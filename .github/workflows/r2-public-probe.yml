@@ -1,0 +1,34 @@
+name: Verify public R2 artifact actions
+on:
+  push:
+    branches: [infra/r2-artifact-storage-probe]
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  verify-public-client:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: .ci-artifact-actions
+          persist-credentials: false
+          sparse-checkout: .github/actions/ci-artifacts
+      - name: Create a public non-sensitive probe
+        run: |
+          mkdir -p "$RUNNER_TEMP/r2-public-input"
+          printf 'Caprer R2 public action probe\n' > "$RUNNER_TEMP/r2-public-input/probe.txt"
+      - uses: ./.ci-artifact-actions/.github/actions/ci-artifacts/upload
+        with:
+          name: public-client-probe
+          path: ${{ runner.temp }}/r2-public-input/
+          retention-days: 1
+          if-no-files-found: error
+      - uses: ./.ci-artifact-actions/.github/actions/ci-artifacts/download
+        with:
+          name: public-client-probe
+          path: ${{ runner.temp }}/r2-public-output/
+      - name: Compare the downloaded bytes
+        run: cmp "$RUNNER_TEMP/r2-public-input/probe.txt" "$RUNNER_TEMP/r2-public-output/probe.txt"
